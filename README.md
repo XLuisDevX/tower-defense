@@ -136,12 +136,33 @@ The tower not have visual changes. May be it could change it's color, scale or s
 - Range: Increase range by 0.5u until it reach 5u. The tower attacks earlier.
 
 ### 3.2 Enemies
-#### 1 Barrel
+#### 3.2.1 Barrel Goblin
 
-#### 2 TNT
+- **Name and brief description**: Barrel Goblin - A mischievous goblin hiding inside a wooden TNT barrel, walking towards the player's defenses and explodes when it's near them.
+- **Health points**: 50 HP
+- **Movement speed**: Slow (moves bouncing at a slow pace)
+- **Special abilities**:Explodes upon death or reaching the player's tower, causing significant area damage
+- **Point value when defeated**: 20 points
+- **Visual description**:  A red, cylindrical TNT barrel with "TNT" stenciled in white. Occasionally, mischievous goblin eyes peek out from a small hole in the barrel's side. A short fuse sticks out from the top, sparking ominously.
 
-#### 3 Torch
+#### 3.2.2 TNT Goblin
 
+- **Name and brief description**: TNT Goblin - A daring goblin carrying a large bundle of dynamite, attempting to breach the player's defenses with explosive force.
+- **Health points**: 30 HP
+- **Movement speed**: Slow (burdened by the heavy explosives)
+- **Special abilities**: Explodes upon death, damaging nearby goblins and the player's tower
+- **Point value when defeated**: 25 points
+- **Visual description**: A scrawny goblin struggling under the weight of a comically large, red bundle of dynamite sticks.
+
+#### 3.2.3 Torch Goblin
+
+- **Name and brief description**: Torch Goblin - An agile goblin wielding a flaming torch, capable of both melee and ranged attacks.
+- **Health points**: 40 HP
+- **Movement speed**: Fast (unencumbered and energetic)
+- **Special abilities**: Sets the ground on fire temporarily when dies.
+- **Point value when defeated**: 15 points
+- **Visual description**: A nimble goblin with a big hood, holding a brightly burning torch.
+  
 ### 3.3 Items and Powerups
 1. **Berserker Rage**: Dramatically increases attack speed for a short duration.
 
@@ -174,28 +195,108 @@ The tower not have visual changes. May be it could change it's color, scale or s
 15. **Chaos Orb**: Randomly applies different effects (stun, slow, damage) to goblins.
 
 ## 4. Story and Setting
+
 ### 4.1 Story
 [Brief overview of the game's story, if any]
 
 ### 4.2 Game World
-[Describe the setting and atmosphere of the game]
+
+"Knight's Last Stand" is set in a whimsical, slightly cartoony version of a medieval fantasy world. The game takes place on the outskirts of a once-prosperous kingdom, now under siege by endless hordes of mischievous goblins.
+
+#### Setting Elements:
+- A lone watchtower stands as the last line of defense against the goblin invasion
+- Rolling hills and dense forests surround the tower, providing cover for approaching goblins
+- 
+#### Visual Style:
+- Vibrant, colorful 2D graphics with a hand-drawn aesthetic
+- Exaggerated proportions and expressions for both the knight tower and the goblins
+- Dynamic lighting effects from torches, explosions, and magical elements
+
+#### Atmosphere:
+- The overall tone is light-hearted and energetic, despite the constant threat
+- Day-night cycles add visual variety and a sense of time passing as waves progress
+- Weather effects (like rain or fog) occasionally appear to change up the visual dynamics
+
+#### Audio Landscape:
+- A lively, medieval-inspired soundtrack with a modern twist
+- Comical sound effects for goblin actions and defeats
+- Satisfying, arcade-style sounds for tower attacks and upgrades
+
+#### Thematic Elements:
+- The contrast between the lone defender (the tower) and the endless horde of goblins emphasizes the "last stand" nature of the game
+- Humorous goblin designs and animations keep the tone light and entertaining
+- Progressive visual wear on the tower and surrounding environment as waves advance, showing the impact of the ongoing siege
+
+This setting aims to create an engaging, lighthearted atmosphere that complements the fast-paced, arcade-style gameplay while still maintaining a cohesive medieval fantasy theme.
 
 ## 5. Interface
+
 ### 5.1 Visual System
-[Describe the game's visual style and UI]
+
+The interface of "Knight's Last Stand" is designed to be intuitive, visually appealing, and in keeping with the medieval theme while providing clear information for fast-paced gameplay.
+
+#### Main Game Screen:
+- **Knight Tower**: Centrally located, the main focus of the screen
+- **Health Bar**: Located above the tower, clearly showing remaining health
+- **Wave Counter**: Top left corner, displaying current wave and incoming enemies
+- **Score**: Top right corner, prominently showing the player's current score
+- **Gold Count**: Below the score, showing available gold for upgrades
+- **Power-up Slots**: Bottom of the screen, showing available and cooldown status
+
+#### Upgrade Menu (between waves):
+- **Upgrade Options**: Central pop-up with clear icons for each upgrade type
+- **Cost Display**: Each upgrade option shows its gold cost
+- **Timer**: Countdown to next wave, encouraging quick decisions
+- **Current Stats**: Display of the tower's current attributes
+
+#### Game Over Screen:
+- **Final Score**: Large, center display of the player's score
+- **Waves Survived**: Number of waves completed
+- **High Score List**: Top 5 local high scores
+- **Replay and Main Menu Buttons**: Clearly visible options to continue
 
 ### 5.2 Control System
-[Explain how the player controls the game]
+
+The game is designed for intuitive touch controls on mobile devices:
+
+- **Tower Aiming**: Automatic, no player input required
+- **Power-up Activation**: Tap the power-up icon to activate
+- **Upgrade Selection**: Tap upgrade icons between waves
 
 ### 5.3 Audio
-[Describe the game's audio elements]
+
+Audio cues provide important feedback and enhance the game experience:
+
+- **Background Music**: Medieval-inspired tracks that intensify with each wave
+- **Tower Attacks**: Distinct sounds for different attack types and upgrades
+- **Enemy Sounds**: Unique sounds for each goblin type, especially when defeated
+- **Power-up Activation**: Clear, arcane-sounding effects for each power-up
+- **Wave Start/End**: Trumpet call or bell sound to signal wave changes
+- **Upgrade Sounds**: Satisfying 'level-up' sound when purchasing upgrades
+
+### 5.4 Feedback Systems
+
+- **Damage Numbers**: Floating numbers appear when enemies take damage
+- **Gold Pickup**: Coins visually float towards the gold counter when earned
+- **Tower Upgrade Visuals**: The tower visibly changes with significant upgrades
+- **Enemy Approach Indicator**: Arrows at screen edges point to off-screen enemies
+- **Critical Health Warning**: Screen edge pulsing red when tower health is low
 
 ## 6. Technical Specifications
 ### 6.1 Target Hardware
-[List the platforms the game will run on]
+- **Windows**
+- **Android**
 
 ### 6.2 Development Software
-[List the software used to create the game]
+- **Godot**
+- **Photoshop**
 
 ## 7. Game Art
-[Describe the artistic style of the game, include concept art if available]
+- **Game preview**
+![Game art](https://img.itch.zone/aW1nLzEwNDkxNTQ1LmdpZg==/original/k%2BhWls.gif)
+- **Troops**
+![Troops](https://img.itch.zone/aW1nLzEwNDgzNjUzLmdpZg==/original/00Nbow.gif)
+- **Structures**
+![Structures](https://img.itch.zone/aW1nLzEwNDgzNjU4LmdpZg==/original/PQS9Oo.gif)
+- **UI**
+![UI](https://img.itch.zone/aW1nLzEwODU1MjAxLmdpZg==/original/ZAhbls.gif)
