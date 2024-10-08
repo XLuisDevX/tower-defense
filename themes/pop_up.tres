@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://ijx1owhu2aug"]
+
+[ext_resource type="Texture2D" uid="uid://d2pmqch2k8n8v" path="res://assets/ui/Banners/Banner_Horizontal.png" id="1_g24l4"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oy0xm"]
+texture = ExtResource("1_g24l4")
+
+[resource]
+PopupDialog/styles/panel = SubResource("StyleBoxTexture_oy0xm")

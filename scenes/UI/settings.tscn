@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://dndftwan24i0q"]
+
+[ext_resource type="Texture2D" uid="uid://d2pmqch2k8n8v" path="res://assets/ui/Banners/Banner_Horizontal.png" id="1_xu1pg"]
+[ext_resource type="Texture2D" uid="uid://dl48edbb77m4j" path="res://assets/ui/Banners/Carved_3Slides.png" id="2_p00nx"]
+[ext_resource type="FontFile" uid="uid://cn32tl5nlr7j8" path="res://assets/fonts/vinque rg.otf" id="3_4vdr3"]
+
+[sub_resource type="Theme" id="Theme_nveoy"]
+default_font = ExtResource("3_4vdr3")
+default_font_size = 50
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Game Title" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -447.0
+offset_right = 447.0
+offset_bottom = 347.0
+grow_horizontal = 2
+texture = ExtResource("1_xu1pg")
+
+[node name="TextureRect" type="TextureRect" parent="Game Title"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 264.0
+offset_top = 91.0
+offset_right = -261.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_p00nx")
+
+[node name="Label" type="Label" parent="Game Title"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -6.0
+offset_right = -2.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_nveoy")
+text = "SETTINGS"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,579 @@
+[gd_scene load_steps=41 format=3 uid="uid://b8tm1poj8jkwi"]
+
+[ext_resource type="Texture2D" uid="uid://d2pmqch2k8n8v" path="res://assets/ui/Banners/Banner_Horizontal.png" id="1_6l5ow"]
+[ext_resource type="Script" path="res://scenes/UI/MainMenu.gd" id="1_x651r"]
+[ext_resource type="Texture2D" uid="uid://dl48edbb77m4j" path="res://assets/ui/Banners/Carved_3Slides.png" id="2_cyir2"]
+[ext_resource type="FontFile" uid="uid://cn32tl5nlr7j8" path="res://assets/fonts/vinque rg.otf" id="2_okhej"]
+[ext_resource type="Texture2D" uid="uid://32kedn37xlm3" path="res://assets/ui/Buttons/Button_Blue_3Slides.png" id="4_rp3xf"]
+[ext_resource type="Texture2D" uid="uid://boghqi1q0m1il" path="res://assets/ui/Buttons/Button_Blue_3Slides_Pressed.png" id="5_skb7w"]
+[ext_resource type="Texture2D" uid="uid://bhwah4o3klfn0" path="res://assets/ui/Buttons/Button_Hover_3Slides.png" id="6_k2scg"]
+[ext_resource type="Theme" uid="uid://bj77gqdg3xepq" path="res://themes/MainTheme.tres" id="6_oxyuu"]
+[ext_resource type="Script" path="res://scenes/UI/PlayButton.gd" id="7_27w5c"]
+[ext_resource type="Texture2D" uid="uid://27huqneo2ncx" path="res://assets/ui/Buttons/Button_Blue.png" id="8_nar03"]
+[ext_resource type="Script" path="res://scenes/UI/QuitButton.gd" id="9_0bl7g"]
+[ext_resource type="Texture2D" uid="uid://b0mi4buucj3x1" path="res://assets/ui/Buttons/Button_Blue_Pressed.png" id="9_d8ivt"]
+[ext_resource type="Texture2D" uid="uid://b1gf2te2pkiap" path="res://assets/ui/Buttons/Button_Hover.png" id="10_gc1ro"]
+[ext_resource type="Texture2D" uid="uid://begx5mbms8wj8" path="res://assets/ui/Icons/Regular_02.png" id="11_forul"]
+[ext_resource type="Script" path="res://scenes/UI/SettingsButton.gd" id="11_pfkvs"]
+[ext_resource type="Script" path="res://scenes/UI/Settings.gd" id="16_6sn5o"]
+[ext_resource type="Texture2D" uid="uid://hy11mywcekty" path="res://assets/ui/Banners/Banner_Vertical.png" id="16_hc545"]
+[ext_resource type="Texture2D" uid="uid://cew1ms7hdxk3c" path="res://assets/ui/Ribbons/Ribbon_Blue_3Slides.png" id="18_12gtv"]
+[ext_resource type="Theme" uid="uid://cy0o7odbkc5ks" path="res://themes/slider.tres" id="19_n5ynw"]
+[ext_resource type="Texture2D" uid="uid://dexjfhoobikrv" path="res://assets/ui/Buttons/Button_Red.png" id="20_hmsv2"]
+[ext_resource type="Texture2D" uid="uid://cjfafwoap2tfu" path="res://assets/ui/Buttons/Button_Red_Pressed.png" id="21_5b307"]
+[ext_resource type="Script" path="res://scenes/UI/VolumeDown.gd" id="21_e8xca"]
+[ext_resource type="Texture2D" uid="uid://boau8p3ywrnrv" path="res://assets/ui/Icons/Regular_09.png" id="22_401x4"]
+[ext_resource type="Texture2D" uid="uid://80p3bwbgmmmu" path="res://assets/ui/Icons/Regular_08.png" id="23_r0jml"]
+[ext_resource type="Script" path="res://scenes/UI/VolumeUp.gd" id="24_oxv4c"]
+[ext_resource type="Theme" uid="uid://cfj7i6urwde6t" path="res://themes/check_button.tres" id="26_tglu8"]
+[ext_resource type="Theme" uid="uid://utkit5ukgq4u" path="res://themes/buttons.tres" id="27_t5stv"]
+[ext_resource type="Texture2D" uid="uid://dxd1fec6acf75" path="res://assets/ui/Buttons/Button_Red_Disable.png" id="28_al3lm"]
+[ext_resource type="Texture2D" uid="uid://nj3bu5tptbet" path="res://assets/ui/Buttons/Button_Red_3Slides.png" id="29_cvdt4"]
+[ext_resource type="Texture2D" uid="uid://bmup2lkxs4nky" path="res://assets/ui/Buttons/Button_Red_3Slides_Pressed.png" id="30_5ds8h"]
+[ext_resource type="Texture2D" uid="uid://d2ilraa1bxvw3" path="res://assets/ui/Icons/Regular_01.png" id="31_4j2wm"]
+[ext_resource type="Script" path="res://scenes/UI/CloseSettings.gd" id="31_xsgd5"]
+
+[sub_resource type="Theme" id="Theme_of2om"]
+default_font = ExtResource("2_okhej")
+default_font_size = 50
+
+[sub_resource type="Animation" id="Animation_xx6dl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Settings/BannerVertical:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Settings/BannerVertical/Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.771733, 0.444332)]
+}
+
+[sub_resource type="Animation" id="Animation_r11qm"]
+resource_name = "close"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Settings/BannerVertical:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 2.2974, 1),
+"update": 0,
+"values": [Vector2(7, 7), Vector2(1, 3), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Settings/BannerVertical/Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.771733, 0.444332), Vector2(0, 0), Vector2(0.2, 0.2)]
+}
+
+[sub_resource type="Animation" id="Animation_6iksg"]
+resource_name = "pop_up"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Settings/BannerVertical:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 2.2974, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 3), Vector2(7, 7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Settings/BannerVertical/Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.2, 0.2), Vector2(0.771733, 0.444332)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_05in1"]
+_data = {
+"RESET": SubResource("Animation_xx6dl"),
+"close": SubResource("Animation_r11qm"),
+"pop_up": SubResource("Animation_6iksg")
+}
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g8omy"]
+texture = ExtResource("20_hmsv2")
+texture_margin_left = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uunpr"]
+texture = ExtResource("20_hmsv2")
+texture_margin_left = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wiluo"]
+texture = ExtResource("28_al3lm")
+texture_margin_left = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 20.0
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 30.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_x651r")
+
+[node name="Game Title" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -447.0
+offset_right = 447.0
+offset_bottom = 347.0
+grow_horizontal = 2
+texture = ExtResource("1_6l5ow")
+
+[node name="TextureRect" type="TextureRect" parent="Game Title"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 264.0
+offset_top = 91.0
+offset_right = -261.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_cyir2")
+
+[node name="Label" type="Label" parent="Game Title"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -6.0
+offset_right = -2.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_of2om")
+text = "KNIGHT'S
+ LAST STAND"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayButton" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.5
+offset_top = -57.5
+offset_right = 184.5
+offset_bottom = 57.5
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("4_rp3xf")
+texture_pressed = ExtResource("5_skb7w")
+texture_hover = ExtResource("6_k2scg")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("7_27w5c")
+
+[node name="Label" type="Label" parent="PlayButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.081
+anchor_top = 0.122
+anchor_right = 0.927
+anchor_bottom = 0.661
+offset_left = 0.111
+offset_top = -2.03
+offset_right = -0.0630188
+offset_bottom = -2.015
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_oxyuu")
+text = "PLAY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuitButton" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -184.0
+offset_top = -188.0
+offset_right = 185.0
+offset_bottom = -73.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("4_rp3xf")
+texture_pressed = ExtResource("5_skb7w")
+texture_hover = ExtResource("6_k2scg")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("9_0bl7g")
+
+[node name="Label" type="Label" parent="QuitButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.081
+anchor_top = 0.122
+anchor_right = 0.927
+anchor_bottom = 0.661
+offset_left = 0.111
+offset_top = -2.03
+offset_right = -0.0630188
+offset_bottom = -2.015
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_oxyuu")
+text = "QUIT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SettingsButton" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 186.0
+offset_top = -57.5
+offset_right = 250.0
+offset_bottom = 6.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.75, 1.75)
+texture_normal = ExtResource("8_nar03")
+texture_pressed = ExtResource("9_d8ivt")
+texture_hover = ExtResource("10_gc1ro")
+script = ExtResource("11_pfkvs")
+
+[node name="TextureRect" type="TextureRect" parent="SettingsButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.43
+offset_top = 0.5
+offset_right = 0.43
+offset_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_forul")
+stretch_mode = 2
+
+[node name="Settings" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -28.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("16_6sn5o")
+
+[node name="BannerVertical" type="Sprite2D" parent="Settings"]
+texture_filter = 1
+position = Vector2(957, 533)
+texture = ExtResource("16_hc545")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Settings/BannerVertical"]
+root_node = NodePath("../../..")
+libraries = {
+"": SubResource("AnimationLibrary_05in1")
+}
+speed_scale = 2.5
+
+[node name="Sprite2D" type="Sprite2D" parent="Settings/BannerVertical"]
+position = Vector2(1.28572, -48.1429)
+scale = Vector2(0.771733, 0.444332)
+texture = ExtResource("18_12gtv")
+
+[node name="SettingsTitle" type="Label" parent="Settings"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -166.0
+offset_top = 132.0
+offset_right = 170.0
+offset_bottom = 205.0
+grow_horizontal = 2
+theme = ExtResource("6_oxyuu")
+text = "SETTINGS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VolumeSlider" type="HSlider" parent="Settings"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -166.0
+offset_top = -199.0
+offset_right = 167.0
+offset_bottom = -144.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("19_n5ynw")
+min_value = 1.0
+value = 100.0
+
+[node name="VolumeDown" type="TextureButton" parent="Settings/VolumeSlider"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -61.0
+offset_top = -27.5
+offset_right = 3.0
+offset_bottom = 36.5
+grow_vertical = 2
+texture_normal = ExtResource("20_hmsv2")
+texture_pressed = ExtResource("21_5b307")
+texture_hover = ExtResource("10_gc1ro")
+script = ExtResource("21_e8xca")
+
+[node name="DownTexture" type="TextureRect" parent="Settings/VolumeSlider/VolumeDown"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("22_401x4")
+
+[node name="VolumeUp" type="TextureButton" parent="Settings/VolumeSlider"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 336.0
+offset_top = -27.5
+offset_right = 400.0
+offset_bottom = 36.5
+grow_vertical = 2
+texture_normal = ExtResource("20_hmsv2")
+texture_pressed = ExtResource("21_5b307")
+texture_hover = ExtResource("10_gc1ro")
+script = ExtResource("24_oxv4c")
+
+[node name="UpTexture" type="TextureRect" parent="Settings/VolumeSlider/VolumeUp"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("23_r0jml")
+
+[node name="VolumeTitle" type="Label" parent="Settings/VolumeSlider"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -105.5
+offset_top = -42.0
+offset_right = 106.5
+offset_bottom = 17.0
+grow_horizontal = 2
+theme = ExtResource("6_oxyuu")
+theme_override_font_sizes/font_size = 42
+text = "VOLUME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckBox" type="CheckBox" parent="Settings"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.0
+offset_top = -135.0
+offset_right = 102.0
+offset_bottom = -63.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("26_tglu8")
+text = "SHOW DAMAGE"
+flat = true
+
+[node name="GameSpeed" type="Control" parent="Settings"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -208.0
+offset_top = -51.0
+offset_right = 209.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Normal" type="Button" parent="Settings/GameSpeed"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 145.0
+offset_top = -21.0
+offset_right = 270.0
+offset_bottom = 42.0
+grow_vertical = 2
+theme = ExtResource("27_t5stv")
+toggle_mode = true
+text = "NORMAL"
+
+[node name="Fast" type="Button" parent="Settings/GameSpeed"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 270.0
+offset_top = -21.0
+offset_right = 395.0
+offset_bottom = 42.0
+grow_vertical = 2
+theme = ExtResource("27_t5stv")
+theme_override_styles/normal = SubResource("StyleBoxTexture_g8omy")
+theme_override_styles/hover = SubResource("StyleBoxTexture_uunpr")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_wiluo")
+toggle_mode = true
+text = "FAST"
+
+[node name="Label" type="Label" parent="Settings/GameSpeed"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -12.5
+offset_right = 145.0
+offset_bottom = 12.5
+grow_vertical = 2
+theme = ExtResource("6_oxyuu")
+theme_override_font_sizes/font_size = 20
+text = "GAME SPEED"
+
+[node name="CloseSettings" type="TextureButton" parent="Settings"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -105.0
+offset_top = -315.0
+offset_right = 87.0
+offset_bottom = -251.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("29_cvdt4")
+texture_pressed = ExtResource("30_5ds8h")
+texture_hover = ExtResource("6_k2scg")
+script = ExtResource("31_xsgd5")
+
+[node name="Cross" type="TextureRect" parent="Settings/CloseSettings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("31_4j2wm")
+
+[connection signal="settings_pressed" from="." to="Settings" method="_on_main_menu_settings_pressed"]
+[connection signal="button_down" from="PlayButton" to="PlayButton" method="_on_button_down"]
+[connection signal="button_up" from="PlayButton" to="PlayButton" method="_on_button_up"]
+[connection signal="button_down" from="QuitButton" to="QuitButton" method="_on_button_down"]
+[connection signal="button_up" from="QuitButton" to="QuitButton" method="_on_button_up"]
+[connection signal="button_down" from="SettingsButton" to="SettingsButton" method="_on_button_down"]
+[connection signal="button_up" from="SettingsButton" to="SettingsButton" method="_on_button_up"]
+[connection signal="animation_finished" from="Settings/BannerVertical/AnimationPlayer" to="Settings" method="_on_animation_player_animation_finished"]
+[connection signal="button_down" from="Settings/VolumeSlider/VolumeDown" to="Settings/VolumeSlider/VolumeDown" method="_on_button_down"]
+[connection signal="button_up" from="Settings/VolumeSlider/VolumeDown" to="Settings/VolumeSlider/VolumeDown" method="_on_button_up"]
+[connection signal="button_down" from="Settings/VolumeSlider/VolumeUp" to="Settings/VolumeSlider/VolumeUp" method="_on_button_down"]
+[connection signal="button_up" from="Settings/VolumeSlider/VolumeUp" to="Settings/VolumeSlider/VolumeUp" method="_on_button_up"]
+[connection signal="button_down" from="Settings/CloseSettings" to="Settings/CloseSettings" method="_on_button_down"]
+[connection signal="button_up" from="Settings/CloseSettings" to="Settings/CloseSettings" method="_on_button_up"]
+[connection signal="close_settings" from="Settings/CloseSettings" to="Settings" method="_on_close_settings_close_settings"]
