@@ -16,8 +16,7 @@ func _on_main_menu_settings_pressed():
 	$BannerVertical.visible = true
 	$BannerVertical/AnimationPlayer.play("pop_up")
 	
-
-
+	
 func _on_animation_player_animation_finished(anim_name):
 	var visibility = true if anim_name == "pop_up" else false
 	toggleSettingsElementsVisibility(visibility)

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjpqpo412un7f"]
+
+[ext_resource type="Script" path="res://scenes/GameManager.gd" id="1_bnruf"]
+
+[node name="GameManager" type="Node" node_paths=PackedStringArray("UI", "enemy_spawner", "game_over_menu")]
+script = ExtResource("1_bnruf")
+UI = NodePath("")
+enemy_spawner = NodePath("")
+game_over_menu = NodePath("")

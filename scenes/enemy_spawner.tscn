@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwt8ag6g3ykar"]
+
+[sub_resource type="GDScript" id="GDScript_upp7f"]
+script/source = "extends Node2D
+
+@onready var path_follow: PathFollow2D = $Path2D/PathFollow2D
+@export var enemySpawnerTimer: Timer
+@export var speed = 100
+@export var enemiesToSpawn = []
+
+var torch_goblin = preload(\"res://scenes/torch_goblin.tscn\")
+var tnt_goblin = preload(\"res://scenes/tnt_goblin.tscn\")
+var barrel_goblin = preload(\"res://scenes/barrel_goblin.tscn\")
+var global_delta = 0
+var enemy_instance
+var anim_enemy = false
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	#enemy_instance = torch_goblin.instantiate()
+	enemySpawnerTimer.start()
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if anim_enemy: animEnemy(delta)
+
+func animEnemy(delta):
+	# Animar el personaje
+	enemy_instance.get_node(\"AnimatedSprite2D\").play(\"walk\")
+	# Recorrer el path
+	path_follow.progress += speed * delta
+
+
+func _on_timer_timeout():
+	enemy_instance = torch_goblin.instantiate()
+	$Path2D/PathFollow2D.add_child(enemy_instance)
+	anim_enemy = true
+	print(\"character spawned\")
+"
+
+[sub_resource type="Curve2D" id="Curve2D_dfuuo"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 283, 1072, 0, 0, 0, 0, 278, 242, 0, 0, 0, 0, 278, 242, 0, 0, 0, 0, 1641, 244, 0, 0, 0, 0, 1639, 608, 0, 0, 0, 0, 678, 613, 0, 0, 0, 0, 685, 967, 0, 0, 0, 0, 685, 967, 0, 0, 0, 0, 1881, 974, 0, 0, 0, 0, 1881, 974)
+}
+point_count = 10
+
+[node name="EnemySpawner" type="Node2D"]
+script = SubResource("GDScript_upp7f")
+enemiesToSpawn = [null, null, null]
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_dfuuo")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(283, 1072)
+rotates = false
+loop = false
+
+[node name="Marker2D" type="Marker2D" parent="Path2D/PathFollow2D"]
+rotation = 1.5708

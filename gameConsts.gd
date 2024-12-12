@@ -44,4 +44,15 @@ const MENU_BTN_TEXT = {
 	}
 }
 
+const MAIN_MENU_BTN = {
+	"BUTTON_UP" = {
+		"x": 30,
+		"y": 9
+	},
+	"BUTTON_PRESSED" = {
+		"x": 30,
+		"y": 14
+	}
+}
+
 

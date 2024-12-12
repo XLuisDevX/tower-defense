@@ -1,9 +1,9 @@
-[gd_scene load_steps=64 format=3 uid="uid://caq8y7cpc33sl"]
+[gd_scene load_steps=27 format=3 uid="uid://caq8y7cpc33sl"]
 
 [ext_resource type="Texture2D" uid="uid://bavwfrwmw0nig" path="res://assets/terrain/Water/Water.png" id="1_nd600"]
 [ext_resource type="TileSet" uid="uid://ccgp0af0kggnq" path="res://assets/tilemaps/ground_flat.tres" id="1_ssud6"]
 [ext_resource type="Texture2D" uid="uid://dp7n02e0mv4b" path="res://assets/terrain/Water/Foam/Foam.png" id="2_0wg55"]
-[ext_resource type="PackedScene" uid="uid://cjpqpo412un7f" path="res://scenes/game_manager.tscn" id="4_ny7f7"]
+[ext_resource type="Script" path="res://scenes/GameManager.gd" id="4_y0syd"]
 [ext_resource type="Script" path="res://scenes/WaveManager.gd" id="5_637w1"]
 [ext_resource type="Script" path="res://scenes/EnemySpawner.gd" id="6_26ehe"]
 [ext_resource type="Texture2D" uid="uid://66df7akndbmd" path="res://assets/buildings/Castle_Blue.png" id="6_fp1tl"]
@@ -12,27 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://bxcyyc0kbffac" path="res://assets/ui/Health/health_bar_overlay.png" id="9_mp6xj"]
 [ext_resource type="Texture2D" uid="uid://p5x3ghdcw0xy" path="res://assets/ui/Health/health_bar_progress.png" id="10_rmphp"]
 [ext_resource type="Theme" uid="uid://bj77gqdg3xepq" path="res://themes/MainTheme.tres" id="11_7kc71"]
-[ext_resource type="PackedScene" uid="uid://dn7m053kn3s4l" path="res://scenes/tower.tscn" id="13_y3xgf"]
-[ext_resource type="PackedScene" uid="uid://cyupj46y7iu87" path="res://scenes/UI/gold.tscn" id="14_xtb18"]
-[ext_resource type="PackedScene" uid="uid://dr7k2038ntl2q" path="res://scenes/UI/roundInfo.tscn" id="15_rygt3"]
-[ext_resource type="Texture2D" uid="uid://hy11mywcekty" path="res://assets/ui/Banners/Banner_Vertical.png" id="17_0wfqm"]
-[ext_resource type="Script" path="res://scenes/GameOverMenu.gd" id="17_ywefs"]
-[ext_resource type="Texture2D" uid="uid://cew1ms7hdxk3c" path="res://assets/ui/Ribbons/Ribbon_Blue_3Slides.png" id="18_334hr"]
-[ext_resource type="Texture2D" uid="uid://nj3bu5tptbet" path="res://assets/ui/Buttons/Button_Red_3Slides.png" id="20_dvrmh"]
-[ext_resource type="Texture2D" uid="uid://32kedn37xlm3" path="res://assets/ui/Buttons/Button_Blue_3Slides.png" id="20_oc78r"]
-[ext_resource type="Texture2D" uid="uid://boghqi1q0m1il" path="res://assets/ui/Buttons/Button_Blue_3Slides_Pressed.png" id="21_nc7y7"]
-[ext_resource type="Texture2D" uid="uid://bmup2lkxs4nky" path="res://assets/ui/Buttons/Button_Red_3Slides_Pressed.png" id="21_va6br"]
-[ext_resource type="Texture2D" uid="uid://bhwah4o3klfn0" path="res://assets/ui/Buttons/Button_Hover_3Slides.png" id="22_l7rjo"]
-[ext_resource type="Texture2D" uid="uid://4wko2mxds702" path="res://assets/ui/Buttons/Button_Blue_Disable.png" id="22_tbbnb"]
-[ext_resource type="Theme" uid="uid://utkit5ukgq4u" path="res://themes/buttons.tres" id="23_ow57o"]
-[ext_resource type="Texture2D" uid="uid://27huqneo2ncx" path="res://assets/ui/Buttons/Button_Blue.png" id="26_gdmhu"]
-[ext_resource type="Texture2D" uid="uid://b0mi4buucj3x1" path="res://assets/ui/Buttons/Button_Blue_Pressed.png" id="27_lwhfx"]
-[ext_resource type="Script" path="res://scenes/MainMenuBtn.gd" id="27_uy8os"]
-[ext_resource type="Script" path="res://scenes/UI_gold.gd" id="27_xk1vj"]
-[ext_resource type="Texture2D" uid="uid://b1gf2te2pkiap" path="res://assets/ui/Buttons/Button_Hover.png" id="28_kns1i"]
-[ext_resource type="Texture2D" uid="uid://h5ol3srotag4" path="res://assets/ui/Resources/coin.png" id="28_pq5jx"]
-[ext_resource type="Texture2D" uid="uid://dpf5eklc44o0u" path="res://assets/ui/Icons/Regular_07.png" id="29_5mesy"]
-[ext_resource type="Script" path="res://scenes/ShopButton.gd" id="29_vt72e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_amw3o"]
 texture = ExtResource("1_nd600")
@@ -157,162 +136,9 @@ size = Vector2(246.215, 173.534)
 
 [sub_resource type="Curve2D" id="Curve2D_iwjj7"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 285, 1148, 0, 0, 0, 0, 283, 230, 0, 0, 0, 0, 1632, 230, 0, 0, 0, 0, 1631, 606, 0, 0, 0, 0, 682, 606, 0, 0, 0, 0, 683, 977, 0, 0, 0, 0, 1725, 975)
+"points": PackedVector2Array(0, 0, 0, 0, 285, 1079, 0, 0, 0, 0, 283, 230, 0, 0, 0, 0, 1632, 230, 0, 0, 0, 0, 1631, 606, 0, 0, 0, 0, 682, 606, 0, 0, 0, 0, 683, 977, 0, 0, 0, 0, 1725, 975)
 }
 point_count = 7
-
-[sub_resource type="Animation" id="Animation_e2wkv"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Ribbon:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_vjbdg"]
-resource_name = "pop_up"
-length = 1.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 2.29, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(1, 3), Vector2(7, 7)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Ribbon:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.5, 1, 1.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0.2, 0.2), Vector2(0.772, 0.444)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_n3k6t"]
-_data = {
-"RESET": SubResource("Animation_e2wkv"),
-"pop_up": SubResource("Animation_vjbdg")
-}
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7rqxl"]
-atlas = ExtResource("28_pq5jx")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_epxff"]
-atlas = ExtResource("28_pq5jx")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v87em"]
-atlas = ExtResource("28_pq5jx")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_635nm"]
-atlas = ExtResource("28_pq5jx")
-region = Rect2(48, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ochjf"]
-atlas = ExtResource("28_pq5jx")
-region = Rect2(64, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dn40r"]
-atlas = ExtResource("28_pq5jx")
-region = Rect2(80, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_w6tmu"]
-atlas = ExtResource("28_pq5jx")
-region = Rect2(96, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_omjop"]
-atlas = ExtResource("28_pq5jx")
-region = Rect2(112, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fkgu6"]
-atlas = ExtResource("28_pq5jx")
-region = Rect2(128, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jbh12"]
-atlas = ExtResource("28_pq5jx")
-region = Rect2(144, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_apo60"]
-atlas = ExtResource("28_pq5jx")
-region = Rect2(160, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nbwji"]
-atlas = ExtResource("28_pq5jx")
-region = Rect2(176, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_r2w1x"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7rqxl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_epxff")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_v87em")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_635nm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ochjf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dn40r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_w6tmu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_omjop")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fkgu6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jbh12")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_apo60")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nbwji")
-}],
-"loop": false,
-"name": &"flip",
-"speed": 6.0
-}]
 
 [node name="Game" type="Node"]
 
@@ -1055,9 +881,9 @@ layer_2/tile_data = PackedInt32Array(3473420, 1310720, 9, 3538956, 1310720, 4, 3
 layer_3/name = "Decorations"
 layer_3/tile_data = PackedInt32Array(262149, 1048576, 2, 327685, 1048576, 3, 262150, 1114112, 2, 327686, 1114112, 3, 262151, 1179648, 2, 327687, 1179648, 3, 262152, 1245184, 2, 327688, 1245184, 3, 2097152, 1048576, 2, 2097153, 1114112, 2, 2097155, 1245184, 2, 65649, 1048576, 2, 131185, 1048576, 3, 65650, 1114112, 2, 131186, 1114112, 3, 65651, 1179648, 2, 131187, 1179648, 3, 65652, 1245184, 2, 131188, 1245184, 3, 1703967, 1048576, 2, 1769503, 1048576, 3, 1703968, 1114112, 2, 1769504, 1114112, 3, 1703969, 1179648, 2, 1769505, 1179648, 3, 1703970, 1245184, 2, 1769506, 1245184, 3, 4456544, 1048576, 2, 4456545, 1114112, 2, 4456546, 1179648, 2, 4456547, 1245184, 2, 4325384, 1048576, 268435458, 4325383, 1114112, 268435458, 4325382, 1179648, 268435458, 4325381, 1245184, 268435458, 4390920, 1048576, 268435459, 4390919, 1114112, 268435459, 4390918, 1179648, 268435459, 4390917, 1245184, 268435459, 3211360, 1048576, 268435458, 3211359, 1114112, 268435458, 3211358, 1179648, 268435458, 3211357, 1245184, 268435458, 3276896, 1048576, 268435459, 3276895, 1114112, 268435459, 3276894, 1179648, 268435459, 3276893, 1245184, 268435459, 2555909, 1048576, 3, 2555910, 1114112, 3, 2555911, 1179648, 3, 2555912, 1245184, 3, 458838, 1048576, 268435459, 458837, 1114112, 268435459, 458836, 1179648, 268435459, 458835, 1245184, 268435459)
 
-[node name="GameManager" parent="." node_paths=PackedStringArray("UI_gold") instance=ExtResource("4_ny7f7")]
-UI_gold = NodePath("../UI_gold")
-variable = 100
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("enemy_spawner")]
+script = ExtResource("4_y0syd")
+enemy_spawner = NodePath("../EnemySpawner")
 
 [node name="WaveManager" type="Node" parent="."]
 script = ExtResource("5_637w1")
@@ -1071,15 +897,11 @@ spawn_timer = NodePath("SpawnTimer")
 
 [node name="SpawnTimer" type="Timer" parent="EnemySpawner"]
 
-[node name="Tower" parent="." instance=ExtResource("13_y3xgf")]
-texture_filter = 1
-position = Vector2(464, 379)
-
 [node name="CastleBlue" type="StaticBody2D" parent="." node_paths=PackedStringArray("enemy_spawner", "health_bar") groups=["player"]]
 position = Vector2(1783, 932)
 script = ExtResource("6_ng2fj")
 enemy_spawner = NodePath("../EnemySpawner")
-health_bar = NodePath("../Health/HealthBar")
+health_bar = NodePath("../Control/HealthBar")
 
 [node name="Sprite2D" type="Sprite2D" parent="CastleBlue"]
 texture_filter = 1
@@ -1093,208 +915,21 @@ shape = SubResource("RectangleShape2D_w00d3")
 curve = SubResource("Curve2D_iwjj7")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(283.802, 597.948)
+position = Vector2(1715.03, 975.019)
 skew = 0.949459
-progress = 550.053
+progress = 4926.02
 rotates = false
 loop = false
 
-[node name="GameOverMenu" type="Control" parent="."]
-visible = false
+[node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("17_ywefs")
 
-[node name="Banner" type="Sprite2D" parent="GameOverMenu"]
-texture_filter = 1
-position = Vector2(1003, 482)
-texture = ExtResource("17_0wfqm")
-
-[node name="AnimPlayer" type="AnimationPlayer" parent="GameOverMenu/Banner"]
-libraries = {
-"": SubResource("AnimationLibrary_n3k6t")
-}
-speed_scale = 2.5
-
-[node name="Ribbon" type="Sprite2D" parent="GameOverMenu/Banner"]
-position = Vector2(0, -47.7143)
-texture = ExtResource("18_334hr")
-
-[node name="RetryButton" type="TextureButton" parent="GameOverMenu"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1.0
-offset_top = 180.0
-offset_right = 63.0
-offset_bottom = 244.0
-grow_horizontal = 2
-grow_vertical = 2
-texture_normal = ExtResource("20_dvrmh")
-texture_pressed = ExtResource("21_va6br")
-texture_hover = ExtResource("22_l7rjo")
-texture_disabled = ExtResource("22_tbbnb")
-
-[node name="Label" type="Label" parent="GameOverMenu/RetryButton"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -61.0
-offset_top = -30.0
-offset_right = 61.0
-offset_bottom = 12.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("23_ow57o")
-theme_override_font_sizes/font_size = 30
-text = "RETRY"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="MainMenuBtn" type="TextureButton" parent="GameOverMenu"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -65.0
-offset_top = 104.0
-offset_right = 127.0
-offset_bottom = 168.0
-grow_horizontal = 2
-grow_vertical = 2
-texture_normal = ExtResource("20_oc78r")
-texture_pressed = ExtResource("21_nc7y7")
-texture_hover = ExtResource("22_l7rjo")
-texture_disabled = ExtResource("22_tbbnb")
-script = ExtResource("27_uy8os")
-
-[node name="Label" type="Label" parent="GameOverMenu/MainMenuBtn"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -70.0
-offset_top = -23.0
-offset_right = 82.0
-offset_bottom = 19.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("23_ow57o")
-theme_override_font_sizes/font_size = 22
-text = "MAIN MENU"
-
-[node name="ScoreText" type="Label" parent="GameOverMenu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -76.0
-offset_top = -310.0
-offset_right = 145.0
-offset_bottom = -237.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("11_7kc71")
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 54
-text = "SCORE"
-
-[node name="ScoreValue" type="Label" parent="GameOverMenu/ScoreText"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -134.5
-offset_top = -13.0
-offset_right = 116.5
-offset_bottom = 60.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-text = "1000000"
-
-[node name="HighScoreText" type="Label" parent="GameOverMenu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -221.0
-offset_top = -151.0
-offset_right = 291.0
-offset_bottom = -78.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("11_7kc71")
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 54
-text = "NEW HIGHSCORE!"
-
-[node name="HighScoreValue" type="Label" parent="GameOverMenu/HighScoreText"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -135.0
-offset_top = 36.5
-offset_right = 116.0
-offset_bottom = 109.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-text = "1000000"
-
-[node name="GameOver" type="Label" parent="GameOverMenu"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -432.0
-offset_top = 25.0
-offset_right = 526.0
-offset_bottom = 206.0
-grow_horizontal = 2
-theme = ExtResource("11_7kc71")
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 94
-text = "GAME OVER"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Health" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 29.0
-offset_top = 27.0
-offset_right = 29.0
-offset_bottom = 27.0
-
-[node name="HealthBar" type="TextureProgressBar" parent="Health"]
+[node name="HealthBar" type="TextureProgressBar" parent="Control"]
 texture_filter = 1
 layout_mode = 1
 offset_right = 427.0
@@ -1306,42 +941,8 @@ texture_under = ExtResource("8_yvn2o")
 texture_over = ExtResource("9_mp6xj")
 texture_progress = ExtResource("10_rmphp")
 
-[node name="Gold" parent="." instance=ExtResource("14_xtb18")]
+[node name="GameOver" type="Label" parent="Control"]
 visible = false
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -171.0
-offset_top = 59.0
-offset_right = -171.0
-offset_bottom = 59.0
-grow_horizontal = 0
-
-[node name="Shop" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="ShopButton" type="TextureButton" parent="Shop"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 29.0
-offset_top = -100.0
-offset_right = 93.0
-offset_bottom = -36.0
-grow_vertical = 0
-texture_normal = ExtResource("26_gdmhu")
-texture_pressed = ExtResource("27_lwhfx")
-texture_hover = ExtResource("28_kns1i")
-script = ExtResource("29_vt72e")
-
-[node name="ShopIcon" type="TextureRect" parent="Shop/ShopButton"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1349,64 +950,15 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -20.0
-offset_top = -20.0
+offset_top = -11.5
 offset_right = 20.0
-offset_bottom = 20.0
+offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("29_5mesy")
-
-[node name="RoundInfo" parent="." instance=ExtResource("15_rygt3")]
-texture_filter = 1
-offset_top = 59.0
-offset_bottom = 59.0
 theme = ExtResource("11_7kc71")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 150
+text = "GAME OVER"
 
-[node name="UI_gold" type="Control" parent="."]
-texture_filter = 1
-layout_mode = 3
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -145.0
-offset_top = 59.0
-offset_right = -105.0
-offset_bottom = 99.0
-grow_horizontal = 0
-script = ExtResource("27_xk1vj")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="UI_gold"]
-scale = Vector2(5, 5)
-sprite_frames = SubResource("SpriteFrames_r2w1x")
-animation = &"flip"
-
-[node name="AnimationTimer" type="Timer" parent="UI_gold"]
-wait_time = 5.0
-
-[node name="ScoreLabel" type="Label" parent="UI_gold"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 9.0
-offset_top = -20.0
-offset_right = 49.0
-offset_bottom = 20.0
-grow_horizontal = 2
-theme = ExtResource("11_7kc71")
-theme_override_font_sizes/font_size = 32
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[connection signal="update_gold" from="GameManager" to="UI_gold" method="_on_game_manager_update_gold"]
 [connection signal="timeout" from="EnemySpawner/SpawnTimer" to="EnemySpawner" method="_on_spawn_timer_timeout"]
-[connection signal="animation_finished" from="GameOverMenu/Banner/AnimPlayer" to="GameOverMenu" method="_on_anim_player_animation_finished"]
-[connection signal="button_up" from="GameOverMenu/RetryButton" to="GameOverMenu" method="_on_retry_button_button_up"]
-[connection signal="button_down" from="GameOverMenu/MainMenuBtn" to="GameOverMenu/MainMenuBtn" method="_on_button_down"]
-[connection signal="button_up" from="GameOverMenu/MainMenuBtn" to="GameOverMenu/MainMenuBtn" method="_on_button_up"]
-[connection signal="button_down" from="Shop/ShopButton" to="Shop/ShopButton" method="_on_button_down"]
-[connection signal="button_up" from="Shop/ShopButton" to="Shop/ShopButton" method="_on_button_up"]
-[connection signal="animation_finished" from="UI_gold/AnimatedSprite2D" to="UI_gold" method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="timeout" from="UI_gold/AnimationTimer" to="UI_gold" method="_on_animation_timer_timeout"]
+[connection signal="game_over" from="CastleBlue" to="GameManager" method="_on_castle_blue_game_over"]
