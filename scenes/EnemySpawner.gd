@@ -9,8 +9,10 @@ var rng = RandomNumberGenerator.new()
 var enemies_to_spawn = 0
 var spawn_interval = 1.0
 var _drop_percentage: float = 0.0
+var enemies_spawned_counter = 0
 
 signal enemy_attacks
+signal enemy_dies
 
 func start_wave(enemy_count, interval):
 	enemies_to_spawn = enemy_count
@@ -41,6 +43,8 @@ func spawn_enemy():
 	enemy_follow.h_offset = rng.randf_range(-75.0, 50.0) # Random position on the path
 	enemy_follow.v_offset = rng.randf_range(-50.0, 40.0)
 	enemy_follow.add_child(enemy)
+	
+	enemies_spawned_counter += 1
 
 func notify_enemy_attacks():
 	enemy_attacks.emit()
@@ -59,3 +63,8 @@ func get_enemies_path_follow(array: Array[Node]):
 		if array[index].is_in_group("enemy"):
 			enemy_instancies.append(array[index])
 	return enemy_instancies
+
+func _process(delta):
+	if enemies_spawned_counter != get_enemies_path_follow(path_follow.get_parent().get_children()).size():
+		enemies_spawned_counter = get_enemies_path_follow(path_follow.get_parent().get_children()).size()
+		enemy_dies.emit()

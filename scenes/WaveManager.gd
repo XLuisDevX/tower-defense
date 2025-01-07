@@ -1,5 +1,8 @@
 extends Node
 
+@export var enemySpawner: Node
+@export var UI_roundInfo: Control
+
 signal wave_started(wave_number)
 signal wave_completed(wave_number)
 
@@ -16,6 +19,8 @@ var enemies_defeated = 0
 @onready var wave_timer = $WaveTimer
 
 func _ready():
+	enemySpawner.connect("enemy_dies", Callable(self, "on_enemy_defeated"))
+	
 	wave_timer.connect("timeout", Callable(self, "start_next_wave"))
 	start_game()
 
@@ -23,6 +28,8 @@ func start_game():
 	start_next_wave()
 
 func start_next_wave():
+	wave_timer.stop()
+	UI_roundInfo.increment_round_count()
 	if current_wave < waves.size():
 		current_wave += 1
 		var wave_data = waves[current_wave - 1]
