@@ -15,8 +15,7 @@ var _gameManagerScript
 
 var previous_position
 
-var originalX = -INF
-var originalY = -INF
+var enemy_score = 10
 
 signal attack
 
@@ -50,6 +49,9 @@ func _check_direction():
 func take_damage(amount):
 	health -= amount
 	if health <= 0:
+		# Update score on screen
+		_update_score()
+		
 		if drops_gold: _drop_gold()
 		get_parent().queue_free()
 		#queue_free()
@@ -78,3 +80,6 @@ func _drop_gold():
 	gold_bag.position = get_parent().position
 	#gold_bag.connect("collect_gold", Callable(game_manger, "notify_collect_gold"))
 	get_parent().get_parent().add_child(gold_bag)
+
+func _update_score():
+	GlobalScene.set_score(GlobalScene.get_score() + enemy_score * GlobalScene.get_wave_index())

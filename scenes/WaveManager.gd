@@ -32,6 +32,7 @@ func start_next_wave():
 	UI_roundInfo.increment_round_count()
 	if current_wave < waves.size():
 		current_wave += 1
+		GlobalScene.set_wave_index(current_wave)
 		var wave_data = waves[current_wave - 1]
 		enemy_spawner.start_wave(wave_data["enemy_count"], wave_data["spawn_interval"])
 		enemies_defeated = 0

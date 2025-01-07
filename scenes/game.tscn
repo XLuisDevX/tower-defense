@@ -1055,8 +1055,9 @@ layer_2/tile_data = PackedInt32Array(3473420, 1310720, 9, 3538956, 1310720, 4, 3
 layer_3/name = "Decorations"
 layer_3/tile_data = PackedInt32Array(262149, 1048576, 2, 327685, 1048576, 3, 262150, 1114112, 2, 327686, 1114112, 3, 262151, 1179648, 2, 327687, 1179648, 3, 262152, 1245184, 2, 327688, 1245184, 3, 2097152, 1048576, 2, 2097153, 1114112, 2, 2097155, 1245184, 2, 65649, 1048576, 2, 131185, 1048576, 3, 65650, 1114112, 2, 131186, 1114112, 3, 65651, 1179648, 2, 131187, 1179648, 3, 65652, 1245184, 2, 131188, 1245184, 3, 1703967, 1048576, 2, 1769503, 1048576, 3, 1703968, 1114112, 2, 1769504, 1114112, 3, 1703969, 1179648, 2, 1769505, 1179648, 3, 1703970, 1245184, 2, 1769506, 1245184, 3, 4456544, 1048576, 2, 4456545, 1114112, 2, 4456546, 1179648, 2, 4456547, 1245184, 2, 4325384, 1048576, 268435458, 4325383, 1114112, 268435458, 4325382, 1179648, 268435458, 4325381, 1245184, 268435458, 4390920, 1048576, 268435459, 4390919, 1114112, 268435459, 4390918, 1179648, 268435459, 4390917, 1245184, 268435459, 3211360, 1048576, 268435458, 3211359, 1114112, 268435458, 3211358, 1179648, 268435458, 3211357, 1245184, 268435458, 3276896, 1048576, 268435459, 3276895, 1114112, 268435459, 3276894, 1179648, 268435459, 3276893, 1245184, 268435459, 2555909, 1048576, 3, 2555910, 1114112, 3, 2555911, 1179648, 3, 2555912, 1245184, 3, 458838, 1048576, 268435459, 458837, 1114112, 268435459, 458836, 1179648, 268435459, 458835, 1245184, 268435459)
 
-[node name="GameManager" parent="." node_paths=PackedStringArray("UI_gold") instance=ExtResource("4_ny7f7")]
+[node name="GameManager" parent="." node_paths=PackedStringArray("UI_gold", "UI_Score") instance=ExtResource("4_ny7f7")]
 UI_gold = NodePath("../UI_gold")
+UI_Score = NodePath("../UI_Score")
 variable = 100
 
 [node name="WaveManager" type="Node" parent="." node_paths=PackedStringArray("enemySpawner", "UI_roundInfo")]
@@ -1288,9 +1289,9 @@ z_index = 1000
 z_as_relative = false
 layout_mode = 3
 anchors_preset = 0
-offset_left = 29.0
+offset_left = 42.0
 offset_top = 27.0
-offset_right = 29.0
+offset_right = 42.0
 offset_bottom = 27.0
 
 [node name="HealthBar" type="TextureProgressBar" parent="Health"]
@@ -1398,6 +1399,16 @@ theme = ExtResource("11_7kc71")
 theme_override_font_sizes/font_size = 32
 text = "0"
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UI_Score" type="Label" parent="."]
+offset_left = 42.0
+offset_top = 96.0
+offset_right = 359.0
+offset_bottom = 169.0
+theme = ExtResource("11_7kc71")
+theme_override_font_sizes/font_size = 32
+text = "SCORE: 999999999"
 vertical_alignment = 1
 
 [node name="TowerPlaceholder2" parent="." instance=ExtResource("38_8orsn")]

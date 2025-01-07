@@ -1,6 +1,7 @@
 extends Node
 
 @export var UI_gold: Node
+@export var UI_Score: Label
 @export var enemy_spawner: Node
 @export var game_over_menu: Node
 @export var variable: int
@@ -11,8 +12,15 @@ signal update_gold
 
 func _ready():
 	GlobalScene.connect("gold_updated", Callable(self, "notify_update_gold"))
+	GlobalScene.connect("score_updated", Callable(self, "notify_update_score"))
 	if UI_gold:
 		print("Nodo asignado desde el editor:", UI_gold.name)
+	else:
+		print("El nodo asignado está vacío o no está en el árbol.")
+	
+	if UI_Score:
+		print("Nodo asignado desde el editor:", UI_Score.name)
+		UI_Score.text = "SCORE: 0"
 	else:
 		print("El nodo asignado está vacío o no está en el árbol.")
 
@@ -41,3 +49,7 @@ func _on_game_over_timer_timeout():
 func notify_update_gold():
 	if UI_gold:
 		UI_gold.update_gold()
+
+func notify_update_score():
+	if UI_Score:
+		UI_Score.text = "SCORE: " + str(GlobalScene.get_score())
