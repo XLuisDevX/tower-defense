@@ -4,7 +4,7 @@ var _roundCount = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	increment_round_count()
+	#increment_round_count()
 	pass # Replace with function body.
 
 
@@ -17,4 +17,4 @@ func increment_round_count() -> void:
 	_update_round_info()
 	
 func _update_round_info() -> void:
-	$Label.text = $Label.text + str(_roundCount)
+	$Label.text = "Round: " + str(_roundCount)
