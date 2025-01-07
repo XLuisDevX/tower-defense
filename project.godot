@@ -29,3 +29,7 @@ window/size/mode=3
 [layer_names]
 
 2d_physics/layer_1="Enemies"
+
+[rendering]
+
+viewport/hdr_2d=true

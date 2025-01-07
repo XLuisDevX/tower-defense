@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://caq8y7cpc33sl"]
+[gd_scene load_steps=66 format=3 uid="uid://caq8y7cpc33sl"]
 
 [ext_resource type="Texture2D" uid="uid://bavwfrwmw0nig" path="res://assets/terrain/Water/Water.png" id="1_nd600"]
 [ext_resource type="TileSet" uid="uid://ccgp0af0kggnq" path="res://assets/tilemaps/ground_flat.tres" id="1_ssud6"]
@@ -313,6 +313,27 @@ animations = [{
 "name": &"flip",
 "speed": 6.0
 }]
+
+[sub_resource type="Animation" id="Animation_ybqka"]
+resource_name = "mystic_pulse"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.8, 0.8), Vector2(0.8, 0.8)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8ox3u"]
+_data = {
+"mystic_pulse": SubResource("Animation_ybqka")
+}
 
 [node name="Game" type="Node"]
 
@@ -1060,10 +1081,11 @@ UI_gold = NodePath("../UI_gold")
 UI_Score = NodePath("../UI_Score")
 variable = 100
 
-[node name="WaveManager" type="Node" parent="." node_paths=PackedStringArray("enemySpawner", "UI_roundInfo")]
+[node name="WaveManager" type="Node" parent="." node_paths=PackedStringArray("enemySpawner", "UI_roundInfo", "UI_countdown")]
 script = ExtResource("5_637w1")
 enemySpawner = NodePath("../EnemySpawner")
 UI_roundInfo = NodePath("../RoundInfo")
+UI_countdown = NodePath("../Countdown")
 
 [node name="WaveTimer" type="Timer" parent="WaveManager"]
 
@@ -1085,6 +1107,7 @@ texture_filter = 1
 texture = ExtResource("6_fp1tl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CastleBlue"]
+visible = false
 position = Vector2(-7.89246, 18.7668)
 shape = SubResource("RectangleShape2D_w00d3")
 
@@ -1416,6 +1439,31 @@ position = Vector2(481, 370)
 
 [node name="TowerPlaceholder" parent="." instance=ExtResource("38_8orsn")]
 position = Vector2(1458, 370)
+
+[node name="Countdown" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -127.0
+offset_top = -240.5
+offset_right = 127.0
+offset_bottom = 240.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("11_7kc71")
+theme_override_colors/font_color = Color(1, 0.470588, 0.286275, 1)
+theme_override_font_sizes/font_size = 400
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Countdown"]
+libraries = {
+"": SubResource("AnimationLibrary_8ox3u")
+}
 
 [connection signal="update_gold" from="GameManager" to="UI_gold" method="_on_game_manager_update_gold"]
 [connection signal="timeout" from="EnemySpawner/SpawnTimer" to="EnemySpawner" method="_on_spawn_timer_timeout"]
