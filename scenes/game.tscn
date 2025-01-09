@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://caq8y7cpc33sl"]
+[gd_scene load_steps=68 format=3 uid="uid://caq8y7cpc33sl"]
 
 [ext_resource type="Texture2D" uid="uid://bavwfrwmw0nig" path="res://assets/terrain/Water/Water.png" id="1_nd600"]
 [ext_resource type="TileSet" uid="uid://ccgp0af0kggnq" path="res://assets/tilemaps/ground_flat.tres" id="1_ssud6"]
@@ -32,6 +32,8 @@
 [ext_resource type="Texture2D" uid="uid://h5ol3srotag4" path="res://assets/ui/Resources/coin.png" id="28_pq5jx"]
 [ext_resource type="Texture2D" uid="uid://dpf5eklc44o0u" path="res://assets/ui/Icons/Regular_07.png" id="29_5mesy"]
 [ext_resource type="Script" path="res://scenes/ShopButton.gd" id="29_vt72e"]
+[ext_resource type="Texture2D" uid="uid://begx5mbms8wj8" path="res://assets/ui/Icons/Regular_02.png" id="34_bqj2f"]
+[ext_resource type="Script" path="res://scenes/UI_Settings.gd" id="34_ch5cd"]
 [ext_resource type="PackedScene" uid="uid://cyd6464iuw20k" path="res://scenes/tower_placeholder.tscn" id="38_8orsn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_amw3o"]
@@ -1465,6 +1467,33 @@ libraries = {
 "": SubResource("AnimationLibrary_8ox3u")
 }
 
+[node name="UI_Settings" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 17.0
+offset_top = -64.0
+offset_right = 57.0
+offset_bottom = -24.0
+grow_vertical = 0
+script = ExtResource("34_ch5cd")
+
+[node name="TextureButton" type="TextureButton" parent="UI_Settings"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("26_gdmhu")
+texture_pressed = ExtResource("27_lwhfx")
+texture_hover = ExtResource("28_kns1i")
+texture_disabled = ExtResource("22_tbbnb")
+
+[node name="TextureRect" type="TextureRect" parent="UI_Settings/TextureButton"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("34_bqj2f")
+
 [connection signal="update_gold" from="GameManager" to="UI_gold" method="_on_game_manager_update_gold"]
 [connection signal="timeout" from="EnemySpawner/SpawnTimer" to="EnemySpawner" method="_on_spawn_timer_timeout"]
 [connection signal="animation_finished" from="GameOverMenu/Banner/AnimPlayer" to="GameOverMenu" method="_on_anim_player_animation_finished"]
@@ -1475,3 +1504,5 @@ libraries = {
 [connection signal="button_up" from="Shop/ShopButton" to="Shop/ShopButton" method="_on_button_up"]
 [connection signal="animation_finished" from="UI_gold/AnimatedSprite2D" to="UI_gold" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="UI_gold/AnimationTimer" to="UI_gold" method="_on_animation_timer_timeout"]
+[connection signal="button_down" from="UI_Settings/TextureButton" to="UI_Settings" method="_on_texture_button_button_down"]
+[connection signal="button_up" from="UI_Settings/TextureButton" to="UI_Settings" method="_on_texture_button_button_up"]
