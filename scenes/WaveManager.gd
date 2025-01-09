@@ -15,13 +15,17 @@ var waves = [
 ]
 
 var enemies_defeated = 0
-var time_left = 6
+var time_to_wait = 6
+var time_left = time_to_wait
+var start_color = Color(0,0,0)
+var end_color = Color(1,0,0)
 
 @onready var enemy_spawner = $"../EnemySpawner"
 @onready var wave_timer = $WaveTimer
 
 func _ready():
 	UI_countdown.text = str(time_left)
+	UI_countdown.modulate = start_color
 	wave_timer.wait_time = 1
 	enemySpawner.connect("enemy_dies", Callable(self, "on_enemy_defeated"))
 	wave_timer.connect("timeout", Callable(self, "start_next_wave"))
@@ -45,9 +49,10 @@ func start_next_wave():
 	else:
 		UI_countdown.visible = false
 	var tween = create_tween()
-	UI_countdown.modulate = Color(1.0, 0.8, 0.5)
+	update_color()
 	UI_countdown.get_child(0).play("mystic_pulse")
 	if time_left <= 0:
+		UI_countdown.modulate = end_color
 		wave_timer.stop()
 		UI_roundInfo.increment_round_count()
 		if current_wave < waves.size():
@@ -59,6 +64,10 @@ func start_next_wave():
 			emit_signal("wave_started", current_wave)
 		else:
 			print("All waves completed!")
+
+func update_color():
+	var factor = 1.0 - float(time_left) / float(time_to_wait)
+	UI_countdown.modulate = start_color.lerp(end_color, factor)
 
 func on_enemy_defeated():
 	enemies_defeated += 1
