@@ -5,6 +5,7 @@ var hover_texure = preload("res://assets/ui/Icons/hammer.png")
 var disable_texure = preload("res://assets/ui/Icons/hammer_disabled.png")
 var tower_scene = preload("res://scenes/tower.tscn")
 
+
 var place_holder_position: Vector2
 # Called when the node enters the scene tree for the first time.
 func _ready():

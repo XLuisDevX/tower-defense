@@ -1,8 +1,14 @@
-[gd_scene load_steps=58 format=3 uid="uid://dn7m053kn3s4l"]
+[gd_scene load_steps=64 format=3 uid="uid://dn7m053kn3s4l"]
 
 [ext_resource type="Script" path="res://scenes/tower.gd" id="1_j78pa"]
 [ext_resource type="Texture2D" uid="uid://q6sx3nvjc4de" path="res://assets/buildings/Tower_Blue.png" id="1_qklfw"]
 [ext_resource type="Texture2D" uid="uid://b7u5fkmlgnmdr" path="res://assets/characters/knights/archer/Archer_Blue.png" id="2_1ix2p"]
+[ext_resource type="Texture2D" uid="uid://27huqneo2ncx" path="res://assets/ui/Buttons/Button_Blue.png" id="4_piyow"]
+[ext_resource type="Texture2D" uid="uid://b0mi4buucj3x1" path="res://assets/ui/Buttons/Button_Blue_Pressed.png" id="5_sy8rh"]
+[ext_resource type="Texture2D" uid="uid://b1gf2te2pkiap" path="res://assets/ui/Buttons/Button_Hover.png" id="6_2mhrw"]
+[ext_resource type="Texture2D" uid="uid://b56ov7s1hhxi1" path="res://assets/ui/Icons/Regular_11.png" id="7_8t8g5"]
+[ext_resource type="Texture2D" uid="uid://ciaobntunuoaq" path="res://assets/ui/Icons/Regular_12.png" id="8_g7nch"]
+[ext_resource type="Texture2D" uid="uid://cd7x8wlgspps6" path="res://assets/ui/Icons/coin.png" id="8_qr6dm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_olkbh"]
 atlas = ExtResource("2_1ix2p")
@@ -429,8 +435,126 @@ shape = SubResource("CircleShape2D_p58iq")
 [node name="FireRate" type="Timer" parent="."]
 wait_time = 2.0
 
+[node name="Improvements" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="AttackSpeed" type="TextureButton" parent="Improvements"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -78.0
+offset_top = 98.0
+offset_right = -14.0
+offset_bottom = 162.0
+grow_horizontal = 2
+texture_normal = ExtResource("4_piyow")
+texture_pressed = ExtResource("5_sy8rh")
+texture_hover = ExtResource("6_2mhrw")
+
+[node name="ButtonTexture" type="TextureRect" parent="Improvements/AttackSpeed"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 10.6667
+offset_right = 16.0
+offset_bottom = 10.6667
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_8t8g5")
+
+[node name="Gold" type="Sprite2D" parent="Improvements/AttackSpeed"]
+position = Vector2(4, 70)
+scale = Vector2(2, 2)
+texture = ExtResource("8_qr6dm")
+
+[node name="Prize" type="Label" parent="Improvements/AttackSpeed"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -13.0
+offset_top = -6.0
+offset_right = 42.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "10
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Damage" type="TextureButton" parent="Improvements"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 13.0
+offset_top = 98.0
+offset_right = 77.0
+offset_bottom = 162.0
+grow_horizontal = 2
+texture_normal = ExtResource("4_piyow")
+texture_pressed = ExtResource("5_sy8rh")
+texture_hover = ExtResource("6_2mhrw")
+
+[node name="ButtonTexture" type="TextureRect" parent="Improvements/Damage"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 17.3333
+offset_top = 9.33333
+offset_right = 17.3333
+offset_bottom = 9.33333
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_g7nch")
+
+[node name="Gold" type="Sprite2D" parent="Improvements/Damage"]
+position = Vector2(4, 70)
+scale = Vector2(2, 2)
+texture = ExtResource("8_qr6dm")
+
+[node name="Prize" type="Label" parent="Improvements/Damage"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -13.0
+offset_top = -6.0
+offset_right = 42.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="animation_finished" from="Archer" to="." method="_on_archer_animation_finished"]
 [connection signal="timeout" from="FireRate" to="." method="_on_fire_rate_timeout"]
+[connection signal="button_down" from="Improvements/AttackSpeed" to="." method="_on_attack_speed_button_down"]
+[connection signal="button_up" from="Improvements/AttackSpeed" to="." method="_on_attack_speed_button_up"]
+[connection signal="button_down" from="Improvements/Damage" to="." method="_on_damage_button_down"]
+[connection signal="button_up" from="Improvements/Damage" to="." method="_on_damage_button_up"]

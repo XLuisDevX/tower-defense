@@ -1,6 +1,10 @@
 extends Area2D
 
 var Projectile = preload("res://scenes/arrow.tscn")
+var idle_attack_speed = preload("res://assets/ui/Icons/Regular_11.png")
+var pressed_attack_speed = preload("res://assets/ui/Icons/Pressed_11.png")
+var idle_increase_attack = preload("res://assets/ui/Icons/Regular_12.png")
+var pressed_increase_attack = preload("res://assets/ui/Icons/Pressed_12.png")
 
 var _objects_inside = []
 var _prev_orientation = ""
@@ -167,3 +171,19 @@ func _on_archer_animation_finished():
 		if _objects_inside[0].has_method("take_damage"):
 			_objects_inside[0].take_damage(20)
 			#_throw_arrow = true
+
+
+func _on_attack_speed_button_down():
+	$Improvements/AttackSpeed/ButtonTexture.texture = pressed_attack_speed
+
+
+func _on_attack_speed_button_up():
+	$Improvements/AttackSpeed/ButtonTexture.texture = idle_attack_speed
+
+
+func _on_damage_button_down():
+	$Improvements/Damage/ButtonTexture.texture = pressed_increase_attack
+
+
+func _on_damage_button_up():
+	$Improvements/Damage/ButtonTexture.texture = idle_increase_attack
