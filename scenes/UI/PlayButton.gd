@@ -17,6 +17,7 @@ func _process(delta):
 
 func _on_button_down():
 	$Label.position.y = MENU_BTN_DOWN.y
+	get_tree().change_scene_to_file("res://scenes/game.tscn")
 
 
 func _on_button_up():

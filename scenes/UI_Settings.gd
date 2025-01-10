@@ -20,6 +20,7 @@ func _process(delta):
 func _on_texture_button_button_up():
 	$TextureButton/TextureRect.texture = idle_settings
 	is_opened = !is_opened
+	get_tree().paused = is_opened
 	UI_Settings_menu.visible = is_opened
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://caq8y7cpc33sl"]
+[gd_scene load_steps=71 format=3 uid="uid://caq8y7cpc33sl"]
 
 [ext_resource type="Texture2D" uid="uid://bavwfrwmw0nig" path="res://assets/terrain/Water/Water.png" id="1_nd600"]
 [ext_resource type="TileSet" uid="uid://ccgp0af0kggnq" path="res://assets/tilemaps/ground_flat.tres" id="1_ssud6"]
@@ -34,6 +34,9 @@
 [ext_resource type="Script" path="res://scenes/ShopButton.gd" id="29_vt72e"]
 [ext_resource type="Texture2D" uid="uid://begx5mbms8wj8" path="res://assets/ui/Icons/Regular_02.png" id="34_bqj2f"]
 [ext_resource type="Script" path="res://scenes/UI_Settings.gd" id="34_ch5cd"]
+[ext_resource type="Script" path="res://scenes/Settings_menu.gd" id="34_fgqam"]
+[ext_resource type="Texture2D" uid="uid://bp4y5amb40f5d" path="res://assets/ui/Buttons/Button_Unchecked.png" id="35_r6sgl"]
+[ext_resource type="Texture2D" uid="uid://btw3v41r2n78c" path="res://assets/ui/Buttons/Button_Checked.png" id="36_qns1f"]
 [ext_resource type="PackedScene" uid="uid://cyd6464iuw20k" path="res://scenes/tower_placeholder.tscn" id="38_8orsn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_amw3o"]
@@ -1468,13 +1471,14 @@ libraries = {
 }
 
 [node name="Settings_menu" type="Control" parent="."]
-visible = false
+process_mode = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("34_fgqam")
 
 [node name="Background" type="TextureRect" parent="Settings_menu"]
 texture_filter = 1
@@ -1529,29 +1533,141 @@ vertical_alignment = 1
 
 [node name="ButtonsContainer" type="VBoxContainer" parent="Settings_menu"]
 layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 733.0
+offset_top = 412.0
+offset_right = -747.0
+offset_bottom = -262.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 90
+
+[node name="HSlider" type="HSlider" parent="Settings_menu/ButtonsContainer"]
+layout_mode = 2
+
+[node name="SliderTitle" type="Label" parent="Settings_menu/ButtonsContainer/HSlider"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -88.0
+offset_top = -49.0
+offset_right = 88.0
+grow_horizontal = 2
+theme = ExtResource("11_7kc71")
+theme_override_font_sizes/font_size = 40
+text = "VOLUME"
+
+[node name="ShowDamage" type="Control" parent="Settings_menu/ButtonsContainer"]
+layout_mode = 2
+
+[node name="ShowDamageTitle" type="Label" parent="Settings_menu/ButtonsContainer/ShowDamage"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 263.0
+offset_bottom = 20.0
+grow_vertical = 2
+theme = ExtResource("11_7kc71")
+theme_override_font_sizes/font_size = 32
+text = "SHOW DAMAGE"
+
+[node name="ShowDamage" type="TextureButton" parent="Settings_menu/ButtonsContainer/ShowDamage"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -32.0
+offset_bottom = 32.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("35_r6sgl")
+texture_pressed = ExtResource("36_qns1f")
+
+[node name="GameSpeed" type="Control" parent="Settings_menu/ButtonsContainer"]
+layout_mode = 2
+
+[node name="Speed" type="TextureButton" parent="Settings_menu/ButtonsContainer/GameSpeed"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -32.0
+offset_bottom = 32.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("20_oc78r")
+texture_pressed = ExtResource("21_nc7y7")
+texture_hover = ExtResource("22_l7rjo")
+
+[node name="Label" type="Label" parent="Settings_menu/ButtonsContainer/GameSpeed/Speed"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -100.0
-offset_right = 32.0
-offset_bottom = 100.0
+offset_left = -36.0
+offset_top = -18.0
+offset_right = 34.0
+offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("11_7kc71")
+theme_override_font_sizes/font_size = 20
+text = "NORMAL
+"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="TextureButton" type="TextureButton" parent="Settings_menu/ButtonsContainer"]
-layout_mode = 2
-texture_normal = ExtResource("26_gdmhu")
+[node name="Title" type="Label" parent="Settings_menu/ButtonsContainer/GameSpeed"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 232.0
+offset_bottom = 20.0
+grow_vertical = 2
+theme = ExtResource("11_7kc71")
+theme_override_font_sizes/font_size = 32
+text = "GAME SPEED"
 
-[node name="TextureButton2" type="TextureButton" parent="Settings_menu/ButtonsContainer"]
+[node name="MainMenu" type="TextureButton" parent="Settings_menu/ButtonsContainer"]
 layout_mode = 2
-texture_normal = ExtResource("26_gdmhu")
+size_flags_horizontal = 4
+texture_normal = ExtResource("20_oc78r")
+texture_pressed = ExtResource("21_nc7y7")
+texture_hover = ExtResource("22_l7rjo")
 
-[node name="TextureButton3" type="TextureButton" parent="Settings_menu/ButtonsContainer"]
-layout_mode = 2
-texture_normal = ExtResource("26_gdmhu")
+[node name="Label" type="Label" parent="Settings_menu/ButtonsContainer/MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = -19.0
+offset_right = 68.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("11_7kc71")
+theme_override_font_sizes/font_size = 21
+text = "MAIN MENU"
 
 [node name="UI_Settings" type="Control" parent="." node_paths=PackedStringArray("UI_Settings_menu")]
 layout_mode = 3
@@ -1591,5 +1707,6 @@ texture = ExtResource("34_bqj2f")
 [connection signal="button_up" from="Shop/ShopButton" to="Shop/ShopButton" method="_on_button_up"]
 [connection signal="animation_finished" from="UI_gold/AnimatedSprite2D" to="UI_gold" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="UI_gold/AnimationTimer" to="UI_gold" method="_on_animation_timer_timeout"]
+[connection signal="button_up" from="Settings_menu/ButtonsContainer/MainMenu" to="Settings_menu" method="_on_texture_button_3_button_up"]
 [connection signal="button_down" from="UI_Settings/TextureButton" to="UI_Settings" method="_on_texture_button_button_down"]
 [connection signal="button_up" from="UI_Settings/TextureButton" to="UI_Settings" method="_on_texture_button_button_up"]
