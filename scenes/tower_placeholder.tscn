@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ds5nujhicvel2" path="res://assets/ui/Icons/hammer_disabled.png" id="4_q6w6h"]
 [ext_resource type="Texture2D" uid="uid://t8w1rt0o06e1" path="res://assets/ui/Icons/hammer.png" id="5_e1nnr"]
 
-[node name="TowerPlaceholder" type="Node2D"]
+[node name="TowerPlaceholder" type="Node2D" groups=["placeholder"]]
 script = ExtResource("1_2r2du")
 
 [node name="Placeholder" type="Sprite2D" parent="."]

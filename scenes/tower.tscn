@@ -415,7 +415,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_p58iq"]
 radius = 303.026
 
-[node name="Tower" type="Area2D"]
+[node name="Tower" type="Area2D" groups=["tower"]]
 script = ExtResource("1_j78pa")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -492,7 +492,7 @@ offset_right = 42.0
 offset_bottom = 17.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "10
+text = "9999
 "
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -545,7 +545,7 @@ offset_right = 42.0
 offset_bottom = 17.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "10"
+text = "9999"
 horizontal_alignment = 1
 vertical_alignment = 1
 

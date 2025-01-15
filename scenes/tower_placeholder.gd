@@ -4,7 +4,7 @@ var scoreLabel: Label
 var hover_texure = preload("res://assets/ui/Icons/hammer.png")
 var disable_texure = preload("res://assets/ui/Icons/hammer_disabled.png")
 var tower_scene = preload("res://scenes/tower.tscn")
-
+var build_prize = 10
 
 var place_holder_position: Vector2
 # Called when the node enters the scene tree for the first time.
@@ -15,7 +15,6 @@ func _ready():
 	
 	$UI/Prize.text = "0"
 	place_holder_position = Vector2(position.x, position.y)
-	Global.connect("update_prizes", Callable(self, "update_prizes"))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -23,11 +22,15 @@ func _process(delta):
 	pass
 	
 func update_prizes():
-	$UI/Prize.text = "10"
+	var placeholders = get_tree().get_nodes_in_group("placeholder")
+	build_prize = build_prize * get_tree().get_nodes_in_group("tower").size()
+	for placeholder in placeholders:
+		placeholder.get_node("UI/Prize").text = str(build_prize)
+	#$UI/Prize.text = "10"
 
 
 func _on_build_button_mouse_entered():
-	if scoreLabel and int(scoreLabel.text) >= 10:
+	if scoreLabel and int(scoreLabel.text) >= build_prize:
 		$UI/BuildButton.texture_hover = hover_texure
 	elif Global._is_first_tower:
 		$UI/BuildButton.texture_hover = hover_texure
@@ -36,9 +39,10 @@ func _on_build_button_mouse_entered():
 
 
 func _on_build_button_button_up():
-	if scoreLabel and int(scoreLabel.text) >= 10 or Global._is_first_tower:
+	if scoreLabel and int(scoreLabel.text) >= build_prize or Global._is_first_tower:
 		var new_tower = tower_scene.instantiate()
 		new_tower.position = place_holder_position
 		get_parent().add_child(new_tower)
 		Global.disable_first_tower()
+		update_prizes()
 		queue_free()

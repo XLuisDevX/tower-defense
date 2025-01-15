@@ -9,13 +9,28 @@ var pressed_increase_attack = preload("res://assets/ui/Icons/Pressed_12.png")
 var _objects_inside = []
 var _prev_orientation = ""
 var _arrow_speed = 600
+var _attack_speed_level = 1
+var _damage_level = 1
 var shooted = false
 var _throw_arrow = false
 var _play_throw_anim = true
 var archer_anim = "idle"
+var _tower_damage = 20
+var upgrade_attack_speed_prize = 5
+var upgrade_damage_prize = 5
+var scoreLabel: Label
+
+var UPGRADE_MAX_LEVEL = 5
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	scoreLabel = get_parent().get_node("UI_gold/ScoreLabel")
+	if not scoreLabel:
+		print("Can not find scoreLabel node!")
+		
+	$Improvements/AttackSpeed/Prize.text = str(upgrade_attack_speed_prize)
+	$Improvements/Damage/Prize.text = str(upgrade_damage_prize)
 	_anim_archer(archer_anim, false)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -147,6 +162,32 @@ func _anim_archer(anim: String, flip_h: bool):
 	$Archer.flip_h = flip_h
 	$Archer.play(anim)
 
+func _update_tower_interface(upgrade: Label, prize: int):
+	upgrade.text = str(prize)
+
+func _update_attack_speed():
+	if _can_upgrade(upgrade_attack_speed_prize, _attack_speed_level):
+		_update_player_balance(upgrade_attack_speed_prize)
+		_attack_speed_level += 1
+		upgrade_attack_speed_prize = upgrade_attack_speed_prize * _attack_speed_level
+		_update_tower_interface($Improvements/AttackSpeed/Prize, upgrade_attack_speed_prize)
+		$Archer.speed_scale += 0.2
+
+func _update_damage():
+	if _can_upgrade(upgrade_damage_prize, _damage_level):
+		_update_player_balance(upgrade_damage_prize)
+		_damage_level += 1
+		upgrade_damage_prize = upgrade_damage_prize * _damage_level
+		_update_tower_interface($Improvements/Damage/Prize, upgrade_damage_prize)
+		_tower_damage += 10
+
+func _can_upgrade(upgrade_prize: int, upgrade_level: int) -> bool:
+	return scoreLabel and int(scoreLabel.text) >= upgrade_prize and upgrade_level < UPGRADE_MAX_LEVEL
+
+func _update_player_balance(upgrade_prize: int) -> void:
+	var current_balance = int(scoreLabel.text) - upgrade_prize
+	scoreLabel.text = str(current_balance)
+
 func _on_body_entered(body):
 	if body is RigidBody2D or body is CharacterBody2D or body is StaticBody2D and body.is_in_group("enemy"):
 		_objects_inside.append(body)
@@ -169,21 +210,19 @@ func _on_archer_animation_finished():
 	# hurt enemy
 	if _objects_inside.size() > 0:
 		if _objects_inside[0].has_method("take_damage"):
-			_objects_inside[0].take_damage(20)
+			_objects_inside[0].take_damage(_tower_damage)
 			#_throw_arrow = true
-
 
 func _on_attack_speed_button_down():
 	$Improvements/AttackSpeed/ButtonTexture.texture = pressed_attack_speed
 
-
 func _on_attack_speed_button_up():
 	$Improvements/AttackSpeed/ButtonTexture.texture = idle_attack_speed
-
+	_update_attack_speed()
 
 func _on_damage_button_down():
 	$Improvements/Damage/ButtonTexture.texture = pressed_increase_attack
 
-
 func _on_damage_button_up():
 	$Improvements/Damage/ButtonTexture.texture = idle_increase_attack
+	_update_damage()
