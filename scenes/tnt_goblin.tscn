@@ -1,5 +1,6 @@
-[gd_scene load_steps=23 format=3 uid="uid://dv85ce5ll7kjo"]
+[gd_scene load_steps=24 format=3 uid="uid://dv85ce5ll7kjo"]
 
+[ext_resource type="Script" path="res://scenes/tnt_goblin.gd" id="1_k6wo0"]
 [ext_resource type="Texture2D" uid="uid://b378tyg6e7w8" path="res://assets/characters/goblins/TNT_Red.png" id="1_m4i2g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7kwot"]
@@ -157,11 +158,12 @@ animations = [{
 size = Vector2(51, 50)
 
 [node name="TNTGoblin" type="CharacterBody2D"]
+script = ExtResource("1_k6wo0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_th6di")
-animation = &"throw"
-frame_progress = 0.0744587
+animation = &"idle"
+frame_progress = 0.483859
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.5, 3)

@@ -30,8 +30,8 @@ func _on_spawn_timer_timeout():
 func spawn_enemy():
 	var enemy = enemy_scene.instantiate()
 	
-	enemy.drops_gold = true #if randf() < 0.5 else false
-	
+	#enemy.drops_gold = true #if randf() < 0.5 else false
+	enemy.set_drops_gold()
 	enemy.connect("attack", Callable(self, "notify_enemy_attacks"))
 	
 	enemy.anim_enemy("walk")

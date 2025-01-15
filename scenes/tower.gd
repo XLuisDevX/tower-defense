@@ -209,8 +209,8 @@ func _on_fire_rate_timeout():
 func _on_archer_animation_finished():
 	# hurt enemy
 	if _objects_inside.size() > 0:
-		if _objects_inside[0].has_method("take_damage"):
-			_objects_inside[0].take_damage(_tower_damage)
+		if _objects_inside[0].has_method("_take_damage"):
+			_objects_inside[0]._take_damage(_tower_damage)
 			#_throw_arrow = true
 
 func _on_attack_speed_button_down():
