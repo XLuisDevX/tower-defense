@@ -1,6 +1,5 @@
 extends Enemy
 
-
 func _init():
 	call_deferred("_post_init")
 	super(40, 10, 100)
