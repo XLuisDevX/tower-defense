@@ -98,6 +98,9 @@ func _drop_gold() -> void:
 	gold_bag.position = get_parent().position
 	#gold_bag.connect("collect_gold", Callable(game_manger, "notify_collect_gold"))
 	get_parent().get_parent().add_child(gold_bag)
-	
+
 func _update_score():
 	GlobalScene.set_score(GlobalScene.get_score() + score * GlobalScene.get_wave_index())
+
+func _anim_enemy(anim: String) -> void:
+	$AnimatedSprite2D.play(anim)

@@ -1,11 +1,14 @@
 extends Node
 
+var torch_goblin = preload("res://scenes/torch_goblin.tscn")
+var tnt_goblin = preload("res://scenes/tnt_goblin.tscn")
+var barrel_goblin = preload("res://scenes/barrel_goblin.tscn")
 
-var enemy_scene = preload("res://scenes/torch_goblin.tscn")
 var rng = RandomNumberGenerator.new()
 @export var path_follow: PathFollow2D
 @export var spawn_timer: Timer
 
+var enemy_types = [torch_goblin, tnt_goblin, barrel_goblin]
 var enemies_to_spawn = 0
 var spawn_interval = 1.0
 var _drop_percentage: float = 0.0
@@ -28,13 +31,15 @@ func _on_spawn_timer_timeout():
 		spawn_timer.stop()
 
 func spawn_enemy():
-	var enemy = enemy_scene.instantiate()
+	#var enemy = torch_goblin.instantiate()
+	#var enemy = tnt_goblin.instantiate()
+	var enemy = _select_enemy().instantiate()
 	
 	#enemy.drops_gold = true #if randf() < 0.5 else false
 	enemy.set_drops_gold()
 	enemy.connect("attack", Callable(self, "notify_enemy_attacks"))
 	
-	enemy.anim_enemy("walk")
+	enemy._anim_enemy("walk")
 	var enemy_follow = PathFollow2D.new()
 	enemy_follow.add_to_group("enemy")
 	enemy_follow.rotates = false
@@ -63,6 +68,12 @@ func get_enemies_path_follow(array: Array[Node]):
 		if array[index].is_in_group("enemy"):
 			enemy_instancies.append(array[index])
 	return enemy_instancies
+
+func _select_enemy():
+	var rnd = randf()
+	if rnd < 0.25: return enemy_types[0]
+	elif rnd >= 0.25 and rnd < 0.75: return enemy_types[1]
+	else: return enemy_types[2]
 
 func _process(delta):
 	if enemies_spawned_counter != get_enemies_path_follow(path_follow.get_parent().get_children()).size():
