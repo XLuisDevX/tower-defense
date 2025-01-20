@@ -66,6 +66,7 @@ func _update_unset_properties(prevPos: Vector2, _sprite: AnimatedSprite2D) -> vo
 	sprite = _sprite
 
 func _physics_process(delta):
+	print("PARENT METHOD")
 	_check_offset(delta)
 	_check_direction()
 

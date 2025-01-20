@@ -1112,7 +1112,6 @@ texture_filter = 1
 texture = ExtResource("6_fp1tl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CastleBlue"]
-visible = false
 position = Vector2(-7.89246, 18.7668)
 shape = SubResource("RectangleShape2D_w00d3")
 

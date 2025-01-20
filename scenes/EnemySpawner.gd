@@ -3,6 +3,7 @@ extends Node
 var torch_goblin = preload("res://scenes/torch_goblin.tscn")
 var tnt_goblin = preload("res://scenes/tnt_goblin.tscn")
 var barrel_goblin = preload("res://scenes/barrel_goblin.tscn")
+var torch_goblin_boss = preload("res://scenes/torchGoblinBoss.tscn")
 
 var rng = RandomNumberGenerator.new()
 @export var path_follow: PathFollow2D
@@ -18,7 +19,7 @@ signal enemy_attacks
 signal enemy_dies
 
 func start_wave(enemy_count, interval):
-	enemies_to_spawn = enemy_count
+	enemies_to_spawn = 1
 	spawn_interval = interval
 	spawn_timer.wait_time = spawn_interval
 	spawn_timer.start()
@@ -33,7 +34,8 @@ func _on_spawn_timer_timeout():
 func spawn_enemy():
 	#var enemy = torch_goblin.instantiate()
 	#var enemy = tnt_goblin.instantiate()
-	var enemy = _select_enemy().instantiate()
+	var enemy = torch_goblin_boss.instantiate()
+	#var enemy = _select_enemy().instantiate()
 	
 	#enemy.drops_gold = true #if randf() < 0.5 else false
 	enemy.set_drops_gold()
