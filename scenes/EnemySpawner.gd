@@ -20,7 +20,7 @@ signal enemy_attacks
 signal enemy_dies
 
 func start_wave(enemy_count, interval):
-	enemies_to_spawn = 1
+	enemies_to_spawn = enemy_count
 	spawn_interval = interval
 	spawn_timer.wait_time = spawn_interval
 	spawn_timer.start()
