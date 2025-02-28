@@ -33,12 +33,13 @@ func _on_spawn_timer_timeout():
 		spawn_timer.stop()
 
 func spawn_enemy():
+	# Selects diferent types of enemies
+	#var enemy = _select_enemy().instantiate()
 	var enemy = torch_goblin.instantiate()
 	#var enemy = tnt_goblin.instantiate()
-	var enemy = _select_enemy().instantiate()
 	#var enemy = torch_goblin_boss.instantiate()
 	#var enemy = tnt_goblin_boss.instantiate()
-	var enemy = torch_goblin_boss.instantiate()
+	#var enemy = torch_goblin_boss.instantiate()
 	#var enemy = _select_enemy().instantiate()
 	
 	#enemy.drops_gold = true #if randf() < 0.5 else false
