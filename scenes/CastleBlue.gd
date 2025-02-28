@@ -10,12 +10,13 @@ signal game_over
 
 func _ready():
 	original_color = modulate
-	enemy_spawner.connect("enemy_attacks", Callable(self, "get_hurts"))
-
-func get_hurts():
+	#enemy_spawner.connect("enemy_attacks", Callable(self, "get_hurts"))
+	SignalBus.attack.connect(Callable(self, "get_hurts"))
+	
+func get_hurts(damage):
 	receive_damage()
 	if health_bar.value > 0:
-		health_bar.value -= 20
+		health_bar.value -= damage
 		print("Player get hurts")
 	else:
 		game_over.emit()

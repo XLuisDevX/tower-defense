@@ -3,6 +3,8 @@ extends Node
 var torch_goblin = preload("res://scenes/torch_goblin.tscn")
 var tnt_goblin = preload("res://scenes/tnt_goblin.tscn")
 var barrel_goblin = preload("res://scenes/barrel_goblin.tscn")
+var torch_goblin_boss = preload("res://scenes/torchGoblinBoss.tscn")
+var tnt_goblin_boss = preload("res://scenes/tntGoblinBoss.tscn")
 
 var rng = RandomNumberGenerator.new()
 @export var path_follow: PathFollow2D
@@ -31,13 +33,17 @@ func _on_spawn_timer_timeout():
 		spawn_timer.stop()
 
 func spawn_enemy():
-	#var enemy = torch_goblin.instantiate()
+	var enemy = torch_goblin.instantiate()
 	#var enemy = tnt_goblin.instantiate()
 	var enemy = _select_enemy().instantiate()
+	#var enemy = torch_goblin_boss.instantiate()
+	#var enemy = tnt_goblin_boss.instantiate()
+	#var enemy = _select_enemy().instantiate()
 	
 	#enemy.drops_gold = true #if randf() < 0.5 else false
 	enemy.set_drops_gold()
-	enemy.connect("attack", Callable(self, "notify_enemy_attacks"))
+	#SignalBus.attack.connect(Callable(self, "notify_enemy_attacks"))
+	#enemy.connect("attack", Callable(self, "notify_enemy_attacks"))
 	
 	enemy._anim_enemy("walk")
 	var enemy_follow = PathFollow2D.new()
@@ -51,7 +57,7 @@ func spawn_enemy():
 	
 	enemies_spawned_counter += 1
 
-func notify_enemy_attacks():
+func notify_enemy_attacks(damage):
 	enemy_attacks.emit()
 
 func notify_game_over():
@@ -60,7 +66,7 @@ func notify_game_over():
 		var enemy = enemies_path_follow[enemy_index].get_child(0)
 		enemy.is_game_over = true
 		var anim = "idle" if enemy.reach_player else "walk"
-		enemy.anim_enemy(anim)
+		enemy._anim_enemy(anim)
 	
 func get_enemies_path_follow(array: Array[Node]):
 	var enemy_instancies = []
