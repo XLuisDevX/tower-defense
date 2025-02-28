@@ -20,7 +20,7 @@ signal enemy_attacks
 signal enemy_dies
 
 func start_wave(enemy_count, interval):
-	enemies_to_spawn = enemy_count
+	enemies_to_spawn = 1
 	spawn_interval = interval
 	spawn_timer.wait_time = spawn_interval
 	spawn_timer.start()
@@ -38,6 +38,7 @@ func spawn_enemy():
 	var enemy = _select_enemy().instantiate()
 	#var enemy = torch_goblin_boss.instantiate()
 	#var enemy = tnt_goblin_boss.instantiate()
+	var enemy = torch_goblin_boss.instantiate()
 	#var enemy = _select_enemy().instantiate()
 	
 	#enemy.drops_gold = true #if randf() < 0.5 else false
