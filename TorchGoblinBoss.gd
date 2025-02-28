@@ -9,7 +9,6 @@ func _init():
 	super(200, 100, 75)
 
 func _post_init():
-	#$IgniteTimer.start()
 	_update_unset_properties(get_parent().global_position, $AnimatedSprite2D)
 	
 func _physics_process(delta):
@@ -37,7 +36,6 @@ func _on_area_2d_area_entered(area):
 	if area.is_in_group("tower") and !has_target:
 		has_target = true
 		$IgniteTimer.start()
-		#ignite_timer.start()
 
 
 func _on_ignite_timer_timeout():
