@@ -8,6 +8,12 @@ signal wave_started(wave_number)
 signal wave_completed(wave_number)
 
 var current_wave = 0
+var init_wave_enemies = 5
+var current_wave_data = {}
+var wave_increment = 3
+var growth_factor = 1.2
+var init_spawn_interval = 2
+
 var waves = [
 	{"enemy_count": 5, "spawn_interval": 2.0},
 	{"enemy_count": 10, "spawn_interval": 0.8},
@@ -55,15 +61,29 @@ func start_next_wave():
 		UI_countdown.modulate = end_color
 		wave_timer.stop()
 		UI_roundInfo.increment_round_count()
-		if current_wave < waves.size():
-			current_wave += 1
-			GlobalScene.set_wave_index(current_wave)
-			var wave_data = waves[current_wave - 1]
-			enemy_spawner.start_wave(wave_data["enemy_count"], wave_data["spawn_interval"])
-			enemies_defeated = 0
-			emit_signal("wave_started", current_wave)
-		else:
-			print("All waves completed!")
+		
+		current_wave_data = _generate_wave(current_wave)
+		current_wave += 1
+		GlobalScene.set_wave_index(current_wave)
+		print("Enemies to spawn: ", current_wave_data["enemy_count"])
+		enemy_spawner.start_wave(current_wave_data["enemy_count"], current_wave_data["spawn_interval"])
+		enemies_defeated = 0
+		emit_signal("wave_started", current_wave)
+		#if current_wave < waves.size():
+			#current_wave += 1
+			#GlobalScene.set_wave_index(current_wave)
+			#var wave_data = waves[current_wave - 1]
+			#enemy_spawner.start_wave(wave_data["enemy_count"], wave_data["spawn_interval"])
+			#enemies_defeated = 0
+			#emit_signal("wave_started", current_wave)
+		#else:
+			#print("All waves completed!")
+
+# TODO: Generate special waves when it has a boss
+func _generate_wave(wave) -> Dictionary:
+	var numEnemies = int(init_wave_enemies + (wave * wave_increment) * (growth_factor ** wave))
+	var spawnInterval = max(0.5, init_spawn_interval - (wave * 0.1))
+	return {"enemy_count": numEnemies, "spawn_interval": spawnInterval}
 
 func update_color():
 	var factor = 1.0 - float(time_left) / float(time_to_wait)
@@ -71,7 +91,7 @@ func update_color():
 
 func on_enemy_defeated():
 	enemies_defeated += 1
-	if enemies_defeated == waves[current_wave - 1]["enemy_count"]:
+	if enemies_defeated == current_wave_data["enemy_count"]:
 		on_wave_completed()
 
 func on_wave_completed():
