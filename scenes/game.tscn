@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://caq8y7cpc33sl"]
+[gd_scene load_steps=70 format=3 uid="uid://caq8y7cpc33sl"]
 
 [ext_resource type="Texture2D" uid="uid://bavwfrwmw0nig" path="res://assets/terrain/Water/Water.png" id="1_nd600"]
 [ext_resource type="TileSet" uid="uid://ccgp0af0kggnq" path="res://assets/tilemaps/ground_flat.tres" id="1_ssud6"]
@@ -26,7 +26,6 @@
 [ext_resource type="Theme" uid="uid://utkit5ukgq4u" path="res://themes/buttons.tres" id="23_ow57o"]
 [ext_resource type="Texture2D" uid="uid://27huqneo2ncx" path="res://assets/ui/Buttons/Button_Blue.png" id="26_gdmhu"]
 [ext_resource type="Texture2D" uid="uid://b0mi4buucj3x1" path="res://assets/ui/Buttons/Button_Blue_Pressed.png" id="27_lwhfx"]
-[ext_resource type="Script" path="res://scenes/MainMenuBtn.gd" id="27_uy8os"]
 [ext_resource type="Script" path="res://scenes/UI_gold.gd" id="27_xk1vj"]
 [ext_resource type="Texture2D" uid="uid://b1gf2te2pkiap" path="res://assets/ui/Buttons/Button_Hover.png" id="28_kns1i"]
 [ext_resource type="Texture2D" uid="uid://h5ol3srotag4" path="res://assets/ui/Resources/coin.png" id="28_pq5jx"]
@@ -1081,9 +1080,11 @@ layer_2/tile_data = PackedInt32Array(3473420, 1310720, 9, 3538956, 1310720, 4, 3
 layer_3/name = "Decorations"
 layer_3/tile_data = PackedInt32Array(262149, 1048576, 2, 327685, 1048576, 3, 262150, 1114112, 2, 327686, 1114112, 3, 262151, 1179648, 2, 327687, 1179648, 3, 262152, 1245184, 2, 327688, 1245184, 3, 2097152, 1048576, 2, 2097153, 1114112, 2, 2097155, 1245184, 2, 65649, 1048576, 2, 131185, 1048576, 3, 65650, 1114112, 2, 131186, 1114112, 3, 65651, 1179648, 2, 131187, 1179648, 3, 65652, 1245184, 2, 131188, 1245184, 3, 1703967, 1048576, 2, 1769503, 1048576, 3, 1703968, 1114112, 2, 1769504, 1114112, 3, 1703969, 1179648, 2, 1769505, 1179648, 3, 1703970, 1245184, 2, 1769506, 1245184, 3, 4456544, 1048576, 2, 4456545, 1114112, 2, 4456546, 1179648, 2, 4456547, 1245184, 2, 4325384, 1048576, 268435458, 4325383, 1114112, 268435458, 4325382, 1179648, 268435458, 4325381, 1245184, 268435458, 4390920, 1048576, 268435459, 4390919, 1114112, 268435459, 4390918, 1179648, 268435459, 4390917, 1245184, 268435459, 3211360, 1048576, 268435458, 3211359, 1114112, 268435458, 3211358, 1179648, 268435458, 3211357, 1245184, 268435458, 3276896, 1048576, 268435459, 3276895, 1114112, 268435459, 3276894, 1179648, 268435459, 3276893, 1245184, 268435459, 2555909, 1048576, 3, 2555910, 1114112, 3, 2555911, 1179648, 3, 2555912, 1245184, 3, 458838, 1048576, 268435459, 458837, 1114112, 268435459, 458836, 1179648, 268435459, 458835, 1245184, 268435459)
 
-[node name="GameManager" parent="." node_paths=PackedStringArray("UI_gold", "UI_Score") instance=ExtResource("4_ny7f7")]
+[node name="GameManager" parent="." node_paths=PackedStringArray("UI_gold", "UI_Score", "player", "game_over_menu") instance=ExtResource("4_ny7f7")]
 UI_gold = NodePath("../UI_gold")
 UI_Score = NodePath("../UI_Score")
+player = NodePath("../CastleBlue")
+game_over_menu = NodePath("../GameOverMenu")
 variable = 100
 
 [node name="WaveManager" type="Node" parent="." node_paths=PackedStringArray("enemySpawner", "UI_roundInfo", "UI_countdown")]
@@ -1120,8 +1121,9 @@ shape = SubResource("RectangleShape2D_w00d3")
 curve = SubResource("Curve2D_iwjj7")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(285, 1148)
+position = Vector2(1631.09, 570.624)
 skew = 0.949459
+progress = 2607.62
 rotates = false
 loop = false
 
@@ -1207,7 +1209,6 @@ texture_normal = ExtResource("20_oc78r")
 texture_pressed = ExtResource("21_nc7y7")
 texture_hover = ExtResource("22_l7rjo")
 texture_disabled = ExtResource("22_tbbnb")
-script = ExtResource("27_uy8os")
 
 [node name="Label" type="Label" parent="GameOverMenu/MainMenuBtn"]
 texture_filter = 1
@@ -1702,8 +1703,8 @@ texture = ExtResource("34_bqj2f")
 [connection signal="timeout" from="EnemySpawner/SpawnTimer" to="EnemySpawner" method="_on_spawn_timer_timeout"]
 [connection signal="animation_finished" from="GameOverMenu/Banner/AnimPlayer" to="GameOverMenu" method="_on_anim_player_animation_finished"]
 [connection signal="button_up" from="GameOverMenu/RetryButton" to="GameOverMenu" method="_on_retry_button_button_up"]
-[connection signal="button_down" from="GameOverMenu/MainMenuBtn" to="GameOverMenu/MainMenuBtn" method="_on_button_down"]
-[connection signal="button_up" from="GameOverMenu/MainMenuBtn" to="GameOverMenu/MainMenuBtn" method="_on_button_up"]
+[connection signal="button_down" from="GameOverMenu/MainMenuBtn" to="GameOverMenu" method="_on_main_menu_btn_button_down"]
+[connection signal="button_up" from="GameOverMenu/MainMenuBtn" to="GameOverMenu" method="_on_main_menu_btn_button_up"]
 [connection signal="button_down" from="Shop/ShopButton" to="Shop/ShopButton" method="_on_button_down"]
 [connection signal="button_up" from="Shop/ShopButton" to="Shop/ShopButton" method="_on_button_up"]
 [connection signal="animation_finished" from="UI_gold/AnimatedSprite2D" to="UI_gold" method="_on_animated_sprite_2d_animation_finished"]

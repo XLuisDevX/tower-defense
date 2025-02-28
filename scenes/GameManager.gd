@@ -2,17 +2,24 @@ extends Node
 
 @export var UI_gold: Node
 @export var UI_Score: Label
+@export var player: StaticBody2D
 @export var enemy_spawner: Node
 @export var game_over_menu: Node
 @export var variable: int
+
+var GameOverMenu: Node
 
 var _is_game_over = false
 
 signal update_gold
 
 func _ready():
+	GameOverMenu = get_parent().get_node("GameOverMenu")
+	enemy_spawner = get_parent().get_node("EnemySpawner")
+	
 	GlobalScene.connect("gold_updated", Callable(self, "notify_update_gold"))
 	GlobalScene.connect("score_updated", Callable(self, "notify_update_score"))
+	player.connect("game_over", Callable(self, "_on_castle_blue_game_over"))
 	if UI_gold:
 		print("Nodo asignado desde el editor:", UI_gold.name)
 	else:
@@ -23,15 +30,22 @@ func _ready():
 		UI_Score.text = "SCORE: 0"
 	else:
 		print("El nodo asignado está vacío o no está en el árbol.")
+		
+	if GameOverMenu:
+		print("Nodo asignado desde el editor:", GameOverMenu.name)
+	else:
+		print("El nodo asignado está vacío o no está en el árbol.")
 
 func _on_castle_blue_game_over():
 	if !_is_game_over:
 		_is_game_over = true
 		_show_game_over()
 		enemy_spawner.notify_game_over()
+		
+		# AUTO RETRY GAME TIMER
 		#var game_over_timer = Timer.new()
 		#add_child(game_over_timer)
-		
+		#
 		#game_over_timer.wait_time = 2
 		#game_over_timer.one_shot = true
 		#
@@ -41,6 +55,7 @@ func _on_castle_blue_game_over():
 	
 func _show_game_over():
 	#UI.get_node("GameOver").visible = true
+	GameOverMenu.visible = true
 	game_over_menu.play_anim("pop_up")
 	
 func _on_game_over_timer_timeout():
