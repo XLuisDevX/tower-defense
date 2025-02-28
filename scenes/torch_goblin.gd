@@ -1,13 +1,16 @@
 extends Enemy
 
 #@export var gold_scene = preload("res://scenes/gold_bag.tscn")
-#var health = 40 # Life points will increment during rounds to enemies more difficul to be defeated
+var _HEALTH = 32 # Life points will increment during rounds to enemies more difficul to be defeated
+var _SCORE = 10
+var _SPEED = 100
+var _DAMAGE = 10
 
 var previous_position
 
 func _init():
 	call_deferred("_post_init")
-	super(40, 10, 100)
+	super(_HEALTH, _SCORE, _SPEED)
 	
 func _post_init():
 	_update_unset_properties(get_parent().global_position, $AnimatedSprite2D)
@@ -35,6 +38,7 @@ func _post_init():
 
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("player"):
+		_reset_h_offset()
 		reach_player = true
 		# Cuando llegamos al castillo sabemos que es el final de la ruta, por tanto, 
 		# cambiamos la animación de los enemigos
@@ -43,7 +47,8 @@ func _on_area_2d_body_entered(body):
 
 func _on_animated_sprite_2d_animation_looped():
 	if $AnimatedSprite2D.animation == "attack":
-		attack.emit()
+		#attack.emit(20)
+		SignalBus.attack.emit(_DAMAGE)
 		
 func set_aimed(aimed: bool):
 	#aimed = true

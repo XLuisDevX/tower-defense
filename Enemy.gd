@@ -11,6 +11,9 @@ var score
 var speed
 var previousPos
 var sprite
+var _LINEAL_LIFE_INCREMENT = 5
+var _PERCENTAGE_INCREMENT = 1.05
+var MAX_HEALT = 500 # Adjust by balance
 
 var is_game_over = false # if true stop attacking and play idle anim
 var reach_player = false # if false when is game over still playing walk anim until reach player castle
@@ -57,9 +60,16 @@ func _get_aimed() -> bool:
 #endregion SETTERS AND GETTERS
 
 func _init(hp, sc, sp) -> void:
-	health = hp
+	health = _calculate_health(hp)
 	score = sc
 	speed = sp
+
+# Calculates enemy's life based on current wave
+func _calculate_health(hp):
+	var health = hp + (GlobalScene.get_wave_index() * _LINEAL_LIFE_INCREMENT)
+	health *= pow(_PERCENTAGE_INCREMENT,GlobalScene.get_wave_index())
+	print('ENEMY LIFE: ', int(min(health, MAX_HEALT)))
+	return int(min(health, MAX_HEALT))
 	
 func _update_unset_properties(prevPos: Vector2, _sprite: AnimatedSprite2D) -> void:
 	previousPos = prevPos
@@ -76,6 +86,11 @@ func _check_offset(delta) -> void:
 	path_follow.progress += speed * delta
 	if path_follow.progress >= 1.0:
 		path_follow.h_offset = 0
+	#path_follow.h_offset = 0
+	# TODO: Detect collision with player by collision shape
+	#if path_follow.progress_ratio > 0.98 && roundf(path_follow.progress_ratio) >= 1.0:
+		#print(path_follow.progress_ratio)
+		#path_follow.h_offset = 0
 
 func _check_direction() -> void:
 	var currentPos = get_parent().global_position
@@ -101,6 +116,10 @@ func _drop_gold() -> void:
 
 func _update_score():
 	GlobalScene.set_score(GlobalScene.get_score() + score * GlobalScene.get_wave_index())
+
+func _reset_h_offset():
+	var path_follow = get_parent() as PathFollow2D
+	path_follow.h_offset = 0
 
 func _anim_enemy(anim: String) -> void:
 	$AnimatedSprite2D.play(anim)

@@ -169,7 +169,6 @@ sprite_frames = SubResource("SpriteFrames_th6di")
 animation = &"attack"
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(-1.5, 3)
 shape = SubResource("RectangleShape2D_0g5br")
 
 [node name="Area2D" type="Area2D" parent="."]

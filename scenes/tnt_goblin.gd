@@ -3,7 +3,7 @@ extends Enemy
 
 func _init():
 	call_deferred("_post_init")
-	super(40, 10, 100)
+	super(40, 10, 100) # (health, damage, speed)
 	
 func _post_init():
 	_update_unset_properties(get_parent().global_position, $AnimatedSprite2D)

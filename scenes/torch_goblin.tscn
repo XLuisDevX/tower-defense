@@ -175,7 +175,6 @@ sprite_frames = SubResource("SpriteFrames_6cbip")
 animation = &"walk"
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(-3, 0.5)
 shape = SubResource("RectangleShape2D_wxg2g")
 
 [node name="Area2D" type="Area2D" parent="."]
