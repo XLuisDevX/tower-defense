@@ -29,10 +29,9 @@ func increment_round_count() -> void:
 		_show_boss_info()
 	elif (_roundCount - 1) % 5 == 0:
 		_hide_boss_info()
+		$RoundText.add_theme_color_override("font_color", _originalColor)
 	elif _roundCount % 5 == 0:
 		$RoundText.add_theme_color_override("font_color", _bossColor)
-	else:
-		$RoundText.add_theme_color_override("font_color", _originalColor)
 	_update_round_info()
 	
 func _update_round_info() -> void:
@@ -46,6 +45,6 @@ func _show_boss_info():
 
 func _hide_boss_info():
 	if $BossInfo.is_playing() and $BossInfo.animation == _ROUND_ANIMATIONS.incomming:
-		$BossInfo.frame = $BossInfo.sprite_frames.get_frame_count()
+		$BossInfo.frame = $BossInfo.sprite_frames.get_frame_count($BossInfo.animation)
 		$BossInfo.play(_ROUND_ANIMATIONS.passed)
 	
