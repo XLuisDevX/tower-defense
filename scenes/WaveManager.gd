@@ -66,7 +66,8 @@ func start_next_wave():
 		current_wave += 1
 		GlobalScene.set_wave_index(current_wave)
 		print("Enemies to spawn: ", current_wave_data["enemy_count"])
-		enemy_spawner.start_wave(current_wave_data["enemy_count"], current_wave_data["spawn_interval"])
+		#enemy_spawner.start_wave(current_wave_data["enemy_count"], current_wave_data["spawn_interval"])
+		enemy_spawner.start_wave(current_wave_data)
 		enemies_defeated = 0
 		emit_signal("wave_started", current_wave)
 		#if current_wave < waves.size():
@@ -80,10 +81,20 @@ func start_next_wave():
 			#print("All waves completed!")
 
 # TODO: Generate special waves when it has a boss
-func _generate_wave(wave) -> Dictionary:
-	var numEnemies = int(init_wave_enemies + (wave * wave_increment) * (growth_factor ** wave))
-	var spawnInterval = max(0.5, init_spawn_interval - (wave * 0.1))
-	return {"enemy_count": numEnemies, "spawn_interval": spawnInterval}
+func _generate_wave(wave_index) -> Dictionary:
+	var wave
+	var spawnInterval = max(0.5, init_spawn_interval - (wave_index * 0.1))
+	if _is_boss_wave(wave_index + 1):
+		# Generate wave with boss
+		wave = {"enemy_count": 1, "boss_count": 1, "spawn_interval": spawnInterval }
+	else:
+		# Generate normal wave
+		var numEnemies = int(init_wave_enemies + (wave_index * wave_increment) * (growth_factor ** wave_index))
+		wave = {"enemy_count": numEnemies, "spawn_interval": spawnInterval}
+	return wave
+	
+func _is_boss_wave(wave_index) -> bool:
+	return wave_index % 5 == 0
 
 func update_color():
 	var factor = 1.0 - float(time_left) / float(time_to_wait)

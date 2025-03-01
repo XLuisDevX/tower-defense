@@ -12,6 +12,7 @@ var rng = RandomNumberGenerator.new()
 
 var enemy_types = [torch_goblin, tnt_goblin, barrel_goblin]
 var enemies_to_spawn = 0
+var bosses_to_spawn = 0
 var spawn_interval = 1.0
 var _drop_percentage: float = 0.0
 var enemies_spawned_counter = 0
@@ -19,9 +20,10 @@ var enemies_spawned_counter = 0
 signal enemy_attacks
 signal enemy_dies
 
-func start_wave(enemy_count, interval):
-	enemies_to_spawn = enemy_count
-	spawn_interval = interval
+func start_wave(wave_data):
+	enemies_to_spawn = wave_data.enemy_count
+	bosses_to_spawn = wave_data.boss_count
+	spawn_interval = wave_data.spawn_interval
 	spawn_timer.wait_time = spawn_interval
 	spawn_timer.start()
 
@@ -34,8 +36,8 @@ func _on_spawn_timer_timeout():
 
 func spawn_enemy():
 	# Selects diferent types of enemies
-	#var enemy = _select_enemy().instantiate()
-	var enemy = torch_goblin.instantiate()
+	var enemy = _select_enemy().instantiate()
+	#var enemy = torch_goblin.instantiate()
 	#var enemy = tnt_goblin.instantiate()
 	#var enemy = torch_goblin_boss.instantiate()
 	#var enemy = tnt_goblin_boss.instantiate()
@@ -78,10 +80,14 @@ func get_enemies_path_follow(array: Array[Node]):
 	return enemy_instancies
 
 func _select_enemy():
-	var rnd = randf()
-	if rnd < 0.25: return enemy_types[0]
-	elif rnd >= 0.25 and rnd < 0.75: return enemy_types[1]
-	else: return enemy_types[2]
+	if bosses_to_spawn > 0:
+		bosses_to_spawn -= 1
+		return torch_goblin_boss
+	else:
+		var rnd = randf()
+		if rnd < 0.25: return enemy_types[0]
+		elif rnd >= 0.25 and rnd < 0.75: return enemy_types[1]
+		else: return enemy_types[2]
 
 func _process(delta):
 	if enemies_spawned_counter != get_enemies_path_follow(path_follow.get_parent().get_children()).size():
