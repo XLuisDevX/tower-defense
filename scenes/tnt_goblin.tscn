@@ -167,6 +167,7 @@ script = ExtResource("1_k6wo0")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_th6di")
 animation = &"attack"
+frame_progress = 0.842405
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_0g5br")
@@ -186,4 +187,5 @@ scale = Vector2(0.27665, 0.27665)
 texture = ExtResource("3_r5h5k")
 
 [connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,9 +1,10 @@
 extends Enemy
 
+var dynamite_scene = preload("res://scenes/dynamite.tscn")
 
 func _init():
 	call_deferred("_post_init")
-	super(40, 10, 100) # (health, damage, speed)
+	super(40, 10, 200) # (health, damage, speed)
 	
 func _post_init():
 	_update_unset_properties(get_parent().global_position, $AnimatedSprite2D)
@@ -25,3 +26,8 @@ func _on_area_2d_body_entered(body):
 func _on_animated_sprite_2d_animation_looped():
 	if $AnimatedSprite2D.animation == "attack":
 		attack.emit()
+
+func _on_animated_sprite_2d_frame_changed():
+	if $AnimatedSprite2D.frame == 3 and $AnimatedSprite2D.animation == "attack":
+		var dynamite = dynamite_scene.instantiate()
+		add_child(dynamite)

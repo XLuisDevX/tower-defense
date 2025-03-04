@@ -21,8 +21,9 @@ signal enemy_attacks
 signal enemy_dies
 
 func start_wave(wave_data):
-	enemies_to_spawn = wave_data.enemy_count
-	bosses_to_spawn = wave_data.boss_count
+	enemies_to_spawn = 1#wave_data.enemy_count
+	if wave_data.has("boss_count"):
+		bosses_to_spawn = wave_data.boss_count
 	spawn_interval = wave_data.spawn_interval
 	spawn_timer.wait_time = spawn_interval
 	spawn_timer.start()
@@ -36,9 +37,9 @@ func _on_spawn_timer_timeout():
 
 func spawn_enemy():
 	# Selects diferent types of enemies
-	var enemy = _select_enemy().instantiate()
+	#var enemy = _select_enemy().instantiate()
 	#var enemy = torch_goblin.instantiate()
-	#var enemy = tnt_goblin.instantiate()
+	var enemy = tnt_goblin.instantiate()
 	#var enemy = torch_goblin_boss.instantiate()
 	#var enemy = tnt_goblin_boss.instantiate()
 	#var enemy = torch_goblin_boss.instantiate()
