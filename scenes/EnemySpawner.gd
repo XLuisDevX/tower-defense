@@ -40,6 +40,7 @@ func spawn_enemy():
 	#var enemy = _select_enemy().instantiate()
 	#var enemy = torch_goblin.instantiate()
 	var enemy = tnt_goblin.instantiate()
+	#var enemy = barrel_goblin.instantiate()
 	#var enemy = torch_goblin_boss.instantiate()
 	#var enemy = tnt_goblin_boss.instantiate()
 	#var enemy = torch_goblin_boss.instantiate()
