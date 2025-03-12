@@ -7,7 +7,8 @@ var torch_goblin_boss = preload("res://scenes/torchGoblinBoss.tscn")
 var tnt_goblin_boss = preload("res://scenes/tntGoblinBoss.tscn")
 
 var rng = RandomNumberGenerator.new()
-@export var path_follow: PathFollow2D
+#@export var path_follow: PathFollow2D
+@export var path2D: Path2D
 @export var spawn_timer: Timer
 
 var enemy_types = [torch_goblin, tnt_goblin, barrel_goblin]
@@ -39,9 +40,9 @@ func spawn_enemy():
 	# Selects diferent types of enemies
 	#var enemy = _select_enemy().instantiate()
 	#var enemy = torch_goblin.instantiate()
-	var enemy = tnt_goblin.instantiate()
+	#var enemy = tnt_goblin.instantiate()
 	#var enemy = barrel_goblin.instantiate()
-	#var enemy = torch_goblin_boss.instantiate()
+	var enemy = torch_goblin_boss.instantiate()
 	#var enemy = tnt_goblin_boss.instantiate()
 	#var enemy = torch_goblin_boss.instantiate()
 	#var enemy = _select_enemy().instantiate()
@@ -56,7 +57,7 @@ func spawn_enemy():
 	enemy_follow.add_to_group("enemy")
 	enemy_follow.rotates = false
 	enemy_follow.loop = false
-	path_follow.get_parent().add_child(enemy_follow)
+	path2D.add_child(enemy_follow)
 	enemy_follow.h_offset = rng.randf_range(-75.0, 50.0) # Random position on the path
 	enemy_follow.v_offset = rng.randf_range(-50.0, 40.0)
 	enemy_follow.add_child(enemy)
@@ -67,7 +68,7 @@ func notify_enemy_attacks(damage):
 	enemy_attacks.emit()
 
 func notify_game_over():
-	var enemies_path_follow = get_enemies_path_follow(path_follow.get_parent().get_children())
+	var enemies_path_follow = get_enemies_path_follow(path2D.get_children())
 	for enemy_index in range(0, enemies_path_follow.size()):
 		var enemy = enemies_path_follow[enemy_index].get_child(0)
 		enemy.is_game_over = true
@@ -92,6 +93,6 @@ func _select_enemy():
 		else: return enemy_types[2]
 
 func _process(delta):
-	if enemies_spawned_counter != get_enemies_path_follow(path_follow.get_parent().get_children()).size():
-		enemies_spawned_counter = get_enemies_path_follow(path_follow.get_parent().get_children()).size()
+	if enemies_spawned_counter != get_enemies_path_follow(path2D.get_children()).size():
+		enemies_spawned_counter = get_enemies_path_follow(path2D.get_children()).size()
 		enemy_dies.emit()

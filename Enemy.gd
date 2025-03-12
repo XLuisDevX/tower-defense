@@ -83,9 +83,10 @@ func _physics_process(delta):
 # to far from player or above the player.
 func _check_offset(delta) -> void:
 	var path_follow = get_parent() as PathFollow2D
-	path_follow.progress += speed * delta
-	if path_follow.progress >= 1.0:
-		path_follow.h_offset = 0
+	if path_follow:
+		path_follow.progress += speed * delta
+		if path_follow.progress >= 1.0:
+			path_follow.h_offset = 0
 	#path_follow.h_offset = 0
 	# TODO: Detect collision with player by collision shape
 	#if path_follow.progress_ratio > 0.98 && roundf(path_follow.progress_ratio) >= 1.0:
@@ -93,10 +94,12 @@ func _check_offset(delta) -> void:
 		#path_follow.h_offset = 0
 
 func _check_direction() -> void:
-	var currentPos = get_parent().global_position
+	#var currentPos = get_parent().global_position
+	var currentPos = global_position
 	var flip_h = roundf(currentPos.x - previousPos.x) < 0
 	sprite.flip_h = flip_h
-	previousPos = get_parent().global_position
+	#previousPos = get_parent().global_position
+	previousPos = global_position
 
 func set_drops_gold() -> void:
 	drops_gold = true if randf() >= 0.35 else false

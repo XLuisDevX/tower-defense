@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://caq8y7cpc33sl"]
+[gd_scene load_steps=69 format=3 uid="uid://caq8y7cpc33sl"]
 
 [ext_resource type="Texture2D" uid="uid://bavwfrwmw0nig" path="res://assets/terrain/Water/Water.png" id="1_nd600"]
 [ext_resource type="TileSet" uid="uid://ccgp0af0kggnq" path="res://assets/tilemaps/ground_flat.tres" id="1_ssud6"]
@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://bxcyyc0kbffac" path="res://assets/ui/Health/health_bar_overlay.png" id="9_mp6xj"]
 [ext_resource type="Texture2D" uid="uid://p5x3ghdcw0xy" path="res://assets/ui/Health/health_bar_progress.png" id="10_rmphp"]
 [ext_resource type="Theme" uid="uid://bj77gqdg3xepq" path="res://themes/MainTheme.tres" id="11_7kc71"]
-[ext_resource type="PackedScene" uid="uid://cyupj46y7iu87" path="res://scenes/UI/gold.tscn" id="14_xtb18"]
 [ext_resource type="PackedScene" uid="uid://dr7k2038ntl2q" path="res://scenes/UI/roundInfo.tscn" id="15_rygt3"]
 [ext_resource type="Texture2D" uid="uid://hy11mywcekty" path="res://assets/ui/Banners/Banner_Vertical.png" id="17_0wfqm"]
 [ext_resource type="Script" path="res://scenes/GameOverMenu.gd" id="17_ywefs"]
@@ -29,12 +28,12 @@
 [ext_resource type="Script" path="res://scenes/UI_gold.gd" id="27_xk1vj"]
 [ext_resource type="Texture2D" uid="uid://b1gf2te2pkiap" path="res://assets/ui/Buttons/Button_Hover.png" id="28_kns1i"]
 [ext_resource type="Texture2D" uid="uid://h5ol3srotag4" path="res://assets/ui/Resources/coin.png" id="28_pq5jx"]
-[ext_resource type="Texture2D" uid="uid://dpf5eklc44o0u" path="res://assets/ui/Icons/Regular_07.png" id="29_5mesy"]
-[ext_resource type="Script" path="res://scenes/ShopButton.gd" id="29_vt72e"]
 [ext_resource type="Texture2D" uid="uid://begx5mbms8wj8" path="res://assets/ui/Icons/Regular_02.png" id="34_bqj2f"]
 [ext_resource type="Script" path="res://scenes/UI_Settings.gd" id="34_ch5cd"]
 [ext_resource type="Script" path="res://scenes/Settings_menu.gd" id="34_fgqam"]
+[ext_resource type="Script" path="res://scenes/Node2D.gd" id="35_oq07h"]
 [ext_resource type="Texture2D" uid="uid://bp4y5amb40f5d" path="res://assets/ui/Buttons/Button_Unchecked.png" id="35_r6sgl"]
+[ext_resource type="Texture2D" uid="uid://dxxhetwshb7dd" path="res://assets/resources/G_Idle.png" id="36_1bb1a"]
 [ext_resource type="Texture2D" uid="uid://btw3v41r2n78c" path="res://assets/ui/Buttons/Button_Checked.png" id="36_qns1f"]
 [ext_resource type="PackedScene" uid="uid://cyd6464iuw20k" path="res://scenes/tower_placeholder.tscn" id="38_8orsn"]
 
@@ -1095,9 +1094,9 @@ UI_countdown = NodePath("../Countdown")
 
 [node name="WaveTimer" type="Timer" parent="WaveManager"]
 
-[node name="EnemySpawner" type="Node" parent="." node_paths=PackedStringArray("path_follow", "spawn_timer")]
+[node name="EnemySpawner" type="Node" parent="." node_paths=PackedStringArray("path2D", "spawn_timer")]
 script = ExtResource("6_26ehe")
-path_follow = NodePath("../Path2D/PathFollow2D")
+path2D = NodePath("../Path2D")
 spawn_timer = NodePath("SpawnTimer")
 
 [node name="SpawnTimer" type="Timer" parent="EnemySpawner"]
@@ -1120,9 +1119,8 @@ shape = SubResource("RectangleShape2D_w00d3")
 curve = SubResource("Curve2D_iwjj7")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(1631.09, 570.624)
+position = Vector2(285, 1148)
 skew = 0.949459
-progress = 2607.62
 rotates = false
 loop = false
 
@@ -1333,57 +1331,6 @@ nine_patch_stretch = true
 texture_under = ExtResource("8_yvn2o")
 texture_over = ExtResource("9_mp6xj")
 texture_progress = ExtResource("10_rmphp")
-
-[node name="Gold" parent="." instance=ExtResource("14_xtb18")]
-visible = false
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -171.0
-offset_top = 59.0
-offset_right = -171.0
-offset_bottom = 59.0
-grow_horizontal = 0
-
-[node name="Shop" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="ShopButton" type="TextureButton" parent="Shop"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 29.0
-offset_top = -100.0
-offset_right = 93.0
-offset_bottom = -36.0
-grow_vertical = 0
-texture_normal = ExtResource("26_gdmhu")
-texture_pressed = ExtResource("27_lwhfx")
-texture_hover = ExtResource("28_kns1i")
-script = ExtResource("29_vt72e")
-
-[node name="ShopIcon" type="TextureRect" parent="Shop/ShopButton"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("29_5mesy")
 
 [node name="RoundInfo" parent="." instance=ExtResource("15_rygt3")]
 texture_filter = 1
@@ -1698,14 +1645,19 @@ offset_right = 64.0
 offset_bottom = 64.0
 texture = ExtResource("34_bqj2f")
 
+[node name="TEST" type="Node2D" parent="."]
+position = Vector2(288, 465)
+script = ExtResource("35_oq07h")
+
+[node name="Sprite2D" type="Sprite2D" parent="TEST"]
+texture = ExtResource("36_1bb1a")
+
 [connection signal="update_gold" from="GameManager" to="UI_gold" method="_on_game_manager_update_gold"]
 [connection signal="timeout" from="EnemySpawner/SpawnTimer" to="EnemySpawner" method="_on_spawn_timer_timeout"]
 [connection signal="animation_finished" from="GameOverMenu/Banner/AnimPlayer" to="GameOverMenu" method="_on_anim_player_animation_finished"]
 [connection signal="button_up" from="GameOverMenu/RetryButton" to="GameOverMenu" method="_on_retry_button_button_up"]
 [connection signal="button_down" from="GameOverMenu/MainMenuBtn" to="GameOverMenu" method="_on_main_menu_btn_button_down"]
 [connection signal="button_up" from="GameOverMenu/MainMenuBtn" to="GameOverMenu" method="_on_main_menu_btn_button_up"]
-[connection signal="button_down" from="Shop/ShopButton" to="Shop/ShopButton" method="_on_button_down"]
-[connection signal="button_up" from="Shop/ShopButton" to="Shop/ShopButton" method="_on_button_up"]
 [connection signal="animation_finished" from="UI_gold/AnimatedSprite2D" to="UI_gold" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="UI_gold/AnimationTimer" to="UI_gold" method="_on_animation_timer_timeout"]
 [connection signal="button_up" from="Settings_menu/ButtonsContainer/MainMenu" to="Settings_menu" method="_on_texture_button_3_button_up"]

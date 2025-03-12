@@ -2,6 +2,7 @@ extends Enemy
 
 var is_tower = false
 var has_target = false
+var current_progress = 0.0
 
 func _init():
 	call_deferred("_post_init")
@@ -35,8 +36,23 @@ func set_aimed(aimed: bool):
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("tower") and !has_target:
 		has_target = true
-		$IgniteTimer.start()
+		#$IgniteTimer.start()
+		print(area.position)
+		exit_path_follow()
+		follow_up_tower()
 
+func exit_path_follow():
+	current_progress = get_parent().progress
+	var world_transform = global_transform
+	
+	var main_scene = get_tree()
+	get_parent().remove_child(self)
+	main_scene.current_scene.add_child(self)
+	set_deferred("global_transform", world_transform)
+	
+# Move goblin to the current tower position
+func follow_up_tower():
+	pass
 
 func _on_ignite_timer_timeout():
 	is_tower = true

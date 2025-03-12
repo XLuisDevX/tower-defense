@@ -43,7 +43,7 @@ func _process(delta):
 	if _objects_inside.size() > 0:
 		if _objects_inside[0].get_parent():
 			_objects_inside[0].set_aimed(true)
-			var enemy = _objects_inside[0].get_parent()
+			var enemy = _objects_inside[0]
 			var path_follow = enemy.get_parent()
 			target_and_shoot(enemy, delta)
 	
@@ -54,7 +54,7 @@ func target_and_shoot(enemy, delta):
 	var enemy_position = enemy.global_position
 	#var archer_anim = "idle"
 	var flip_h = false
-	var future_position = _get_future_position(archer_position, enemy, delta)
+	#var future_position = _get_future_position(archer_position, enemy, delta)
 	# Check the enemy's position rescpect archer's position to determinate if it's on the right, left, top or down
 	var orientation = _get_orientation(enemy_position, archer_position)
 	if orientation != _prev_orientation:
@@ -75,7 +75,11 @@ func _get_future_position(archerPos, enemy, delta):
 	# Get the distance between archer and target
 	var distance = archerPos.distance_to(enemy_position)
 	# Path length
-	var path_length = enemy.get_parent().curve.get_baked_length()
+	var path_length = 0
+	if enemy.get_parent():
+		path_length = enemy.get_parent().curve.get_baked_length()
+	else:
+		path_length = 1
 	
 	# Get enemy's velocity
 	var target_velocity_h = enemy.h_offset / path_length
