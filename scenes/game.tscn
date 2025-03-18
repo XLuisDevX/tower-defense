@@ -1119,8 +1119,9 @@ shape = SubResource("RectangleShape2D_w00d3")
 curve = SubResource("Curve2D_iwjj7")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(285, 1148)
+position = Vector2(283.322, 377.999)
 skew = 0.949459
+progress = 770.0
 rotates = false
 loop = false
 

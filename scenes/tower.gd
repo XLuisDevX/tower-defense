@@ -45,7 +45,7 @@ func _process(delta):
 			_objects_inside[0].set_aimed(true)
 			var enemy = _objects_inside[0]
 			var path_follow = enemy.get_parent()
-			target_and_shoot(enemy, delta)
+			#target_and_shoot(enemy, delta)
 	
 # Receives an object with the enemy position, then modify the archer sprite and shoot the enemy
 func target_and_shoot(enemy, delta):
