@@ -155,10 +155,10 @@ animations = [{
 "speed": 6.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0g5br"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7xjpm"]
 size = Vector2(51, 50)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7xjpm"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0g5br"]
 size = Vector2(51, 50)
 
 [node name="TNTGoblin" type="CharacterBody2D"]
@@ -169,13 +169,10 @@ sprite_frames = SubResource("SpriteFrames_th6di")
 animation = &"attack"
 frame_progress = 0.842405
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_0g5br")
-
-[node name="Area2D" type="Area2D" parent="."]
+[node name="VisionArea" type="Area2D" parent="."]
 position = Vector2(203, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="Vision" type="CollisionShape2D" parent="VisionArea"]
 position = Vector2(-1.5, 3)
 shape = SubResource("RectangleShape2D_7xjpm")
 
@@ -186,6 +183,11 @@ position = Vector2(7.62939e-06, 0)
 scale = Vector2(0.27665, 0.27665)
 texture = ExtResource("3_r5h5k")
 
+[node name="HitboxArea" type="Area2D" parent="." groups=["enemyHitbox"]]
+
+[node name="Hitbox" type="CollisionShape2D" parent="HitboxArea"]
+shape = SubResource("RectangleShape2D_0g5br")
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="VisionArea" to="." method="_on_area_2d_body_entered"]

@@ -168,11 +168,11 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_miwch"]
-size = Vector2(46, 50)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_3mi7c"]
 radius = 39.1152
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_miwch"]
+size = Vector2(46, 50)
 
 [node name="BarrelGoblin" type="CharacterBody2D"]
 script = ExtResource("1_no2qd")
@@ -180,17 +180,11 @@ script = ExtResource("1_no2qd")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_imy7a")
-animation = &"explode"
-frame = 8
-frame_progress = 1.0
+animation = &"idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 6)
-shape = SubResource("RectangleShape2D_miwch")
+[node name="VisionArea" type="Area2D" parent="."]
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="Vision" type="CollisionShape2D" parent="VisionArea"]
 position = Vector2(0, 6)
 shape = SubResource("CircleShape2D_3mi7c")
 
@@ -199,7 +193,13 @@ visible = false
 scale = Vector2(0.236041, 0.236041)
 texture = ExtResource("2_rtxhg")
 
+[node name="HiboxArea" type="Area2D" parent="." groups=["enemyHitbox"]]
+
+[node name="Hitbox" type="CollisionShape2D" parent="HiboxArea"]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_miwch")
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="VisionArea" to="." method="_on_area_2d_body_entered"]

@@ -10,7 +10,7 @@ var _DAMAGE = 20
 
 func _init():
 	call_deferred("_post_init")
-	super(_HEALTH, _SPEED, 200) # (health, damage, speed)
+	super(_HEALTH, _DAMAGE, _SPEED) # (health, damage, speed)
 	
 func _post_init():
 	_update_unset_properties(get_parent().global_position, $AnimatedSprite2D)

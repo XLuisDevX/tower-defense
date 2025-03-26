@@ -2,7 +2,7 @@ extends Enemy
 
 var _HEALTH = 40
 var _SCORE = 10
-var _SPEED = 500
+var _SPEED = 100
 
 
 func _init():
