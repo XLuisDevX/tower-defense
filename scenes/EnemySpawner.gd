@@ -22,7 +22,7 @@ signal enemy_attacks
 signal enemy_dies
 
 func start_wave(wave_data):
-	enemies_to_spawn = 1#wave_data.enemy_count
+	enemies_to_spawn = wave_data.enemy_count
 	if wave_data.has("boss_count"):
 		bosses_to_spawn = wave_data.boss_count
 	spawn_interval = wave_data.spawn_interval
@@ -38,11 +38,11 @@ func _on_spawn_timer_timeout():
 
 func spawn_enemy():
 	# Selects diferent types of enemies
-	#var enemy = _select_enemy().instantiate()
+	var enemy = _select_enemy().instantiate()
 	#var enemy = torch_goblin.instantiate()
 	#var enemy = tnt_goblin.instantiate()
 	#var enemy = barrel_goblin.instantiate()
-	var enemy = torch_goblin_boss.instantiate()
+	#var enemy = torch_goblin_boss.instantiate()
 	#var enemy = tnt_goblin_boss.instantiate()
 	#var enemy = torch_goblin_boss.instantiate()
 	#var enemy = _select_enemy().instantiate()
@@ -54,6 +54,8 @@ func spawn_enemy():
 	
 	enemy._anim_enemy("walk")
 	enemy.add_to_group("enemy")
+	print('Enemy is in "enemy" group: ', enemy.is_in_group("enemy"))
+	print('Enemy is in "GROUP_TEST" group: ', enemy.is_in_group("GROUP_TEST"))
 	var enemy_follow = PathFollow2D.new()
 	#enemy_follow.add_to_group("enemy")
 	enemy_follow.rotates = false
@@ -94,6 +96,6 @@ func _select_enemy():
 		else: return enemy_types[2]
 
 func _process(delta):
-	if enemies_spawned_counter != get_enemies_path_follow(path2D.get_children()).size():
-		enemies_spawned_counter = get_enemies_path_follow(path2D.get_children()).size()
+	if enemies_spawned_counter != get_tree().get_nodes_in_group("enemy").size():
+		enemies_spawned_counter = get_tree().get_nodes_in_group("enemy").size()
 		enemy_dies.emit()
