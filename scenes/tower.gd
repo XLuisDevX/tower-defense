@@ -12,6 +12,7 @@ var _arrow_speed = 600
 var _attack_speed_level = 1
 var _damage_level = 1
 var shooted = false
+var flipped = false
 var _throw_arrow = false
 var _play_throw_anim = true
 var archer_anim = "idle"
@@ -46,8 +47,6 @@ func _process(delta):
 			var enemy = _objects_inside[0]
 			var path_follow = enemy.get_parent()
 			target_and_shoot(enemy, delta)
-	else:
-		_anim_archer("idle", false)
 	
 # Receives an object with the enemy position, then modify the archer sprite and shoot the enemy
 func target_and_shoot(enemy, delta):
@@ -68,6 +67,7 @@ func target_and_shoot(enemy, delta):
 		_prev_orientation = orientation
 	archer_anim = _get_archer_anim(_prev_orientation) if _play_throw_anim else "idle"
 	flip_h = _has_to_flip_h(orientation)
+	flipped = flip_h
 	_anim_archer(archer_anim, flip_h)
 	# Shoot
 	#_shoot(future_position, archer_anim, flip_h)
@@ -207,6 +207,7 @@ func _on_body_exited(body):
 		#print("Enemies outside area: ", _objects_inside.size())
 		var orientation = _get_orientation(body.global_position, $Archer.global_position)
 		var flip_h = _has_to_flip_h(orientation)
+		flipped = flip_h
 		_anim_archer("idle", flip_h)
 
 func _on_fire_rate_timeout():
@@ -254,3 +255,7 @@ func _on_area_exited(area):
 					_objects_inside.erase(enemy)
 			else:
 				_objects_inside.erase(enemy)
+			var orientation = _get_orientation(node.global_position, $Archer.global_position)
+			var flip_h = _has_to_flip_h(orientation)
+			flipped = flip_h
+			_anim_archer("idle", flip_h)
