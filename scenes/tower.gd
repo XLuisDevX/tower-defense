@@ -234,28 +234,44 @@ func _on_damage_button_up():
 	$Improvements/Damage/ButtonTexture.texture = idle_increase_attack
 	_update_damage()
 
-func _on_area_entered(area):
-	var node = area.get_parent()
-	print(node.get_groups())
-	print('node instance id ', node.get_instance_id())
-	print('enemy already exists: ', _objects_inside.has(node))
-	for enemy in _objects_inside:
-		if is_instance_valid(enemy) and enemy.get_instance_id() == node.get_instance_id():
-			return
-	if node is CharacterBody2D and node.is_in_group("enemy"):
-		_objects_inside.append(node)
-
-
 func _on_area_exited(area):
 	var node = area.get_parent()
+	var orientation = _get_orientation(node.global_position, $Archer.global_position)
+	var flip_h = _has_to_flip_h(orientation)
 	if node.is_in_group("enemy"):
 		for enemy in _objects_inside:
 			if is_instance_valid(enemy) and enemy.get_instance_id() == node.get_instance_id():
+				print(enemy.get_health())
 				if enemy.get_health() <= 0:
 					_objects_inside.erase(enemy)
 			else:
 				_objects_inside.erase(enemy)
-			var orientation = _get_orientation(node.global_position, $Archer.global_position)
-			var flip_h = _has_to_flip_h(orientation)
 			flipped = flip_h
 			_anim_archer("idle", flip_h)
+
+func _on_tower_vision_area_entered(area):
+	var node = area.get_parent()
+	if node.is_in_group("enemy") and area.is_in_group("enemyHitbox"):
+		for enemy in _objects_inside:
+			if is_instance_valid(enemy) and enemy.get_instance_id() == node.get_instance_id():
+				return
+		_objects_inside.append(node)
+
+
+func _on_tower_vision_area_exited(area):
+	var node = area.get_parent()
+	for object in _objects_inside:
+		if checkIfObjectInstanceIsValid(node, object):
+			if checkIfEnteredNodeIsAnEnemy(node, area):
+				if node.get_health() <= 0:
+					_objects_inside.erase(object)
+					var orientation = _get_orientation(node.global_position, $Archer.global_position)
+					var flip_h = _has_to_flip_h(orientation)
+					flipped = flip_h
+					_anim_archer("idle", flip_h)
+
+func checkIfObjectInstanceIsValid(node, object) -> bool:
+	return is_instance_valid(object) and object.get_instance_id() == node.get_instance_id()
+
+func checkIfEnteredNodeIsAnEnemy(node, area) -> bool:
+	return node.is_in_group("enemy") and area.is_in_group("enemyHitbox")

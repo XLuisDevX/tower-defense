@@ -104,7 +104,13 @@ func _check_direction() -> void:
 	previousPos = global_position
 
 func set_drops_gold() -> void:
-	drops_gold = true if randf() >= 0.35 else false
+	#TODO: Check if it's normal enemy or a boss.
+	# - If it's a boss -> Always drops gold
+	if self.is_in_group("BOSS"):
+		drops_gold = true
+	else:
+		# - If it's a normal enemy -> It could drop gold or not
+		drops_gold = true if randf() >= 0.35 else false
 
 func _take_damage(damage: int) -> void:
 	health -= damage
@@ -116,11 +122,9 @@ func _take_damage(damage: int) -> void:
 		queue_free()
 
 func _drop_gold() -> void:
-	var gold_bag = gold_scene.instantiate()
-	gold_bag.position = position
-	add_child(gold_bag)
-	#gold_bag.connect("collect_gold", Callable(game_manger, "notify_collect_gold"))
-	#get_parent().get_parent().add_child(gold_bag)
+	var gold_bag = gold_scene.instantiate() # Instantiates gold_scene
+	get_tree().root.add_child(gold_bag) # Add gold_scene instance into main node
+	gold_bag.position = global_position # Update instance position after been added to main node
 
 func _update_score():
 	GlobalScene.set_score(GlobalScene.get_score() + score * GlobalScene.get_wave_index())
