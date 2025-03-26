@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://dn7m053kn3s4l"]
+[gd_scene load_steps=65 format=3 uid="uid://dn7m053kn3s4l"]
 
 [ext_resource type="Script" path="res://scenes/tower.gd" id="1_j78pa"]
 [ext_resource type="Texture2D" uid="uid://q6sx3nvjc4de" path="res://assets/buildings/Tower_Blue.png" id="1_qklfw"]
@@ -415,7 +415,11 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_p58iq"]
 radius = 303.026
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y1s0y"]
+size = Vector2(97, 170)
+
 [node name="Tower" type="Area2D" groups=["tower"]]
+disable_mode = 1
 script = ExtResource("1_j78pa")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -428,9 +432,6 @@ position = Vector2(0, -56)
 sprite_frames = SubResource("SpriteFrames_3dfib")
 animation = &"shot_down"
 autoplay = "idle"
-
-[node name="TargetArea" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_p58iq")
 
 [node name="FireRate" type="Timer" parent="."]
 wait_time = 2.0
@@ -549,6 +550,17 @@ text = "9999"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="TowerVision" type="Area2D" parent="." groups=["towerVision"]]
+
+[node name="TargetArea" type="CollisionShape2D" parent="TowerVision"]
+shape = SubResource("CircleShape2D_p58iq")
+
+[node name="TowerHitbox" type="CollisionShape2D" parent="."]
+position = Vector2(2.5, 11)
+shape = SubResource("RectangleShape2D_y1s0y")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="input_event" from="." to="." method="_on_input_event"]

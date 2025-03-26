@@ -41,11 +41,13 @@ func _process(delta):
 			#var path_follow = obj.get_parent()
 			#target_and_shoot(enemy, delta)
 	if _objects_inside.size() > 0:
-		if _objects_inside[0].get_parent():
+		if is_instance_valid(_objects_inside[0]) and _objects_inside[0].is_inside_tree():
 			_objects_inside[0].set_aimed(true)
 			var enemy = _objects_inside[0]
 			var path_follow = enemy.get_parent()
-			#target_and_shoot(enemy, delta)
+			target_and_shoot(enemy, delta)
+	else:
+		_anim_archer("idle", false)
 	
 # Receives an object with the enemy position, then modify the archer sprite and shoot the enemy
 func target_and_shoot(enemy, delta):
@@ -230,3 +232,25 @@ func _on_damage_button_down():
 func _on_damage_button_up():
 	$Improvements/Damage/ButtonTexture.texture = idle_increase_attack
 	_update_damage()
+
+func _on_area_entered(area):
+	var node = area.get_parent()
+	print(node.get_groups())
+	print('node instance id ', node.get_instance_id())
+	print('enemy already exists: ', _objects_inside.has(node))
+	for enemy in _objects_inside:
+		if is_instance_valid(enemy) and enemy.get_instance_id() == node.get_instance_id():
+			return
+	if node is CharacterBody2D and node.is_in_group("enemy"):
+		_objects_inside.append(node)
+
+
+func _on_area_exited(area):
+	var node = area.get_parent()
+	if node.is_in_group("enemy"):
+		for enemy in _objects_inside:
+			if is_instance_valid(enemy) and enemy.get_instance_id() == node.get_instance_id():
+				if enemy.get_health() <= 0:
+					_objects_inside.erase(enemy)
+			else:
+				_objects_inside.erase(enemy)

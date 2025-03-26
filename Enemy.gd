@@ -11,6 +11,8 @@ var score
 var speed
 var previousPos
 var sprite
+var current_progress = 0.0
+var path_follow_instance = null
 var _LINEAL_LIFE_INCREMENT = 5
 var _PERCENTAGE_INCREMENT = 1.05
 var MAX_HEALT = 500 # Adjust by balance
@@ -109,13 +111,16 @@ func _take_damage(damage: int) -> void:
 	if health <= 0:
 		if drops_gold: _drop_gold()
 		_update_score()
-		get_parent().queue_free()
+		if get_parent() is PathFollow2D:
+			get_parent().queue_free()
+		queue_free()
 
 func _drop_gold() -> void:
 	var gold_bag = gold_scene.instantiate()
-	gold_bag.position = get_parent().position
+	gold_bag.position = position
+	add_child(gold_bag)
 	#gold_bag.connect("collect_gold", Callable(game_manger, "notify_collect_gold"))
-	get_parent().get_parent().add_child(gold_bag)
+	#get_parent().get_parent().add_child(gold_bag)
 
 func _update_score():
 	GlobalScene.set_score(GlobalScene.get_score() + score * GlobalScene.get_wave_index())
@@ -126,3 +131,20 @@ func _reset_h_offset():
 
 func _anim_enemy(anim: String) -> void:
 	$AnimatedSprite2D.play(anim)
+
+func exit_path_follow() -> void:
+	var world_position = global_position
+	
+	path_follow_instance = get_parent()
+	var main_scene = get_tree()
+	get_parent().remove_child(self)
+	main_scene.current_scene.add_child(self)
+	set_deferred("global_position", world_position)
+	
+	path_follow_instance.progress += 300
+	current_progress = path_follow_instance.progress
+	
+	call_deferred("_check_direction")
+
+func return_to_path_follow(delta):
+	global_position = global_position.move_toward(path_follow_instance.position, 75 * delta)

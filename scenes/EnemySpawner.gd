@@ -53,8 +53,9 @@ func spawn_enemy():
 	#enemy.connect("attack", Callable(self, "notify_enemy_attacks"))
 	
 	enemy._anim_enemy("walk")
+	enemy.add_to_group("enemy")
 	var enemy_follow = PathFollow2D.new()
-	enemy_follow.add_to_group("enemy")
+	#enemy_follow.add_to_group("enemy")
 	enemy_follow.rotates = false
 	enemy_follow.loop = false
 	path2D.add_child(enemy_follow)
