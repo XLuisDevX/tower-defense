@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://caq8y7cpc33sl"]
+[gd_scene load_steps=70 format=3 uid="uid://caq8y7cpc33sl"]
 
 [ext_resource type="Texture2D" uid="uid://bavwfrwmw0nig" path="res://assets/terrain/Water/Water.png" id="1_nd600"]
 [ext_resource type="TileSet" uid="uid://ccgp0af0kggnq" path="res://assets/tilemaps/ground_flat.tres" id="1_ssud6"]
@@ -35,6 +35,7 @@
 [ext_resource type="Texture2D" uid="uid://bp4y5amb40f5d" path="res://assets/ui/Buttons/Button_Unchecked.png" id="35_r6sgl"]
 [ext_resource type="Texture2D" uid="uid://dxxhetwshb7dd" path="res://assets/resources/G_Idle.png" id="36_1bb1a"]
 [ext_resource type="Texture2D" uid="uid://btw3v41r2n78c" path="res://assets/ui/Buttons/Button_Checked.png" id="36_qns1f"]
+[ext_resource type="AudioStream" uid="uid://c23t5cejwg66r" path="res://assets/sounds/GameBkgMusic.mp3" id="37_t12pm"]
 [ext_resource type="PackedScene" uid="uid://cyd6464iuw20k" path="res://scenes/tower_placeholder.tscn" id="38_8orsn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_amw3o"]
@@ -1652,6 +1653,12 @@ script = ExtResource("35_oq07h")
 
 [node name="Sprite2D" type="Sprite2D" parent="TEST"]
 texture = ExtResource("36_1bb1a")
+
+[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("37_t12pm")
+volume_db = 1.0
+autoplay = true
+bus = &"Music"
 
 [connection signal="update_gold" from="GameManager" to="UI_gold" method="_on_game_manager_update_gold"]
 [connection signal="timeout" from="EnemySpawner/SpawnTimer" to="EnemySpawner" method="_on_spawn_timer_timeout"]

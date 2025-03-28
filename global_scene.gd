@@ -4,8 +4,10 @@ var _gold: int
 var _score: int
 var _wave_index: int
 
+
 signal gold_updated
 signal score_updated
+signal button_pressed
 
 func get_gold():
 	return _gold

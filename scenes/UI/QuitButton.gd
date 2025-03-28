@@ -17,6 +17,7 @@ func _process(delta):
 
 func _on_button_down():
 	$Label.position.y = MENU_BTN_DOWN.y
+	#GlobalScene.button_pressed.emit()
 
 
 func _on_button_up():

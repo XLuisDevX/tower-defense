@@ -17,6 +17,7 @@ func _process(delta):
 
 func _on_button_down():
 	$TextureRect.position.y = SETTINGS_BTN_DOWN.y
+	GlobalScene.button_pressed.emit()
 	get_parent().emit_signal("settings_pressed")
 	
 

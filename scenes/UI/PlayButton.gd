@@ -12,11 +12,13 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	GlobalScene
 	pass
 
 
 func _on_button_down():
 	$Label.position.y = MENU_BTN_DOWN.y
+	GlobalScene.button_pressed.emit()
 	get_tree().change_scene_to_file("res://scenes/game.tscn")
 
 

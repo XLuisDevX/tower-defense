@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://b8tm1poj8jkwi"]
+[gd_scene load_steps=42 format=3 uid="uid://b8tm1poj8jkwi"]
 
 [ext_resource type="Texture2D" uid="uid://d2pmqch2k8n8v" path="res://assets/ui/Banners/Banner_Horizontal.png" id="1_6l5ow"]
 [ext_resource type="Script" path="res://scenes/UI/MainMenu.gd" id="1_x651r"]
@@ -18,23 +18,44 @@
 [ext_resource type="Script" path="res://scenes/UI/Settings.gd" id="16_6sn5o"]
 [ext_resource type="PackedScene" uid="uid://drearucf7e5j1" path="res://scenes/UI/pop_up_panel.tscn" id="17_2t5d1"]
 [ext_resource type="Theme" uid="uid://cy0o7odbkc5ks" path="res://themes/slider.tres" id="19_n5ynw"]
+[ext_resource type="Script" path="res://scenes/UI/VolumeSlider.gd" id="19_v7bo3"]
 [ext_resource type="Texture2D" uid="uid://dexjfhoobikrv" path="res://assets/ui/Buttons/Button_Red.png" id="20_hmsv2"]
 [ext_resource type="Texture2D" uid="uid://cjfafwoap2tfu" path="res://assets/ui/Buttons/Button_Red_Pressed.png" id="21_5b307"]
 [ext_resource type="Script" path="res://scenes/UI/VolumeDown.gd" id="21_e8xca"]
 [ext_resource type="Texture2D" uid="uid://boau8p3ywrnrv" path="res://assets/ui/Icons/Regular_09.png" id="22_401x4"]
 [ext_resource type="Texture2D" uid="uid://80p3bwbgmmmu" path="res://assets/ui/Icons/Regular_08.png" id="23_r0jml"]
 [ext_resource type="Script" path="res://scenes/UI/VolumeUp.gd" id="24_oxv4c"]
+[ext_resource type="Script" path="res://scenes/UI/ShowDamage.gd" id="26_50shm"]
+[ext_resource type="Script" path="res://scenes/UI/GameSpeed.gd" id="26_kfw86"]
 [ext_resource type="Theme" uid="uid://cfj7i6urwde6t" path="res://themes/check_button.tres" id="26_tglu8"]
 [ext_resource type="Theme" uid="uid://utkit5ukgq4u" path="res://themes/buttons.tres" id="27_t5stv"]
-[ext_resource type="Texture2D" uid="uid://dxd1fec6acf75" path="res://assets/ui/Buttons/Button_Red_Disable.png" id="28_al3lm"]
 [ext_resource type="Texture2D" uid="uid://nj3bu5tptbet" path="res://assets/ui/Buttons/Button_Red_3Slides.png" id="29_cvdt4"]
 [ext_resource type="Texture2D" uid="uid://bmup2lkxs4nky" path="res://assets/ui/Buttons/Button_Red_3Slides_Pressed.png" id="30_5ds8h"]
 [ext_resource type="Texture2D" uid="uid://d2ilraa1bxvw3" path="res://assets/ui/Icons/Regular_01.png" id="31_4j2wm"]
 [ext_resource type="Script" path="res://scenes/UI/CloseSettings.gd" id="31_xsgd5"]
+[ext_resource type="AudioStream" uid="uid://ckt1fkg4whfil" path="res://assets/sounds/MainMenuMusic.mp3" id="32_5g0hx"]
 
 [sub_resource type="Theme" id="Theme_of2om"]
 default_font = ExtResource("2_okhej")
 default_font_size = 50
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5qwad"]
+texture = ExtResource("8_nar03")
+texture_margin_left = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rqyp5"]
+texture = ExtResource("10_gc1ro")
+texture_margin_left = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_34874"]
+texture = ExtResource("9_d8ivt")
+texture_margin_left = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 10.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g8omy"]
 texture = ExtResource("20_hmsv2")
@@ -43,16 +64,16 @@ texture_margin_right = 8.0
 texture_margin_bottom = 20.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uunpr"]
-texture = ExtResource("20_hmsv2")
+texture = ExtResource("10_gc1ro")
 texture_margin_left = 8.0
 texture_margin_right = 8.0
 texture_margin_bottom = 20.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wiluo"]
-texture = ExtResource("28_al3lm")
+texture = ExtResource("21_5b307")
 texture_margin_left = 8.0
 texture_margin_right = 8.0
-texture_margin_bottom = 20.0
+texture_margin_bottom = 10.0
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -267,8 +288,7 @@ offset_bottom = -144.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("19_n5ynw")
-min_value = 1.0
-value = 100.0
+script = ExtResource("19_v7bo3")
 
 [node name="VolumeDown" type="TextureButton" parent="Settings/VolumeSlider"]
 layout_mode = 1
@@ -346,7 +366,7 @@ text = "VOLUME"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CheckBox" type="CheckBox" parent="Settings"]
+[node name="ShowDamage" type="CheckBox" parent="Settings"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
@@ -363,6 +383,7 @@ grow_vertical = 2
 theme = ExtResource("26_tglu8")
 text = "SHOW DAMAGE"
 flat = true
+script = ExtResource("26_50shm")
 
 [node name="GameSpeed" type="Control" parent="Settings"]
 texture_filter = 1
@@ -378,6 +399,7 @@ offset_right = 209.0
 offset_bottom = -7.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("26_kfw86")
 
 [node name="Normal" type="Button" parent="Settings/GameSpeed"]
 texture_filter = 1
@@ -391,7 +413,11 @@ offset_right = 270.0
 offset_bottom = 42.0
 grow_vertical = 2
 theme = ExtResource("27_t5stv")
+theme_override_styles/normal = SubResource("StyleBoxTexture_5qwad")
+theme_override_styles/hover = SubResource("StyleBoxTexture_rqyp5")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_34874")
 toggle_mode = true
+button_pressed = true
 text = "NORMAL"
 
 [node name="Fast" type="Button" parent="Settings/GameSpeed"]
@@ -458,6 +484,12 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("31_4j2wm")
 
+[node name="MainMenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("32_5g0hx")
+volume_db = 1.0
+autoplay = true
+bus = &"Music"
+
 [connection signal="settings_pressed" from="." to="Settings" method="_on_main_menu_settings_pressed"]
 [connection signal="button_down" from="PlayButton" to="PlayButton" method="_on_button_down"]
 [connection signal="button_up" from="PlayButton" to="PlayButton" method="_on_button_up"]
@@ -465,10 +497,14 @@ texture = ExtResource("31_4j2wm")
 [connection signal="button_up" from="QuitButton" to="QuitButton" method="_on_button_up"]
 [connection signal="button_down" from="SettingsButton" to="SettingsButton" method="_on_button_down"]
 [connection signal="button_up" from="SettingsButton" to="SettingsButton" method="_on_button_up"]
+[connection signal="drag_ended" from="Settings/VolumeSlider" to="Settings/VolumeSlider" method="_on_drag_ended"]
 [connection signal="button_down" from="Settings/VolumeSlider/VolumeDown" to="Settings/VolumeSlider/VolumeDown" method="_on_button_down"]
 [connection signal="button_up" from="Settings/VolumeSlider/VolumeDown" to="Settings/VolumeSlider/VolumeDown" method="_on_button_up"]
 [connection signal="button_down" from="Settings/VolumeSlider/VolumeUp" to="Settings/VolumeSlider/VolumeUp" method="_on_button_down"]
 [connection signal="button_up" from="Settings/VolumeSlider/VolumeUp" to="Settings/VolumeSlider/VolumeUp" method="_on_button_up"]
+[connection signal="toggled" from="Settings/ShowDamage" to="Settings/ShowDamage" method="_on_toggled"]
+[connection signal="toggled" from="Settings/GameSpeed/Normal" to="Settings/GameSpeed" method="_on_normal_toggled"]
+[connection signal="toggled" from="Settings/GameSpeed/Fast" to="Settings/GameSpeed" method="_on_fast_toggled"]
 [connection signal="button_down" from="Settings/CloseSettings" to="Settings/CloseSettings" method="_on_button_down"]
 [connection signal="button_up" from="Settings/CloseSettings" to="Settings/CloseSettings" method="_on_button_up"]
 [connection signal="close_settings" from="Settings/CloseSettings" to="Settings" method="_on_close_settings_close_settings"]

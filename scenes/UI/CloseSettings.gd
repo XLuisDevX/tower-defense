@@ -20,6 +20,7 @@ func _process(delta):
 func _on_button_down():
 	$Cross.position.y = CLOSE_BTN_PRESSED.y
 	close_settings.emit()
+	GlobalScene.button_pressed.emit()
 	# Emitir señal para cerrar ajustes
 
 

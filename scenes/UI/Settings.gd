@@ -23,7 +23,7 @@ func _on_close_settings_close_settings():
 func toggleSettingsElementsVisibility(visible: bool):
 	$SettingsTitle.visible = visible
 	$VolumeSlider.visible = visible
-	$CheckBox.visible = visible
+	$ShowDamage.visible = visible
 	$GameSpeed.visible = visible
 	$CloseSettings.visible = visible
 	

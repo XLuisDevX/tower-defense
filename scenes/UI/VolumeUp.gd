@@ -15,6 +15,7 @@ func _process(delta):
 
 
 func _on_button_down():
+	GlobalScene.button_pressed.emit()
 	$UpTexture.position.y = VOLUME_BTN_DOWN.y
 
 
