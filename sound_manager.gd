@@ -5,7 +5,12 @@ var _buttonFx: AudioStreamPlayer
 func _ready():
 	createButtonSound()
 	attachEvents()
-	
+
+#region UTILS
+func play_sound(sound: AudioStreamPlayer):
+	sound.play()
+#endregion
+
 #region EVENTS
 func attachEvents():
 	GlobalScene.button_pressed.connect(Callable(self,"on_button_pressed"))
@@ -13,6 +18,7 @@ func attachEvents():
 func on_button_pressed():
 	if not _buttonFx.playing:
 		_buttonFx.play()
+
 #endregion
 
 #region CREATE

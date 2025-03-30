@@ -28,6 +28,21 @@ func update_prizes():
 		placeholder.get_node("UI/Prize").text = str(build_prize)
 	#$UI/Prize.text = "10"
 
+func play_build_sound_effect():
+	var build_sound = AudioStreamPlayer.new()
+	build_sound.stream = load("res://assets/sounds/BuildButtonSound.mp3")
+	build_sound.autoplay = true
+	build_sound.connect("finished", Callable(self, "_on_sound_finished"))
+	add_child(build_sound)
+
+func hide_placeholder():
+	visible = false
+	
+func instantiate_tower():
+	var new_tower = tower_scene.instantiate()
+	new_tower.position = place_holder_position
+	get_parent().add_child(new_tower)
+	Global.disable_first_tower()
 
 func _on_build_button_mouse_entered():
 	if scoreLabel and int(scoreLabel.text) >= build_prize:
@@ -40,9 +55,10 @@ func _on_build_button_mouse_entered():
 
 func _on_build_button_button_up():
 	if scoreLabel and int(scoreLabel.text) >= build_prize or Global._is_first_tower:
-		var new_tower = tower_scene.instantiate()
-		new_tower.position = place_holder_position
-		get_parent().add_child(new_tower)
-		Global.disable_first_tower()
+		play_build_sound_effect()
+		hide_placeholder()
+		instantiate_tower()
 		update_prizes()
-		queue_free()
+		
+func _on_sound_finished():
+	queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://dn7m053kn3s4l"]
+[gd_scene load_steps=66 format=3 uid="uid://dn7m053kn3s4l"]
 
 [ext_resource type="Script" path="res://scenes/tower.gd" id="1_j78pa"]
 [ext_resource type="Texture2D" uid="uid://q6sx3nvjc4de" path="res://assets/buildings/Tower_Blue.png" id="1_qklfw"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b56ov7s1hhxi1" path="res://assets/ui/Icons/Regular_11.png" id="7_8t8g5"]
 [ext_resource type="Texture2D" uid="uid://ciaobntunuoaq" path="res://assets/ui/Icons/Regular_12.png" id="8_g7nch"]
 [ext_resource type="Texture2D" uid="uid://cd7x8wlgspps6" path="res://assets/ui/Icons/coin.png" id="8_qr6dm"]
+[ext_resource type="AudioStream" uid="uid://cle4rfr8g1n8g" path="res://assets/sounds/BuildButtonSound.mp3" id="10_mvbq3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_olkbh"]
 atlas = ExtResource("2_1ix2p")
@@ -558,6 +559,9 @@ shape = SubResource("CircleShape2D_p58iq")
 [node name="TowerHitbox" type="CollisionShape2D" parent="."]
 position = Vector2(2.5, 11)
 shape = SubResource("RectangleShape2D_y1s0y")
+
+[node name="BuildSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_mvbq3")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

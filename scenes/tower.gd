@@ -33,6 +33,7 @@ func _ready():
 	$Improvements/AttackSpeed/Prize.text = str(upgrade_attack_speed_prize)
 	$Improvements/Damage/Prize.text = str(upgrade_damage_prize)
 	_anim_archer(archer_anim, false)
+	#_play_build_sound()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -167,6 +168,10 @@ func _has_to_flip_h(orientation: String) -> bool:
 func _anim_archer(anim: String, flip_h: bool):
 	$Archer.flip_h = flip_h
 	$Archer.play(anim)
+	
+func _play_build_sound():
+	if not $BuildSound.playing:
+		SoundManager.play_sound($BuildSound)
 
 func _update_tower_interface(upgrade: Label, prize: int):
 	upgrade.text = str(prize)
