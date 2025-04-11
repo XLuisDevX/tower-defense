@@ -39,6 +39,7 @@ func _post_init():
 func _on_animated_sprite_2d_animation_looped():
 	if $AnimatedSprite2D.animation == "attack":
 		#attack.emit(20)
+		SoundManager.play_sound($AttackSound)
 		SignalBus.attack.emit(_DAMAGE)
 		
 func set_aimed(aimed: bool):

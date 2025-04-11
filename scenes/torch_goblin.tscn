@@ -1,8 +1,9 @@
-[gd_scene load_steps=26 format=3 uid="uid://dvy7jehpegrb6"]
+[gd_scene load_steps=27 format=3 uid="uid://dvy7jehpegrb6"]
 
 [ext_resource type="Texture2D" uid="uid://287vr1c00lgk" path="res://assets/characters/goblins/Torch_Red.png" id="1_ethmg"]
 [ext_resource type="Script" path="res://scenes/torch_goblin.gd" id="1_hnqif"]
 [ext_resource type="Texture2D" uid="uid://bhqretxef136r" path="res://assets/ui/Icons/Marker.png" id="3_j32kg"]
+[ext_resource type="AudioStream" uid="uid://c1br3b5uoscy3" path="res://assets/sounds/AttackTorch.mp3" id="4_2c25s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_splli"]
 atlas = ExtResource("1_ethmg")
@@ -194,6 +195,10 @@ texture = ExtResource("3_j32kg")
 
 [node name="Hitbox" type="CollisionShape2D" parent="HitboxArea"]
 shape = SubResource("RectangleShape2D_wxg2g")
+
+[node name="AttackSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_2c25s")
+bus = &"SFX"
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]

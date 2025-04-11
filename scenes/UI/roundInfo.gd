@@ -41,6 +41,7 @@ func _update_round_info() -> void:
 	$RoundText.add_theme_font_size_override("font_size", new_font_size)
 
 func _show_boss_info():
+	SoundManager.play_sound($IncommingSound)
 	$BossInfo.play(_ROUND_ANIMATIONS.incomming)
 
 func _hide_boss_info():

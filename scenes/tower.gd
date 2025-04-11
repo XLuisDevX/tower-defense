@@ -229,6 +229,7 @@ func _on_attack_speed_button_down():
 	$Improvements/AttackSpeed/ButtonTexture.texture = pressed_attack_speed
 
 func _on_attack_speed_button_up():
+	GlobalScene.button_pressed.emit()
 	$Improvements/AttackSpeed/ButtonTexture.texture = idle_attack_speed
 	_update_attack_speed()
 
@@ -236,6 +237,7 @@ func _on_damage_button_down():
 	$Improvements/Damage/ButtonTexture.texture = pressed_increase_attack
 
 func _on_damage_button_up():
+	GlobalScene.button_pressed.emit()
 	$Improvements/Damage/ButtonTexture.texture = idle_increase_attack
 	_update_damage()
 

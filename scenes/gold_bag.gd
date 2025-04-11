@@ -14,6 +14,13 @@ func _process(delta):
 func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and !event.pressed:
 		collect_gold.emit()
-		queue_free()
+		SoundManager.play_sound($CollectSound)
+		visible = false
+		#$CollectSound.play()
+		#queue_free()
 		GlobalScene.set_gold(GlobalScene.get_gold()+10)
-		print('click en instancia')
+		#call_deferred("queue_free")
+
+
+func _on_collect_sound_finished():
+	queue_free()
