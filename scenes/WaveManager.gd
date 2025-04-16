@@ -54,6 +54,9 @@ func start_game():
 
 func start_next_wave():
 	time_left -= 1
+	if time_left == 3:
+		SoundManager.play_sound($CountdownSound)
+	
 	if time_left <= 5 and time_left > 0:
 		UI_countdown.visible = true
 		UI_countdown.text = str(time_left)
@@ -122,4 +125,7 @@ func on_enemy_defeated():
 
 func on_wave_completed():
 	emit_signal("wave_completed", current_wave)
-	wave_timer.start(5)  # 5-second delay before next wave
+	wave_timer.start()  # 5-second delay before next wave
+	#SoundManager.play_sound($CountdownSound)
+	time_left = time_to_wait
+	
