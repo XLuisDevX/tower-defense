@@ -197,7 +197,8 @@ func _can_upgrade(upgrade_prize: int, upgrade_level: int) -> bool:
 
 func _update_player_balance(upgrade_prize: int) -> void:
 	var current_balance = int(scoreLabel.text) - upgrade_prize
-	scoreLabel.text = str(current_balance)
+	GlobalScene.set_gold(current_balance)
+	scoreLabel.text = str(GlobalScene.get_gold())
 
 func _on_body_entered(body):
 	if body is RigidBody2D or body is CharacterBody2D or body is StaticBody2D and body.is_in_group("enemy"):
