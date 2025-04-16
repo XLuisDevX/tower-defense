@@ -12,7 +12,14 @@ func _ready():
 func _process(delta):
 	pass
 
-
 func _on_texture_button_3_button_up():
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/UI/MainMenu.tscn")
+
+
+func _on_resume_button_up():
+	get_tree().paused = false
+	visible = false
+
+
+

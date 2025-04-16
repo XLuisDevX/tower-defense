@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://caq8y7cpc33sl"]
+[gd_scene load_steps=71 format=3 uid="uid://caq8y7cpc33sl"]
 
 [ext_resource type="Texture2D" uid="uid://bavwfrwmw0nig" path="res://assets/terrain/Water/Water.png" id="1_nd600"]
 [ext_resource type="TileSet" uid="uid://ccgp0af0kggnq" path="res://assets/tilemaps/ground_flat.tres" id="1_ssud6"]
@@ -37,6 +37,7 @@
 [ext_resource type="Texture2D" uid="uid://btw3v41r2n78c" path="res://assets/ui/Buttons/Button_Checked.png" id="36_qns1f"]
 [ext_resource type="AudioStream" uid="uid://c23t5cejwg66r" path="res://assets/sounds/GameBkgMusic.mp3" id="37_t12pm"]
 [ext_resource type="PackedScene" uid="uid://cyd6464iuw20k" path="res://scenes/tower_placeholder.tscn" id="38_8orsn"]
+[ext_resource type="AudioStream" uid="uid://cfnmi8odvmf37" path="res://assets/sounds/BossMusic.mp3" id="38_kwapm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_amw3o"]
 texture = ExtResource("1_nd600")
@@ -1087,11 +1088,13 @@ player = NodePath("../CastleBlue")
 game_over_menu = NodePath("../GameOverMenu")
 variable = 100
 
-[node name="WaveManager" type="Node" parent="." node_paths=PackedStringArray("enemySpawner", "UI_roundInfo", "UI_countdown")]
+[node name="WaveManager" type="Node" parent="." node_paths=PackedStringArray("enemySpawner", "UI_roundInfo", "UI_countdown", "backgroundMusicPlayer", "bossMusicPlayer")]
 script = ExtResource("5_637w1")
 enemySpawner = NodePath("../EnemySpawner")
 UI_roundInfo = NodePath("../RoundInfo")
 UI_countdown = NodePath("../Countdown")
+backgroundMusicPlayer = NodePath("../BackgroundMusicPlayer")
+bossMusicPlayer = NodePath("../BossMusicPlayer")
 
 [node name="WaveTimer" type="Timer" parent="WaveManager"]
 
@@ -1493,7 +1496,7 @@ offset_right = -747.0
 offset_bottom = -262.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 90
+theme_override_constants/separation = 70
 
 [node name="HSlider" type="HSlider" parent="Settings_menu/ButtonsContainer"]
 layout_mode = 2
@@ -1620,6 +1623,31 @@ theme = ExtResource("11_7kc71")
 theme_override_font_sizes/font_size = 21
 text = "MAIN MENU"
 
+[node name="Resume" type="TextureButton" parent="Settings_menu/ButtonsContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("20_dvrmh")
+texture_pressed = ExtResource("21_va6br")
+texture_hover = ExtResource("22_l7rjo")
+
+[node name="Label" type="Label" parent="Settings_menu/ButtonsContainer/Resume"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = -19.0
+offset_right = 68.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("11_7kc71")
+theme_override_font_sizes/font_size = 21
+text = "RESUME"
+horizontal_alignment = 1
+
 [node name="UI_Settings" type="Control" parent="." node_paths=PackedStringArray("UI_Settings_menu")]
 layout_mode = 3
 anchors_preset = 2
@@ -1657,7 +1685,11 @@ texture = ExtResource("36_1bb1a")
 
 [node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("37_t12pm")
-volume_db = 1.0
+bus = &"Music"
+
+[node name="BossMusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("38_kwapm")
+volume_db = -80.0
 bus = &"Music"
 
 [connection signal="update_gold" from="GameManager" to="UI_gold" method="_on_game_manager_update_gold"]
@@ -1669,5 +1701,6 @@ bus = &"Music"
 [connection signal="animation_finished" from="UI_gold/AnimatedSprite2D" to="UI_gold" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="UI_gold/AnimationTimer" to="UI_gold" method="_on_animation_timer_timeout"]
 [connection signal="button_up" from="Settings_menu/ButtonsContainer/MainMenu" to="Settings_menu" method="_on_texture_button_3_button_up"]
+[connection signal="button_up" from="Settings_menu/ButtonsContainer/Resume" to="Settings_menu" method="_on_resume_button_up"]
 [connection signal="button_down" from="UI_Settings/TextureButton" to="UI_Settings" method="_on_texture_button_button_down"]
 [connection signal="button_up" from="UI_Settings/TextureButton" to="UI_Settings" method="_on_texture_button_button_up"]
