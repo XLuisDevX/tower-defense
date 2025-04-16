@@ -14,7 +14,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	is_opened = UI_Settings_menu.visible
 
 
 func _on_texture_button_button_up():
