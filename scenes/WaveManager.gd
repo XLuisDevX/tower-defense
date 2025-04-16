@@ -3,6 +3,8 @@ extends Node
 @export var enemySpawner: Node
 @export var UI_roundInfo: Control
 @export var UI_countdown: Label
+@export var backgroundMusicPlayer: AudioStreamPlayer
+@export var bossMusicPlayer: AudioStreamPlayer
 
 signal wave_started(wave_number)
 signal wave_completed(wave_number)
@@ -25,11 +27,14 @@ var time_to_wait = 6
 var time_left = time_to_wait
 var start_color = Color(0,0,0)
 var end_color = Color(1,0,0)
+var mainMusic = load("res://assets/sounds/GameBkgMusic.mp3")
+var bossMusic = load("res://assets/sounds/BossMusic.mp3")
 
 @onready var enemy_spawner = $"../EnemySpawner"
 @onready var wave_timer = $WaveTimer
 
 func _ready():
+	backgroundMusicPlayer.play()
 	UI_countdown.text = str(time_left)
 	UI_countdown.modulate = start_color
 	wave_timer.wait_time = 1
@@ -85,12 +90,22 @@ func _generate_wave(wave_index) -> Dictionary:
 	var wave
 	var spawnInterval = max(0.5, init_spawn_interval - (wave_index * 0.1))
 	if _is_boss_wave(wave_index + 1):
+		#SoundManager.fade_inout(backgroundMusic, bossMusic)
+		#backgroundMusic.stream = bossMusic
+		#backgroundMusic.play()
+		SoundManager.start_crossfade_to_boss(backgroundMusicPlayer, bossMusicPlayer)
 		# Generate wave with boss
 		wave = {"enemy_count": 1, "boss_count": 1, "spawn_interval": spawnInterval }
 	else:
 		# Generate normal wave
 		var numEnemies = int(init_wave_enemies + (wave_index * wave_increment) * (growth_factor ** wave_index))
 		wave = {"enemy_count": numEnemies, "spawn_interval": spawnInterval}
+		#if backgroundMusic.stream != mainMusic:
+			#backgroundMusic.stream = mainMusic
+		#if not backgroundMusic.playing and backgroundMusic.stream == mainMusic:
+			#backgroundMusic.play()
+		if not backgroundMusicPlayer.playing:
+			SoundManager.start_crossfade_to_normal(bossMusicPlayer, backgroundMusicPlayer)
 	return wave
 	
 func _is_boss_wave(wave_index) -> bool:
