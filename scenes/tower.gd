@@ -254,7 +254,7 @@ func _on_area_exited(area):
 			else:
 				_objects_inside.erase(enemy)
 			flipped = flip_h
-			_anim_archer("idle", flip_h)
+	_anim_archer("idle", flip_h)
 
 func _on_tower_vision_area_entered(area):
 	var node = area.get_parent()
@@ -270,12 +270,13 @@ func _on_tower_vision_area_exited(area):
 	for object in _objects_inside:
 		if checkIfObjectInstanceIsValid(node, object):
 			if checkIfEnteredNodeIsAnEnemy(node, area):
-				if node.get_health() <= 0:
-					_objects_inside.erase(object)
-					var orientation = _get_orientation(node.global_position, $Archer.global_position)
-					var flip_h = _has_to_flip_h(orientation)
-					flipped = flip_h
-					_anim_archer("idle", flip_h)
+				if object.has_method("set_aimed"):
+					object.set_aimed(false)
+				_objects_inside.erase(object)
+				var orientation = _get_orientation(node.global_position, $Archer.global_position)
+				var flip_h = _has_to_flip_h(orientation)
+				flipped = flip_h
+				_anim_archer("idle", flip_h)
 
 func checkIfObjectInstanceIsValid(node, object) -> bool:
 	return is_instance_valid(object) and object.get_instance_id() == node.get_instance_id()
