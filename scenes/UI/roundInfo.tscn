@@ -180,3 +180,4 @@ frame_progress = 0.14679
 
 [node name="IncommingSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_s0teq")
+volume_db = 5.0
