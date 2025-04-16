@@ -55,6 +55,7 @@ func _on_build_button_mouse_entered():
 
 func _on_build_button_button_up():
 	if scoreLabel and int(scoreLabel.text) >= build_prize or Global._is_first_tower:
+		GlobalScene.set_gold(GlobalScene.get_gold() - build_prize)
 		play_build_sound_effect()
 		hide_placeholder()
 		instantiate_tower()
