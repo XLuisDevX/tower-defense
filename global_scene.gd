@@ -13,7 +13,7 @@ func get_gold():
 	return _gold
 
 func set_gold(gold: int):
-	_gold = gold
+	_gold = gold if gold >= 0 else 0
 	gold_updated.emit()
 	
 func get_score():
