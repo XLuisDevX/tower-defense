@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://caq8y7cpc33sl"]
+[gd_scene load_steps=73 format=3 uid="uid://caq8y7cpc33sl"]
 
 [ext_resource type="Texture2D" uid="uid://bavwfrwmw0nig" path="res://assets/terrain/Water/Water.png" id="1_nd600"]
 [ext_resource type="TileSet" uid="uid://ccgp0af0kggnq" path="res://assets/tilemaps/ground_flat.tres" id="1_ssud6"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://dl26icpvurk5q" path="res://assets/sounds/Countdown.mp3" id="6_c02h7"]
 [ext_resource type="Texture2D" uid="uid://66df7akndbmd" path="res://assets/buildings/Castle_Blue.png" id="6_fp1tl"]
 [ext_resource type="Script" path="res://scenes/CastleBlue.gd" id="6_ng2fj"]
+[ext_resource type="AudioStream" uid="uid://g7mevv0bhyih" path="res://assets/sounds/LevelCompleted.mp3" id="7_aci58"]
 [ext_resource type="Texture2D" uid="uid://b3n223rqnwn2d" path="res://assets/ui/Health/health_bar_background.png" id="8_yvn2o"]
 [ext_resource type="Texture2D" uid="uid://bxcyyc0kbffac" path="res://assets/ui/Health/health_bar_overlay.png" id="9_mp6xj"]
 [ext_resource type="Texture2D" uid="uid://p5x3ghdcw0xy" path="res://assets/ui/Health/health_bar_progress.png" id="10_rmphp"]
@@ -1101,6 +1102,11 @@ bossMusicPlayer = NodePath("../BossMusicPlayer")
 
 [node name="CountdownSound" type="AudioStreamPlayer" parent="WaveManager"]
 stream = ExtResource("6_c02h7")
+bus = &"SFX"
+
+[node name="LevelCompleted" type="AudioStreamPlayer" parent="WaveManager"]
+stream = ExtResource("7_aci58")
+bus = &"SFX"
 
 [node name="EnemySpawner" type="Node" parent="." node_paths=PackedStringArray("path2D", "spawn_timer")]
 script = ExtResource("6_26ehe")
@@ -1697,6 +1703,7 @@ volume_db = -80.0
 bus = &"Music"
 
 [connection signal="update_gold" from="GameManager" to="UI_gold" method="_on_game_manager_update_gold"]
+[connection signal="finished" from="WaveManager/LevelCompleted" to="WaveManager" method="_on_level_completed_finished"]
 [connection signal="timeout" from="EnemySpawner/SpawnTimer" to="EnemySpawner" method="_on_spawn_timer_timeout"]
 [connection signal="animation_finished" from="GameOverMenu/Banner/AnimPlayer" to="GameOverMenu" method="_on_anim_player_animation_finished"]
 [connection signal="button_up" from="GameOverMenu/RetryButton" to="GameOverMenu" method="_on_retry_button_button_up"]

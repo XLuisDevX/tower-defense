@@ -121,6 +121,9 @@ func update_color():
 func on_enemy_defeated():
 	enemies_defeated += 1
 	if enemies_defeated == current_wave_data["enemy_count"]:
+		if current_wave_data.has("boss_count"):
+			SoundManager.play_sound($LevelCompleted)
+			SoundManager._fade_out_background(bossMusicPlayer)
 		on_wave_completed()
 
 func on_wave_completed():
@@ -129,3 +132,5 @@ func on_wave_completed():
 	#SoundManager.play_sound($CountdownSound)
 	time_left = time_to_wait
 	
+func _on_level_completed_finished():
+	SoundManager._fade_in_background(bossMusicPlayer)
