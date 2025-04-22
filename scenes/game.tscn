@@ -1,27 +1,28 @@
-[gd_scene load_steps=79 format=3 uid="uid://caq8y7cpc33sl"]
+[gd_scene load_steps=85 format=3 uid="uid://caq8y7cpc33sl"]
 
 [ext_resource type="Texture2D" uid="uid://bavwfrwmw0nig" path="res://assets/terrain/Water/Water.png" id="1_nd600"]
 [ext_resource type="TileSet" uid="uid://ccgp0af0kggnq" path="res://assets/tilemaps/ground_flat.tres" id="1_ssud6"]
 [ext_resource type="Texture2D" uid="uid://dp7n02e0mv4b" path="res://assets/terrain/Water/Foam/Foam.png" id="2_0wg55"]
 [ext_resource type="PackedScene" uid="uid://cjpqpo412un7f" path="res://scenes/game_manager.tscn" id="4_ny7f7"]
-[ext_resource type="Texture2D" uid="uid://bfqi57fx3bif4" path="res://assets/terrain/Deco/01.png" id="4_ustj3"]
+[ext_resource type="Texture2D" uid="uid://bfqi57fx3bif4" path="res://assets/terrain/Deco/img/01.png" id="4_ustj3"]
 [ext_resource type="Script" path="res://scenes/WaveManager.gd" id="5_637w1"]
-[ext_resource type="Texture2D" uid="uid://cnim8f8j2bi0n" path="res://assets/terrain/Deco/03.png" id="5_jq360"]
+[ext_resource type="Texture2D" uid="uid://cnim8f8j2bi0n" path="res://assets/terrain/Deco/img/03.png" id="5_jq360"]
 [ext_resource type="Script" path="res://scenes/EnemySpawner.gd" id="6_26ehe"]
 [ext_resource type="AudioStream" uid="uid://dl26icpvurk5q" path="res://assets/sounds/Countdown.mp3" id="6_c02h7"]
 [ext_resource type="Texture2D" uid="uid://66df7akndbmd" path="res://assets/buildings/Castle_Blue.png" id="6_fp1tl"]
-[ext_resource type="Texture2D" uid="uid://bi3416c2pien6" path="res://assets/terrain/Deco/02.png" id="6_iq1pp"]
+[ext_resource type="Texture2D" uid="uid://bi3416c2pien6" path="res://assets/terrain/Deco/img/02.png" id="6_iq1pp"]
 [ext_resource type="Script" path="res://scenes/CastleBlue.gd" id="6_ng2fj"]
-[ext_resource type="Texture2D" uid="uid://32grmfovikbv" path="res://assets/terrain/Deco/09.png" id="7_2pb34"]
+[ext_resource type="Texture2D" uid="uid://32grmfovikbv" path="res://assets/terrain/Deco/img/09.png" id="7_2pb34"]
 [ext_resource type="AudioStream" uid="uid://g7mevv0bhyih" path="res://assets/sounds/LevelCompleted.mp3" id="7_aci58"]
-[ext_resource type="Texture2D" uid="uid://dgviqrix6ivhb" path="res://assets/terrain/Deco/08.png" id="8_ftcan"]
+[ext_resource type="Texture2D" uid="uid://dgviqrix6ivhb" path="res://assets/terrain/Deco/img/08.png" id="8_ftcan"]
 [ext_resource type="Texture2D" uid="uid://b3n223rqnwn2d" path="res://assets/ui/Health/health_bar_background.png" id="8_yvn2o"]
 [ext_resource type="Texture2D" uid="uid://bxcyyc0kbffac" path="res://assets/ui/Health/health_bar_overlay.png" id="9_mp6xj"]
-[ext_resource type="Texture2D" uid="uid://cetdwqka34ef8" path="res://assets/terrain/Deco/07.png" id="9_vfj0e"]
-[ext_resource type="Texture2D" uid="uid://cdb1n8vmrpmwm" path="res://assets/terrain/Deco/10.png" id="10_mgl21"]
+[ext_resource type="Texture2D" uid="uid://cetdwqka34ef8" path="res://assets/terrain/Deco/img/07.png" id="9_vfj0e"]
+[ext_resource type="Texture2D" uid="uid://cdb1n8vmrpmwm" path="res://assets/terrain/Deco/img/10.png" id="10_mgl21"]
 [ext_resource type="Texture2D" uid="uid://p5x3ghdcw0xy" path="res://assets/ui/Health/health_bar_progress.png" id="10_rmphp"]
 [ext_resource type="Theme" uid="uid://bj77gqdg3xepq" path="res://themes/MainTheme.tres" id="11_7kc71"]
-[ext_resource type="Texture2D" uid="uid://64bfwi41g477" path="res://assets/terrain/Deco/11.png" id="11_ivica"]
+[ext_resource type="Texture2D" uid="uid://64bfwi41g477" path="res://assets/terrain/Deco/img/11.png" id="11_ivica"]
+[ext_resource type="Texture2D" uid="uid://d4ngl8ipyqgpb" path="res://assets/terrain/Deco/spritesheet/Tree.png" id="12_qwhtu"]
 [ext_resource type="PackedScene" uid="uid://dr7k2038ntl2q" path="res://scenes/UI/roundInfo.tscn" id="15_rygt3"]
 [ext_resource type="Texture2D" uid="uid://hy11mywcekty" path="res://assets/ui/Banners/Banner_Vertical.png" id="17_0wfqm"]
 [ext_resource type="Script" path="res://scenes/GameOverMenu.gd" id="17_ywefs"]
@@ -162,6 +163,42 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
+"speed": 6.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1w4es"]
+atlas = ExtResource("12_qwhtu")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_op451"]
+atlas = ExtResource("12_qwhtu")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a70mu"]
+atlas = ExtResource("12_qwhtu")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_623xk"]
+atlas = ExtResource("12_qwhtu")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fy6fh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1w4es")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_op451")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a70mu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_623xk")
+}],
+"loop": true,
+"name": &"default",
 "speed": 6.0
 }]
 
@@ -1094,47 +1131,383 @@ layer_3/tile_data = PackedInt32Array(262149, 1048576, 2, 327685, 1048576, 3, 262
 
 [node name="Deco" type="Node2D" parent="Enviroment"]
 
-[node name="Mushrooms" type="Node2D" parent="Enviroment/Deco"]
-texture_filter = 1
+[node name="OnlyTrees" type="Node2D" parent="Enviroment/Deco"]
+position = Vector2(-2, -109)
 
-[node name="MushroomLittle" type="Sprite2D" parent="Enviroment/Deco/Mushrooms"]
+[node name="Tree3" type="AnimatedSprite2D" parent="Enviroment/Deco/OnlyTrees"]
+texture_filter = 1
+position = Vector2(93, 168)
+sprite_frames = SubResource("SpriteFrames_fy6fh")
+autoplay = "default"
+flip_h = true
+
+[node name="Tree" type="AnimatedSprite2D" parent="Enviroment/Deco/OnlyTrees"]
+texture_filter = 1
+position = Vector2(150, 210)
+sprite_frames = SubResource("SpriteFrames_fy6fh")
+autoplay = "default"
+
+[node name="Tree2" type="AnimatedSprite2D" parent="Enviroment/Deco/OnlyTrees"]
+texture_filter = 1
+position = Vector2(100, 230)
+sprite_frames = SubResource("SpriteFrames_fy6fh")
+autoplay = "default"
+flip_h = true
+
+[node name="OnlyTrees2" type="Node2D" parent="Enviroment/Deco"]
+position = Vector2(1658, -160)
+
+[node name="Tree3" type="AnimatedSprite2D" parent="Enviroment/Deco/OnlyTrees2"]
+texture_filter = 1
+position = Vector2(93, 168)
+sprite_frames = SubResource("SpriteFrames_fy6fh")
+autoplay = "default"
+flip_h = true
+
+[node name="Tree" type="AnimatedSprite2D" parent="Enviroment/Deco/OnlyTrees2"]
+texture_filter = 1
+position = Vector2(150, 210)
+sprite_frames = SubResource("SpriteFrames_fy6fh")
+autoplay = "default"
+
+[node name="Tree2" type="AnimatedSprite2D" parent="Enviroment/Deco/OnlyTrees2"]
+texture_filter = 1
+position = Vector2(100, 230)
+sprite_frames = SubResource("SpriteFrames_fy6fh")
+autoplay = "default"
+flip_h = true
+
+[node name="Tree6" type="AnimatedSprite2D" parent="Enviroment/Deco/OnlyTrees2"]
+texture_filter = 1
+position = Vector2(217, 138)
+scale = Vector2(0.76, 0.76)
+sprite_frames = SubResource("SpriteFrames_fy6fh")
+autoplay = "default"
+flip_h = true
+
+[node name="Tree5" type="AnimatedSprite2D" parent="Enviroment/Deco/OnlyTrees2"]
+texture_filter = 1
+position = Vector2(226, 217)
+sprite_frames = SubResource("SpriteFrames_fy6fh")
+autoplay = "default"
+flip_h = true
+
+[node name="Tree4" type="AnimatedSprite2D" parent="Enviroment/Deco/OnlyTrees2"]
+texture_filter = 1
+position = Vector2(191, 273)
+sprite_frames = SubResource("SpriteFrames_fy6fh")
+autoplay = "default"
+flip_h = true
+
+[node name="TreesMushBush" type="Node2D" parent="Enviroment/Deco"]
+position = Vector2(-5, -5)
+
+[node name="Trees1" type="Node2D" parent="Enviroment/Deco/TreesMushBush"]
+position = Vector2(-11, 16)
+
+[node name="Tree7" type="AnimatedSprite2D" parent="Enviroment/Deco/TreesMushBush/Trees1"]
+texture_filter = 1
+position = Vector2(143, 332)
+sprite_frames = SubResource("SpriteFrames_fy6fh")
+autoplay = "default"
+flip_h = true
+
+[node name="Tree6" type="AnimatedSprite2D" parent="Enviroment/Deco/TreesMushBush/Trees1"]
+texture_filter = 1
+position = Vector2(96, 363)
+sprite_frames = SubResource("SpriteFrames_fy6fh")
+autoplay = "default"
+
+[node name="Tree4" type="AnimatedSprite2D" parent="Enviroment/Deco/TreesMushBush/Trees1"]
+texture_filter = 1
+position = Vector2(123, 390)
+sprite_frames = SubResource("SpriteFrames_fy6fh")
+autoplay = "default"
+flip_h = true
+
+[node name="Tree5" type="AnimatedSprite2D" parent="Enviroment/Deco/TreesMushBush/Trees1"]
+texture_filter = 1
+position = Vector2(168, 388)
+sprite_frames = SubResource("SpriteFrames_fy6fh")
+autoplay = "default"
+
+[node name="Mushrooms" type="Node2D" parent="Enviroment/Deco/TreesMushBush"]
+texture_filter = 1
+position = Vector2(-62, -66)
+scale = Vector2(1.16038, 1.16038)
+
+[node name="MushroomLittle" type="Sprite2D" parent="Enviroment/Deco/TreesMushBush/Mushrooms"]
 position = Vector2(114, 475)
 texture = ExtResource("4_ustj3")
 
-[node name="MushroomBig" type="Sprite2D" parent="Enviroment/Deco/Mushrooms"]
+[node name="MushroomBig" type="Sprite2D" parent="Enviroment/Deco/TreesMushBush/Mushrooms"]
 position = Vector2(129, 467)
 texture = ExtResource("5_jq360")
 
-[node name="MushroomMedium" type="Sprite2D" parent="Enviroment/Deco/Mushrooms"]
+[node name="MushroomMedium" type="Sprite2D" parent="Enviroment/Deco/TreesMushBush/Mushrooms"]
 position = Vector2(142, 467)
 texture = ExtResource("6_iq1pp")
 
-[node name="Bushes" type="Node2D" parent="Enviroment/Deco"]
+[node name="Bushes" type="Node2D" parent="Enviroment/Deco/TreesMushBush"]
 texture_filter = 1
+position = Vector2(-29, -309)
+scale = Vector2(1.32559, 1.32559)
 
-[node name="BushBig" type="Sprite2D" parent="Enviroment/Deco/Bushes"]
+[node name="BushBig" type="Sprite2D" parent="Enviroment/Deco/TreesMushBush/Bushes"]
 position = Vector2(128, 589)
 texture = ExtResource("7_2pb34")
 
-[node name="BushMedium" type="Sprite2D" parent="Enviroment/Deco/Bushes"]
+[node name="BushMedium" type="Sprite2D" parent="Enviroment/Deco/TreesMushBush/Bushes"]
 position = Vector2(151, 597)
 texture = ExtResource("8_ftcan")
 
-[node name="BushLittle" type="Sprite2D" parent="Enviroment/Deco/Bushes"]
+[node name="BushLittle" type="Sprite2D" parent="Enviroment/Deco/TreesMushBush/Bushes"]
 position = Vector2(109, 600)
 texture = ExtResource("9_vfj0e")
 
-[node name="Grass" type="Node2D" parent="Enviroment/Deco"]
+[node name="Mushrooms2" type="Node2D" parent="Enviroment/Deco/TreesMushBush"]
 texture_filter = 1
-position = Vector2(34, -25)
+position = Vector2(57, 109)
+scale = Vector2(0.809209, 0.809209)
 
-[node name="GrassMedium" type="Sprite2D" parent="Enviroment/Deco/Grass"]
+[node name="MushroomMedium" type="Sprite2D" parent="Enviroment/Deco/TreesMushBush/Mushrooms2"]
+position = Vector2(117.399, 465.887)
+scale = Vector2(1, 1)
+texture = ExtResource("6_iq1pp")
+flip_h = true
+
+[node name="MushroomBig" type="Sprite2D" parent="Enviroment/Deco/TreesMushBush/Mushrooms2"]
+position = Vector2(129, 467)
+texture = ExtResource("5_jq360")
+flip_h = true
+
+[node name="MushroomLittle" type="Sprite2D" parent="Enviroment/Deco/TreesMushBush/Mushrooms2"]
+position = Vector2(133.464, 474.538)
+scale = Vector2(1, 1)
+texture = ExtResource("4_ustj3")
+flip_h = true
+
+[node name="Bushes6" type="Node2D" parent="Enviroment/Deco"]
+texture_filter = 1
+position = Vector2(1102, -1208)
+scale = Vector2(2.10203, 2.10203)
+
+[node name="BushBig" type="Sprite2D" parent="Enviroment/Deco/Bushes6"]
+position = Vector2(128, 589)
+texture = ExtResource("7_2pb34")
+
+[node name="BushMedium" type="Sprite2D" parent="Enviroment/Deco/Bushes6"]
+visible = false
+position = Vector2(119.137, 607)
+texture = ExtResource("8_ftcan")
+
+[node name="BushLittle" type="Sprite2D" parent="Enviroment/Deco/Bushes6"]
+visible = false
+position = Vector2(155.078, 602.341)
+texture = ExtResource("9_vfj0e")
+
+[node name="Bushes4" type="Node2D" parent="Enviroment/Deco"]
+texture_filter = 1
+position = Vector2(1117, -830)
+scale = Vector2(1.50247, 1.50247)
+
+[node name="BushBig" type="Sprite2D" parent="Enviroment/Deco/Bushes4"]
+position = Vector2(128, 589)
+texture = ExtResource("7_2pb34")
+
+[node name="BushMedium" type="Sprite2D" parent="Enviroment/Deco/Bushes4"]
+position = Vector2(151, 597)
+texture = ExtResource("8_ftcan")
+
+[node name="BushLittle" type="Sprite2D" parent="Enviroment/Deco/Bushes4"]
+position = Vector2(109, 600)
+texture = ExtResource("9_vfj0e")
+
+[node name="Bushes5" type="Node2D" parent="Enviroment/Deco"]
+texture_filter = 1
+position = Vector2(1233, -830)
+scale = Vector2(1.50247, 1.50247)
+
+[node name="BushBig" type="Sprite2D" parent="Enviroment/Deco/Bushes5"]
+position = Vector2(128, 589)
+texture = ExtResource("7_2pb34")
+
+[node name="BushMedium" type="Sprite2D" parent="Enviroment/Deco/Bushes5"]
+position = Vector2(119.137, 607)
+texture = ExtResource("8_ftcan")
+
+[node name="BushLittle" type="Sprite2D" parent="Enviroment/Deco/Bushes5"]
+position = Vector2(155.078, 602.341)
+texture = ExtResource("9_vfj0e")
+
+[node name="Bushes7" type="Node2D" parent="Enviroment/Deco"]
+texture_filter = 1
+position = Vector2(-147, -280)
+scale = Vector2(1.94163, 1.94163)
+
+[node name="BushBig" type="Sprite2D" parent="Enviroment/Deco/Bushes7"]
+position = Vector2(128, 589)
+texture = ExtResource("7_2pb34")
+
+[node name="BushMedium" type="Sprite2D" parent="Enviroment/Deco/Bushes7"]
+position = Vector2(119.137, 607)
+texture = ExtResource("8_ftcan")
+
+[node name="BushLittle" type="Sprite2D" parent="Enviroment/Deco/Bushes7"]
+position = Vector2(155.078, 602.341)
+texture = ExtResource("9_vfj0e")
+
+[node name="TreesBushGrass" type="Node2D" parent="Enviroment/Deco"]
+position = Vector2(1706, 252)
+
+[node name="Bushes2" type="Node2D" parent="Enviroment/Deco/TreesBushGrass"]
+texture_filter = 1
+position = Vector2(-72, -176)
+scale = Vector2(1.05864, 1.05864)
+
+[node name="BushBig" type="Sprite2D" parent="Enviroment/Deco/TreesBushGrass/Bushes2"]
+position = Vector2(128, 589)
+texture = ExtResource("7_2pb34")
+
+[node name="BushMedium" type="Sprite2D" parent="Enviroment/Deco/TreesBushGrass/Bushes2"]
+position = Vector2(151, 597)
+texture = ExtResource("8_ftcan")
+
+[node name="BushLittle" type="Sprite2D" parent="Enviroment/Deco/TreesBushGrass/Bushes2"]
+position = Vector2(109, 600)
+texture = ExtResource("9_vfj0e")
+
+[node name="Bushes3" type="Node2D" parent="Enviroment/Deco/TreesBushGrass"]
+texture_filter = 1
+position = Vector2(-68, -693)
+scale = Vector2(1.9101, 1.9101)
+
+[node name="BushBig" type="Sprite2D" parent="Enviroment/Deco/TreesBushGrass/Bushes3"]
+position = Vector2(128, 589)
+texture = ExtResource("7_2pb34")
+
+[node name="Trees1" type="Node2D" parent="Enviroment/Deco/TreesBushGrass"]
+position = Vector2(-11, 16)
+
+[node name="Tree7" type="AnimatedSprite2D" parent="Enviroment/Deco/TreesBushGrass/Trees1"]
+texture_filter = 1
+position = Vector2(143, 332)
+sprite_frames = SubResource("SpriteFrames_fy6fh")
+autoplay = "default"
+flip_h = true
+
+[node name="Tree6" type="AnimatedSprite2D" parent="Enviroment/Deco/TreesBushGrass/Trees1"]
+texture_filter = 1
+position = Vector2(96, 363)
+sprite_frames = SubResource("SpriteFrames_fy6fh")
+autoplay = "default"
+
+[node name="Tree4" type="AnimatedSprite2D" parent="Enviroment/Deco/TreesBushGrass/Trees1"]
+texture_filter = 1
+position = Vector2(123, 390)
+sprite_frames = SubResource("SpriteFrames_fy6fh")
+autoplay = "default"
+flip_h = true
+
+[node name="Tree5" type="AnimatedSprite2D" parent="Enviroment/Deco/TreesBushGrass/Trees1"]
+texture_filter = 1
+position = Vector2(168, 388)
+sprite_frames = SubResource("SpriteFrames_fy6fh")
+autoplay = "default"
+
+[node name="Bushes" type="Node2D" parent="Enviroment/Deco/TreesBushGrass"]
+texture_filter = 1
+position = Vector2(-29, -309)
+scale = Vector2(1.32559, 1.32559)
+
+[node name="BushBig" type="Sprite2D" parent="Enviroment/Deco/TreesBushGrass/Bushes"]
+position = Vector2(128, 589)
+texture = ExtResource("7_2pb34")
+
+[node name="BushMedium" type="Sprite2D" parent="Enviroment/Deco/TreesBushGrass/Bushes"]
+position = Vector2(151, 597)
+texture = ExtResource("8_ftcan")
+
+[node name="BushLittle" type="Sprite2D" parent="Enviroment/Deco/TreesBushGrass/Bushes"]
+position = Vector2(109, 600)
+texture = ExtResource("9_vfj0e")
+
+[node name="Grass" type="Node2D" parent="Enviroment/Deco/TreesBushGrass"]
+texture_filter = 1
+position = Vector2(-5, -281)
+
+[node name="GrassMedium" type="Sprite2D" parent="Enviroment/Deco/TreesBushGrass/Grass"]
 position = Vector2(71, 754)
 texture = ExtResource("10_mgl21")
 
-[node name="GrassLittle" type="Sprite2D" parent="Enviroment/Deco/Grass"]
+[node name="GrassLittle" type="Sprite2D" parent="Enviroment/Deco/TreesBushGrass/Grass"]
 position = Vector2(71, 754)
 texture = ExtResource("11_ivica")
+
+[node name="Grass2" type="Node2D" parent="Enviroment/Deco/TreesBushGrass"]
+texture_filter = 1
+position = Vector2(17, -195)
+scale = Vector2(0.896442, 0.896442)
+
+[node name="GrassMedium" type="Sprite2D" parent="Enviroment/Deco/TreesBushGrass/Grass2"]
+position = Vector2(71, 754)
+texture = ExtResource("10_mgl21")
+
+[node name="GrassLittle" type="Sprite2D" parent="Enviroment/Deco/TreesBushGrass/Grass2"]
+position = Vector2(71, 754)
+texture = ExtResource("11_ivica")
+
+[node name="Grass3" type="Node2D" parent="Enviroment/Deco/TreesBushGrass"]
+texture_filter = 1
+position = Vector2(18, 5.99998)
+scale = Vector2(0.638178, 0.638178)
+
+[node name="GrassMedium" type="Sprite2D" parent="Enviroment/Deco/TreesBushGrass/Grass3"]
+position = Vector2(71, 754)
+texture = ExtResource("10_mgl21")
+
+[node name="GrassLittle" type="Sprite2D" parent="Enviroment/Deco/TreesBushGrass/Grass3"]
+position = Vector2(71, 754)
+texture = ExtResource("11_ivica")
+
+[node name="OnlyTrees3" type="Node2D" parent="Enviroment/Deco"]
+position = Vector2(1656, 589)
+
+[node name="Tree5" type="AnimatedSprite2D" parent="Enviroment/Deco/OnlyTrees3"]
+texture_filter = 1
+position = Vector2(176, 215)
+scale = Vector2(1.01016, 1.01016)
+sprite_frames = SubResource("SpriteFrames_fy6fh")
+autoplay = "default"
+flip_h = true
+
+[node name="Tree3" type="AnimatedSprite2D" parent="Enviroment/Deco/OnlyTrees3"]
+texture_filter = 1
+position = Vector2(211, 241)
+sprite_frames = SubResource("SpriteFrames_fy6fh")
+autoplay = "default"
+flip_h = true
+
+[node name="Tree4" type="AnimatedSprite2D" parent="Enviroment/Deco/OnlyTrees3"]
+texture_filter = 1
+position = Vector2(123, 238)
+scale = Vector2(1.01016, 1.01016)
+sprite_frames = SubResource("SpriteFrames_fy6fh")
+autoplay = "default"
+flip_h = true
+
+[node name="Tree2" type="AnimatedSprite2D" parent="Enviroment/Deco/OnlyTrees3"]
+texture_filter = 1
+position = Vector2(76, 221)
+sprite_frames = SubResource("SpriteFrames_fy6fh")
+autoplay = "default"
+flip_h = true
+
+[node name="Tree" type="AnimatedSprite2D" parent="Enviroment/Deco/OnlyTrees3"]
+texture_filter = 1
+position = Vector2(145, 257)
+sprite_frames = SubResource("SpriteFrames_fy6fh")
+autoplay = "default"
 
 [node name="GameManager" parent="." node_paths=PackedStringArray("UI_gold", "UI_Score", "player", "game_over_menu") instance=ExtResource("4_ny7f7")]
 UI_gold = NodePath("../UI_gold")

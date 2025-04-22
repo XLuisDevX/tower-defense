@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://c844x5xcfqyyy"]
+[gd_scene load_steps=9 format=3 uid="uid://c844x5xcfqyyy"]
 
 [ext_resource type="Script" path="res://scenes/gold_bag.gd" id="1_bg87g"]
 [ext_resource type="Texture2D" uid="uid://4ldg4u4j3tgy" path="res://assets/resources/G_Spawn.png" id="1_vef8q"]
 [ext_resource type="AudioStream" uid="uid://br1yolhiubpvk" path="res://assets/sounds/CollectCoins.mp3" id="3_8yux8"]
+[ext_resource type="AudioStream" uid="uid://bv0q2l6uydjfs" path="res://assets/sounds/DropGold.mp3" id="4_hy45r"]
 
 [sub_resource type="Animation" id="Animation_yhr8j"]
 length = 0.001
@@ -64,6 +65,9 @@ shape = SubResource("CircleShape2D_8f268")
 [node name="CollectSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_8yux8")
 bus = &"SFX"
+
+[node name="DropSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_hy45r")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="finished" from="CollectSound" to="." method="_on_collect_sound_finished"]
