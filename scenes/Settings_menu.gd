@@ -7,6 +7,10 @@ var mainMenuScene = preload("res://scenes/UI/MainMenu.tscn")
 func _ready():
 	pass # Replace with function body.
 
+#region VOLUME SLIDER
+func _on_h_slider_drag_ended(value_changed):
+	pass # Replace with function body.
+#endregion
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -20,6 +24,3 @@ func _on_texture_button_3_button_up():
 func _on_resume_button_up():
 	get_tree().paused = false
 	visible = false
-
-
-

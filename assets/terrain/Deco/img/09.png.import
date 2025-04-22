@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://duops8j6vnkcp"
-path="res://.godot/imported/06.png-780d512e856e6b47502dd97a4b2d0ba0.ctex"
+uid="uid://32grmfovikbv"
+path="res://.godot/imported/09.png-13f2cf128505d3e8d4afa445432bbd00.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/terrain/Deco/06.png"
-dest_files=["res://.godot/imported/06.png-780d512e856e6b47502dd97a4b2d0ba0.ctex"]
+source_file="res://assets/terrain/Deco/img/09.png"
+dest_files=["res://.godot/imported/09.png-13f2cf128505d3e8d4afa445432bbd00.ctex"]
 
 [params]
 
