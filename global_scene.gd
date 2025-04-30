@@ -3,6 +3,7 @@ extends Node
 var _gold: int
 var _score: int
 var _wave_index: int
+var _is_first_tower: bool = true
 
 
 signal gold_updated
@@ -28,3 +29,12 @@ func get_wave_index():
 
 func set_wave_index(wave_index: int):
 	_wave_index = wave_index
+	
+func disable_first_tower():
+	if _is_first_tower: _is_first_tower = false
+	
+func get_is_first_tower() -> bool:
+	return _is_first_tower
+	
+func reset_is_first_tower() -> void:
+	_is_first_tower = true
