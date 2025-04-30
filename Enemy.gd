@@ -123,7 +123,10 @@ func _take_damage(damage: int) -> void:
 
 func _drop_gold() -> void:
 	var gold_bag = gold_scene.instantiate() # Instantiates gold_scene
-	get_tree().root.add_child(gold_bag) # Add gold_scene instance into main node
+	var gameNode = get_parent().get_parent().get_parent()
+	gameNode.add_child(gold_bag)
+	#get_parent().add_child(gold_bag)
+	#get_tree().root.add_child(gold_bag) # Add gold_scene instance into main node
 	gold_bag.position = global_position # Update instance position after been added to main node
 
 func _update_score():

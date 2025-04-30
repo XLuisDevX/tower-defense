@@ -19,7 +19,9 @@ func _process(delta):
 func _on_button_down():
 	$Label.position.y = MENU_BTN_DOWN.y
 	GlobalScene.button_pressed.emit()
-	get_tree().change_scene_to_file("res://scenes/game.tscn")
+	GlobalScene.reset_is_first_tower()
+	#get_tree().change_scene_to_file("res://scenes/game.tscn")
+	SceneSwitcher.switch_scene("res://scenes/game.tscn")
 
 
 func _on_button_up():

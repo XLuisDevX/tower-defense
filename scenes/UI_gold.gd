@@ -1,5 +1,7 @@
 extends Control
 
+@export var scoreLabel: Label
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$AnimationTimer.start()
@@ -18,7 +20,7 @@ func _on_animated_sprite_2d_animation_finished():
 	$AnimationTimer.start()
 	
 func update_gold():
-	$ScoreLabel.text = str(GlobalScene.get_gold())
+	scoreLabel.text = str(GlobalScene.get_gold())
 
 func _on_game_manager_update_gold():
 	$ScoreLabel.text = $ScoreLabel.text + str(10)

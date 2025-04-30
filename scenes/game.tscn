@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://caq8y7cpc33sl"]
+[gd_scene load_steps=88 format=3 uid="uid://caq8y7cpc33sl"]
 
 [ext_resource type="Texture2D" uid="uid://bavwfrwmw0nig" path="res://assets/terrain/Water/Water.png" id="1_nd600"]
 [ext_resource type="TileSet" uid="uid://ccgp0af0kggnq" path="res://assets/tilemaps/ground_flat.tres" id="1_ssud6"]
@@ -272,6 +272,44 @@ _data = {
 "pop_up": SubResource("Animation_vjbdg")
 }
 
+[sub_resource type="Animation" id="Animation_ybqka"]
+resource_name = "mystic_pulse"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.8, 0.8), Vector2(0.8, 0.8)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8ox3u"]
+_data = {
+"mystic_pulse": SubResource("Animation_ybqka")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1pp2h"]
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ujv0e"]
+content_margin_left = 5.0
+content_margin_right = 5.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_inl4f"]
+content_margin_left = 5.0
+content_margin_right = 5.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_7rqxl"]
 atlas = ExtResource("28_pq5jx")
 region = Rect2(0, 0, 16, 16)
@@ -363,27 +401,6 @@ animations = [{
 "name": &"flip",
 "speed": 6.0
 }]
-
-[sub_resource type="Animation" id="Animation_ybqka"]
-resource_name = "mystic_pulse"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0.8, 0.8), Vector2(0.8, 0.8)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_8ox3u"]
-_data = {
-"mystic_pulse": SubResource("Animation_ybqka")
-}
 
 [node name="Game" type="Node"]
 
@@ -1272,7 +1289,6 @@ scale = Vector2(0.809209, 0.809209)
 
 [node name="MushroomMedium" type="Sprite2D" parent="Enviroment/Deco/TreesMushBush/Mushrooms2"]
 position = Vector2(117.399, 465.887)
-scale = Vector2(1, 1)
 texture = ExtResource("6_iq1pp")
 flip_h = true
 
@@ -1283,7 +1299,6 @@ flip_h = true
 
 [node name="MushroomLittle" type="Sprite2D" parent="Enviroment/Deco/TreesMushBush/Mushrooms2"]
 position = Vector2(133.464, 474.538)
-scale = Vector2(1, 1)
 texture = ExtResource("4_ustj3")
 flip_h = true
 
@@ -1304,6 +1319,43 @@ texture = ExtResource("8_ftcan")
 [node name="BushLittle" type="Sprite2D" parent="Enviroment/Deco/Bushes6"]
 visible = false
 position = Vector2(155.078, 602.341)
+texture = ExtResource("9_vfj0e")
+
+[node name="Bushes8" type="Node2D" parent="Enviroment/Deco"]
+texture_filter = 1
+position = Vector2(1496, 200)
+scale = Vector2(1.48014, 1.48014)
+
+[node name="BushBig" type="Sprite2D" parent="Enviroment/Deco/Bushes8"]
+position = Vector2(128, 589)
+texture = ExtResource("7_2pb34")
+
+[node name="BushMedium" type="Sprite2D" parent="Enviroment/Deco/Bushes8"]
+position = Vector2(166.2, 618.858)
+scale = Vector2(-1.08321, 0.978799)
+texture = ExtResource("8_ftcan")
+
+[node name="BushLittle" type="Sprite2D" parent="Enviroment/Deco/Bushes8"]
+position = Vector2(122.961, 616.832)
+texture = ExtResource("9_vfj0e")
+
+[node name="Bushes9" type="Node2D" parent="Enviroment/Deco"]
+texture_filter = 1
+position = Vector2(1661, 202)
+scale = Vector2(1.48014, 1.48014)
+
+[node name="BushMedium" type="Sprite2D" parent="Enviroment/Deco/Bushes9"]
+position = Vector2(154.715, 595.888)
+rotation = 3.14159
+scale = Vector2(1.08321, -0.978799)
+texture = ExtResource("8_ftcan")
+
+[node name="BushBig" type="Sprite2D" parent="Enviroment/Deco/Bushes9"]
+position = Vector2(148.634, 617.507)
+texture = ExtResource("7_2pb34")
+
+[node name="BushLittle" type="Sprite2D" parent="Enviroment/Deco/Bushes9"]
+position = Vector2(122.961, 583.051)
 texture = ExtResource("9_vfj0e")
 
 [node name="Bushes4" type="Node2D" parent="Enviroment/Deco"]
@@ -1356,6 +1408,33 @@ texture = ExtResource("8_ftcan")
 [node name="BushLittle" type="Sprite2D" parent="Enviroment/Deco/Bushes7"]
 position = Vector2(155.078, 602.341)
 texture = ExtResource("9_vfj0e")
+
+[node name="Grass4" type="Node2D" parent="Enviroment/Deco"]
+texture_filter = 1
+position = Vector2(10, -299)
+scale = Vector2(1.59303, 1.59303)
+
+[node name="GrassLittle" type="Sprite2D" parent="Enviroment/Deco/Grass4"]
+position = Vector2(71, 754)
+texture = ExtResource("11_ivica")
+
+[node name="Grass5" type="Node2D" parent="Enviroment/Deco"]
+texture_filter = 1
+position = Vector2(50, -132)
+scale = Vector2(1.38095, 1.38095)
+
+[node name="GrassLittle" type="Sprite2D" parent="Enviroment/Deco/Grass5"]
+position = Vector2(71, 754)
+texture = ExtResource("11_ivica")
+
+[node name="Grass6" type="Node2D" parent="Enviroment/Deco"]
+texture_filter = 1
+position = Vector2(51, 157)
+scale = Vector2(1.01195, 1.01195)
+
+[node name="GrassLittle" type="Sprite2D" parent="Enviroment/Deco/Grass6"]
+position = Vector2(71, 754)
+texture = ExtResource("11_ivica")
 
 [node name="TreesBushGrass" type="Node2D" parent="Enviroment/Deco"]
 position = Vector2(1706, 252)
@@ -1510,8 +1589,8 @@ sprite_frames = SubResource("SpriteFrames_fy6fh")
 autoplay = "default"
 
 [node name="GameManager" parent="." node_paths=PackedStringArray("UI_gold", "UI_Score", "player", "game_over_menu") instance=ExtResource("4_ny7f7")]
-UI_gold = NodePath("../UI_gold")
-UI_Score = NodePath("../UI_Score")
+UI_gold = NodePath("../UI_Gold_Control/UI_gold")
+UI_Score = NodePath("../UI_Score_Panel/UI_Score")
 player = NodePath("../CastleBlue")
 game_over_menu = NodePath("../GameOverMenu")
 variable = 100
@@ -1557,6 +1636,7 @@ position = Vector2(-7.89246, 18.7668)
 shape = SubResource("RectangleShape2D_w00d3")
 
 [node name="Path2D" type="Path2D" parent="."]
+z_index = 2
 curve = SubResource("Curve2D_iwjj7")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
@@ -1780,55 +1860,6 @@ nine_patch_stretch = true
 texture_under = ExtResource("8_yvn2o")
 texture_over = ExtResource("9_mp6xj")
 texture_progress = ExtResource("10_rmphp")
-
-[node name="UI_gold" type="Control" parent="."]
-texture_filter = 1
-layout_mode = 3
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -145.0
-offset_top = 59.0
-offset_right = -105.0
-offset_bottom = 99.0
-grow_horizontal = 0
-script = ExtResource("27_xk1vj")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="UI_gold"]
-position = Vector2(-26, 0)
-scale = Vector2(5, 5)
-sprite_frames = SubResource("SpriteFrames_r2w1x")
-animation = &"flip"
-
-[node name="AnimationTimer" type="Timer" parent="UI_gold"]
-wait_time = 5.0
-
-[node name="ScoreLabel" type="Label" parent="UI_gold"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 9.0
-offset_top = -20.0
-offset_right = 49.0
-offset_bottom = 20.0
-grow_horizontal = 2
-theme = ExtResource("11_7kc71")
-theme_override_font_sizes/font_size = 32
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="UI_Score" type="Label" parent="."]
-offset_left = 42.0
-offset_top = 96.0
-offset_right = 359.0
-offset_bottom = 169.0
-theme = ExtResource("11_7kc71")
-theme_override_font_sizes/font_size = 32
-text = "SCORE: 999999999"
-vertical_alignment = 1
 
 [node name="TowerPlaceholder2" parent="." instance=ExtResource("38_8orsn")]
 position = Vector2(481, 370)
@@ -2124,17 +2155,77 @@ stream = ExtResource("38_kwapm")
 volume_db = -80.0
 bus = &"Music"
 
-[connection signal="update_gold" from="GameManager" to="UI_gold" method="_on_game_manager_update_gold"]
+[node name="UI_Score_Panel" type="PanelContainer" parent="."]
+offset_left = 59.0
+offset_top = 117.0
+offset_right = 217.0
+offset_bottom = 157.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_1pp2h")
+
+[node name="UI_Score" type="Label" parent="UI_Score_Panel"]
+layout_mode = 2
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.4
+theme = ExtResource("11_7kc71")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_ujv0e")
+text = "SCORE: 0"
+vertical_alignment = 1
+
+[node name="UI_Gold_Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 115.0
+offset_right = 40.0
+offset_bottom = 155.0
+
+[node name="UI_Gold_Panel" type="PanelContainer" parent="UI_Gold_Control"]
+layout_mode = 0
+offset_left = 1780.0
+offset_top = 4.0
+offset_right = 1811.0
+offset_bottom = 44.0
+
+[node name="ScoreLabel" type="Label" parent="UI_Gold_Control/UI_Gold_Panel"]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("11_7kc71")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_inl4f")
+text = "0"
+vertical_alignment = 1
+
+[node name="UI_gold" type="Control" parent="UI_Gold_Control" node_paths=PackedStringArray("scoreLabel")]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1775.0
+offset_top = 23.0
+offset_right = 1815.0
+offset_bottom = 63.0
+script = ExtResource("27_xk1vj")
+scoreLabel = NodePath("../UI_Gold_Panel/ScoreLabel")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="UI_Gold_Control/UI_gold"]
+position = Vector2(-26, 0)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_r2w1x")
+animation = &"flip"
+
+[node name="AnimationTimer" type="Timer" parent="UI_Gold_Control/UI_gold"]
+wait_time = 5.0
+
+[connection signal="update_gold" from="GameManager" to="UI_Gold_Control/UI_gold" method="_on_game_manager_update_gold"]
 [connection signal="finished" from="WaveManager/LevelCompleted" to="WaveManager" method="_on_level_completed_finished"]
 [connection signal="timeout" from="EnemySpawner/SpawnTimer" to="EnemySpawner" method="_on_spawn_timer_timeout"]
 [connection signal="animation_finished" from="GameOverMenu/Banner/AnimPlayer" to="GameOverMenu" method="_on_anim_player_animation_finished"]
 [connection signal="button_up" from="GameOverMenu/RetryButton" to="GameOverMenu" method="_on_retry_button_button_up"]
 [connection signal="button_down" from="GameOverMenu/MainMenuBtn" to="GameOverMenu" method="_on_main_menu_btn_button_down"]
 [connection signal="button_up" from="GameOverMenu/MainMenuBtn" to="GameOverMenu" method="_on_main_menu_btn_button_up"]
-[connection signal="animation_finished" from="UI_gold/AnimatedSprite2D" to="UI_gold" method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="timeout" from="UI_gold/AnimationTimer" to="UI_gold" method="_on_animation_timer_timeout"]
 [connection signal="drag_ended" from="Settings_menu/ButtonsContainer/HSlider" to="Settings_menu" method="_on_h_slider_drag_ended"]
 [connection signal="button_up" from="Settings_menu/ButtonsContainer/MainMenu" to="Settings_menu" method="_on_texture_button_3_button_up"]
 [connection signal="button_up" from="Settings_menu/ButtonsContainer/Resume" to="Settings_menu" method="_on_resume_button_up"]
 [connection signal="button_down" from="UI_Settings/TextureButton" to="UI_Settings" method="_on_texture_button_button_down"]
 [connection signal="button_up" from="UI_Settings/TextureButton" to="UI_Settings" method="_on_texture_button_button_up"]
+[connection signal="animation_finished" from="UI_Gold_Control/UI_gold/AnimatedSprite2D" to="UI_Gold_Control/UI_gold" method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="UI_Gold_Control/UI_gold/AnimationTimer" to="UI_Gold_Control/UI_gold" method="_on_animation_timer_timeout"]

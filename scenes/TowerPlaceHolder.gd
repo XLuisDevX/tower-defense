@@ -15,7 +15,7 @@ func _ready():
 	
 	$ConstructionButton/Button/Prize.text = "0"
 	place_holder_position = Vector2(position.x, position.y)
-	Global.connect("update_prizes", Callable(self, "update_prizes"))
+	GlobalScene.connect("update_prizes", Callable(self, "update_prizes"))
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -24,18 +24,18 @@ func _process(delta):
 func _on_button_mouse_entered():
 	if scoreLabel and int(scoreLabel.text) >= 10:
 		$ConstructionButton/Button.texture_hover = hover_texure
-	elif Global._is_first_tower:
+	elif GlobalScene._is_first_tower:
 		$ConstructionButton/Button.texture_hover = hover_texure
 	else:
 		$ConstructionButton/Button.texture_hover = disable_texure
 
 
 func _on_button_button_up():
-	if scoreLabel and int(scoreLabel.text) >= 10 or Global._is_first_tower:
+	if scoreLabel and int(scoreLabel.text) >= 10 or GlobalScene._is_first_tower:
 		var new_tower = tower_scene.instantiate()
 		new_tower.position = place_holder_position
 		get_parent().add_child(new_tower)
-		Global.disable_first_tower()
+		GlobalScene.disable_first_tower()
 		queue_free()
 	
 func update_prizes():

@@ -26,7 +26,7 @@ var UPGRADE_MAX_LEVEL = 5
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	scoreLabel = get_parent().get_node("UI_gold/ScoreLabel")
+	scoreLabel = get_parent().get_node("UI_Gold_Control/UI_Gold_Panel/ScoreLabel")
 	if not scoreLabel:
 		print("Can not find scoreLabel node!")
 		

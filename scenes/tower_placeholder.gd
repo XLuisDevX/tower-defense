@@ -9,7 +9,7 @@ var build_prize = 10
 var place_holder_position: Vector2
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	scoreLabel = get_parent().get_node("UI_gold/ScoreLabel")
+	scoreLabel = get_parent().get_node("UI_Gold_Control/UI_Gold_Panel/ScoreLabel")
 	if not scoreLabel:
 		print("Can not find scoreLabel node!")
 	
@@ -42,19 +42,19 @@ func instantiate_tower():
 	var new_tower = tower_scene.instantiate()
 	new_tower.position = place_holder_position
 	get_parent().add_child(new_tower)
-	Global.disable_first_tower()
+	GlobalScene.disable_first_tower()
 
 func _on_build_button_mouse_entered():
 	if scoreLabel and int(scoreLabel.text) >= build_prize:
 		$UI/BuildButton.texture_hover = hover_texure
-	elif Global._is_first_tower:
+	elif GlobalScene._is_first_tower:
 		$UI/BuildButton.texture_hover = hover_texure
 	else:
 		$UI/BuildButton.texture_hover = disable_texure
 
 
 func _on_build_button_button_up():
-	if scoreLabel and int(scoreLabel.text) >= build_prize or Global._is_first_tower:
+	if scoreLabel and int(scoreLabel.text) >= build_prize or GlobalScene._is_first_tower:
 		GlobalScene.set_gold(GlobalScene.get_gold() - build_prize)
 		play_build_sound_effect()
 		hide_placeholder()

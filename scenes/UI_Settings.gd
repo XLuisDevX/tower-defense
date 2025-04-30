@@ -16,6 +16,12 @@ func _ready():
 func _process(delta):
 	is_opened = UI_Settings_menu.visible
 
+func _input(event):
+	if event is InputEventKey and event.is_pressed():
+		if event.keycode == KEY_ESCAPE:
+			is_opened = !is_opened
+			get_tree().paused = is_opened
+			UI_Settings_menu.visible = is_opened
 
 func _on_texture_button_button_up():
 	$TextureButton/TextureRect.texture = idle_settings
