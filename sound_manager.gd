@@ -67,7 +67,7 @@ func _fade_out_background(background: AudioStreamPlayer):
 	for i in range(steps + 1):
 		var t = i / float(steps)
 		var eased = t * t * (3.0 - 2.0 * t)
-		background.volume_db = lerp(0.0, -15.0, eased)
+		background.volume_db = lerp(0.0, -80.0, eased)
 
 func _fade_in_background(background: AudioStreamPlayer):
 	var steps = 30
@@ -75,7 +75,7 @@ func _fade_in_background(background: AudioStreamPlayer):
 	for i in range(steps + 1):
 		var t = i / float(steps)
 		var eased = t * t * (3.0 - 2.0 * t)
-		background.volume_db = lerp(-15.0, 0.0, eased)
+		background.volume_db = lerp(-80.0, 0.0, eased)
 #endregion
 
 #region EVENTS
