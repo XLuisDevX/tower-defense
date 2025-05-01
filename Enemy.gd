@@ -1,10 +1,14 @@
 extends CharacterBody2D
 class_name Enemy
 
-var gold_scene = preload("res://scenes/gold_bag.tscn")
+@onready var gameNode = $"."
 
+var gold_scene = preload("res://scenes/gold_bag.tscn")
+var game_scene = preload("res://scenes/game.tscn")
 var aimed = false
 var drops_gold = false
+var gold_rate = 0.15
+var increment_factor = 0.5
 
 var health
 var score
@@ -104,13 +108,17 @@ func _check_direction() -> void:
 	previousPos = global_position
 
 func set_drops_gold() -> void:
+	var new_gold_rate = gold_rate + (increment_factor * (GlobalScene.get_wave_index() - 1))
+	if new_gold_rate > 0.35:
+		new_gold_rate = 0.35
 	#TODO: Check if it's normal enemy or a boss.
 	# - If it's a boss -> Always drops gold
 	if self.is_in_group("BOSS"):
 		drops_gold = true
 	else:
+		var rnd_gold = randf()
 		# - If it's a normal enemy -> It could drop gold or not
-		drops_gold = true if randf() >= 0.35 else false
+		drops_gold = true if rnd_gold >= new_gold_rate else false
 
 func _take_damage(damage: int) -> void:
 	health -= damage
@@ -123,8 +131,9 @@ func _take_damage(damage: int) -> void:
 
 func _drop_gold() -> void:
 	var gold_bag = gold_scene.instantiate() # Instantiates gold_scene
-	var gameNode = get_parent().get_parent().get_parent()
-	gameNode.add_child(gold_bag)
+	#var mainNode = get_parent().get_parent().get_parent()
+	var mainNode = get_tree().root.get_child(get_tree().root.get_child_count() - 1)
+	mainNode.add_child(gold_bag)
 	#get_parent().add_child(gold_bag)
 	#get_tree().root.add_child(gold_bag) # Add gold_scene instance into main node
 	gold_bag.position = global_position # Update instance position after been added to main node
