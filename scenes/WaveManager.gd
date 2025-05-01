@@ -12,15 +12,9 @@ signal wave_completed(wave_number)
 var current_wave = 0
 var init_wave_enemies = 5
 var current_wave_data = {}
-var wave_increment = 3
-var growth_factor = 1.2
+var wave_increment = 1.75
+var growth_factor = 1
 var init_spawn_interval = 2
-
-var waves = [
-	{"enemy_count": 5, "spawn_interval": 2.0},
-	{"enemy_count": 10, "spawn_interval": 0.8},
-	{"enemy_count": 15, "spawn_interval": 0.6}
-]
 
 var enemies_defeated = 0
 var time_to_wait = 6
