@@ -40,7 +40,7 @@ func get_score() -> int:
 	return score
 
 func set_speed(sp) -> void:
-	speed = sp
+	speed = sp * GlobalScene.get_game_speed()
 	
 func get_speed() -> int:
 	return speed

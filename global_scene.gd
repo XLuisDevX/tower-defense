@@ -4,11 +4,13 @@ var _gold: int
 var _score: int
 var _wave_index: int
 var _is_first_tower: bool = true
+var _game_speed: int = 1
 
 
 signal gold_updated
 signal score_updated
 signal button_pressed
+signal game_speed_updated
 
 func get_gold():
 	return _gold
@@ -38,3 +40,10 @@ func get_is_first_tower() -> bool:
 	
 func reset_is_first_tower() -> void:
 	_is_first_tower = true
+
+func set_game_speed(speed: int) -> void:
+	_game_speed = speed
+	game_speed_updated.emit()
+	
+func get_game_speed() -> int:
+	return _game_speed

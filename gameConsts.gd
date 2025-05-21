@@ -55,4 +55,9 @@ const MAIN_MENU_BTN = {
 	}
 }
 
+const SPEED_BUTTON_STATUSES = {
+	"NORMAL" = "NORMAL",
+	"FAST" = "FAST"
+}
+
 

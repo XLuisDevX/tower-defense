@@ -32,6 +32,8 @@ func _ready():
 		
 	$Improvements/AttackSpeed/Prize.text = str(upgrade_attack_speed_prize)
 	$Improvements/Damage/Prize.text = str(upgrade_damage_prize)
+	
+	$Archer.speed_scale = 1 * GlobalScene.get_game_speed()
 	_anim_archer(archer_anim, false)
 	#_play_build_sound()
 
@@ -182,7 +184,8 @@ func _update_attack_speed():
 		_attack_speed_level += 1
 		upgrade_attack_speed_prize = upgrade_attack_speed_prize * _attack_speed_level
 		_update_tower_interface($Improvements/AttackSpeed/Prize, upgrade_attack_speed_prize)
-		$Archer.speed_scale += 0.2
+		if $Archer.speed_scale + 0.2 <= 2:
+			$Archer.speed_scale += 0.2
 
 func _update_damage():
 	if _can_upgrade(upgrade_damage_prize, _damage_level):
@@ -264,7 +267,6 @@ func _on_tower_vision_area_entered(area):
 			if is_instance_valid(enemy) and enemy.get_instance_id() == node.get_instance_id():
 				return
 		_objects_inside.append(node)
-
 
 func _on_tower_vision_area_exited(area):
 	var node = area.get_parent()

@@ -19,6 +19,8 @@ func _ready():
 	
 	GlobalScene.connect("gold_updated", Callable(self, "notify_update_gold"))
 	GlobalScene.connect("score_updated", Callable(self, "notify_update_score"))
+	GlobalScene.connect("game_speed_updated", Callable(self, "notify_update_game_speed"))
+	
 	player.connect("game_over", Callable(self, "_on_castle_blue_game_over"))
 	if UI_gold:
 		print("Nodo asignado desde el editor:", UI_gold.name)
@@ -68,3 +70,8 @@ func notify_update_gold():
 func notify_update_score():
 	if UI_Score:
 		UI_Score.text = "SCORE: " + str(GlobalScene.get_score())
+
+func notify_update_game_speed():
+	# TODO: Update all enemy's speed
+	print(get_tree().get_nodes_in_group("enemy"))
+	# TODO: Update all tower's speed and disable upgrade attack speed button if game is in FAST mode
