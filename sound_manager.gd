@@ -92,6 +92,7 @@ func createButtonSound():
 	_buttonFx = AudioStreamPlayer.new()
 	_buttonFx.stream = load("res://assets/sounds/ButtonPressed.mp3")
 	_buttonFx.autoplay = false
+	_buttonFx.bus = "SFX"
 	add_child(_buttonFx)
 #endregion
 

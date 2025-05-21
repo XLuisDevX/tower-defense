@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://caq8y7cpc33sl"]
+[gd_scene load_steps=90 format=3 uid="uid://caq8y7cpc33sl"]
 
 [ext_resource type="Texture2D" uid="uid://bavwfrwmw0nig" path="res://assets/terrain/Water/Water.png" id="1_nd600"]
 [ext_resource type="TileSet" uid="uid://ccgp0af0kggnq" path="res://assets/tilemaps/ground_flat.tres" id="1_ssud6"]
@@ -45,8 +45,10 @@
 [ext_resource type="Texture2D" uid="uid://bp4y5amb40f5d" path="res://assets/ui/Buttons/Button_Unchecked.png" id="35_r6sgl"]
 [ext_resource type="Texture2D" uid="uid://btw3v41r2n78c" path="res://assets/ui/Buttons/Button_Checked.png" id="36_qns1f"]
 [ext_resource type="AudioStream" uid="uid://c23t5cejwg66r" path="res://assets/sounds/GameBkgMusic.mp3" id="37_t12pm"]
+[ext_resource type="Theme" uid="uid://cy0o7odbkc5ks" path="res://themes/slider.tres" id="37_vykgd"]
 [ext_resource type="PackedScene" uid="uid://cyd6464iuw20k" path="res://scenes/tower_placeholder.tscn" id="38_8orsn"]
 [ext_resource type="AudioStream" uid="uid://cfnmi8odvmf37" path="res://assets/sounds/BossMusic.mp3" id="38_kwapm"]
+[ext_resource type="Script" path="res://scenes/VolumeSlider.gd" id="38_s1o6x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_amw3o"]
 texture = ExtResource("1_nd600")
@@ -1968,10 +1970,13 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 70
 
-[node name="HSlider" type="HSlider" parent="Settings_menu/ButtonsContainer"]
+[node name="VolumeSlider" type="HSlider" parent="Settings_menu/ButtonsContainer"]
 layout_mode = 2
+theme = ExtResource("37_vykgd")
+step = 0.0
+script = ExtResource("38_s1o6x")
 
-[node name="SliderTitle" type="Label" parent="Settings_menu/ButtonsContainer/HSlider"]
+[node name="SliderTitle" type="Label" parent="Settings_menu/ButtonsContainer/VolumeSlider"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -2147,10 +2152,12 @@ offset_bottom = 64.0
 texture = ExtResource("34_bqj2f")
 
 [node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("37_t12pm")
 bus = &"Music"
 
 [node name="BossMusicPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("38_kwapm")
 volume_db = -80.0
 bus = &"Music"
@@ -2222,7 +2229,8 @@ wait_time = 5.0
 [connection signal="button_up" from="GameOverMenu/RetryButton" to="GameOverMenu" method="_on_retry_button_button_up"]
 [connection signal="button_down" from="GameOverMenu/MainMenuBtn" to="GameOverMenu" method="_on_main_menu_btn_button_down"]
 [connection signal="button_up" from="GameOverMenu/MainMenuBtn" to="GameOverMenu" method="_on_main_menu_btn_button_up"]
-[connection signal="drag_ended" from="Settings_menu/ButtonsContainer/HSlider" to="Settings_menu" method="_on_h_slider_drag_ended"]
+[connection signal="drag_ended" from="Settings_menu/ButtonsContainer/VolumeSlider" to="Settings_menu" method="_on_h_slider_drag_ended"]
+[connection signal="value_changed" from="Settings_menu/ButtonsContainer/VolumeSlider" to="Settings_menu/ButtonsContainer/VolumeSlider" method="_on_value_changed"]
 [connection signal="button_up" from="Settings_menu/ButtonsContainer/MainMenu" to="Settings_menu" method="_on_texture_button_3_button_up"]
 [connection signal="button_up" from="Settings_menu/ButtonsContainer/Resume" to="Settings_menu" method="_on_resume_button_up"]
 [connection signal="button_down" from="UI_Settings/TextureButton" to="UI_Settings" method="_on_texture_button_button_down"]
