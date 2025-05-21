@@ -22,8 +22,12 @@ func _on_close_settings_close_settings():
 	
 func toggleSettingsElementsVisibility(visible: bool):
 	$SettingsTitle.visible = visible
-	$VolumeSlider.visible = visible
-	$ShowDamage.visible = visible
-	$GameSpeed.visible = visible
-	$CloseSettings.visible = visible
+	#$VolumeSlider.visible = visible
+	$VBoxContainer/VolumeSlider.visible = visible
+	$VBoxContainer/ShowDamage.visible = visible
+	#$ShowDamage.visible = visible
+	$VBoxContainer/GameSpeed.visible = visible
+	$VBoxContainer/CloseSettings.visible = visible
+	#$GameSpeed.visible = visible
+	#$CloseSettings.visible = visible
 	

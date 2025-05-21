@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://b8tm1poj8jkwi"]
+[gd_scene load_steps=47 format=3 uid="uid://b8tm1poj8jkwi"]
 
 [ext_resource type="Texture2D" uid="uid://d2pmqch2k8n8v" path="res://assets/ui/Banners/Banner_Horizontal.png" id="1_6l5ow"]
 [ext_resource type="Script" path="res://scenes/UI/MainMenu.gd" id="1_x651r"]
@@ -30,10 +30,15 @@
 [ext_resource type="Theme" uid="uid://cfj7i6urwde6t" path="res://themes/check_button.tres" id="26_tglu8"]
 [ext_resource type="Theme" uid="uid://utkit5ukgq4u" path="res://themes/buttons.tres" id="27_t5stv"]
 [ext_resource type="Texture2D" uid="uid://nj3bu5tptbet" path="res://assets/ui/Buttons/Button_Red_3Slides.png" id="29_cvdt4"]
+[ext_resource type="Script" path="res://scenes/UI/SoundEffectsSlider.gd" id="30_3qm6r"]
 [ext_resource type="Texture2D" uid="uid://bmup2lkxs4nky" path="res://assets/ui/Buttons/Button_Red_3Slides_Pressed.png" id="30_5ds8h"]
+[ext_resource type="Texture2D" uid="uid://bp4y5amb40f5d" path="res://assets/ui/Buttons/Button_Unchecked.png" id="30_hatto"]
+[ext_resource type="Texture2D" uid="uid://btw3v41r2n78c" path="res://assets/ui/Buttons/Button_Checked.png" id="31_4do73"]
 [ext_resource type="Texture2D" uid="uid://d2ilraa1bxvw3" path="res://assets/ui/Icons/Regular_01.png" id="31_4j2wm"]
 [ext_resource type="Script" path="res://scenes/UI/CloseSettings.gd" id="31_xsgd5"]
+[ext_resource type="Script" path="res://scenes/UI/ShowDamageButton.gd" id="32_2n73v"]
 [ext_resource type="AudioStream" uid="uid://ckt1fkg4whfil" path="res://assets/sounds/MainMenuMusic.mp3" id="32_5g0hx"]
+[ext_resource type="Script" path="res://scenes/UI/SpeedButton.gd" id="32_hd5qo"]
 
 [sub_resource type="Theme" id="Theme_of2om"]
 default_font = ExtResource("2_okhej")
@@ -273,143 +278,46 @@ text = "SETTINGS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VolumeSlider" type="HSlider" parent="Settings"]
+[node name="ShowDamageCheckbox" type="CheckBox" parent="Settings"]
+visible = false
 texture_filter = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -166.0
-offset_top = -199.0
-offset_right = 167.0
-offset_bottom = -144.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("19_n5ynw")
-script = ExtResource("19_v7bo3")
-
-[node name="VolumeDown" type="TextureButton" parent="Settings/VolumeSlider"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = -61.0
-offset_top = -27.5
-offset_right = 3.0
-offset_bottom = 36.5
-grow_vertical = 2
-texture_normal = ExtResource("20_hmsv2")
-texture_pressed = ExtResource("21_5b307")
-texture_hover = ExtResource("10_gc1ro")
-script = ExtResource("21_e8xca")
-
-[node name="DownTexture" type="TextureRect" parent="Settings/VolumeSlider/VolumeDown"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("22_401x4")
-
-[node name="VolumeUp" type="TextureButton" parent="Settings/VolumeSlider"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 336.0
-offset_top = -27.5
-offset_right = 400.0
-offset_bottom = 36.5
-grow_vertical = 2
-texture_normal = ExtResource("20_hmsv2")
-texture_pressed = ExtResource("21_5b307")
-texture_hover = ExtResource("10_gc1ro")
-script = ExtResource("24_oxv4c")
-
-[node name="UpTexture" type="TextureRect" parent="Settings/VolumeSlider/VolumeUp"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("23_r0jml")
-
-[node name="VolumeTitle" type="Label" parent="Settings/VolumeSlider"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -105.5
-offset_top = -42.0
-offset_right = 106.5
-offset_bottom = 17.0
-grow_horizontal = 2
-theme = ExtResource("6_oxyuu")
-theme_override_font_sizes/font_size = 42
-text = "VOLUME"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ShowDamage" type="CheckBox" parent="Settings"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -105.0
-offset_top = -135.0
-offset_right = 102.0
-offset_bottom = -63.0
+layout_mode = 2
+offset_left = 696.0
+offset_top = 439.0
+offset_right = 1221.0
+offset_bottom = 511.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("26_tglu8")
+theme_override_font_sizes/font_size = 48
 text = "SHOW DAMAGE"
 flat = true
+alignment = 1
 script = ExtResource("26_50shm")
 
-[node name="GameSpeed" type="Control" parent="Settings"]
+[node name="GameSpeedButton" type="Control" parent="Settings"]
+visible = false
 texture_filter = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -208.0
-offset_top = -51.0
-offset_right = 209.0
-offset_bottom = -7.0
+layout_mode = 2
+anchors_preset = 0
+offset_left = 696.0
+offset_top = 616.0
+offset_right = 1221.0
+offset_bottom = 616.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_vertical = 4
 script = ExtResource("26_kfw86")
 
-[node name="Normal" type="Button" parent="Settings/GameSpeed"]
+[node name="Normal" type="Button" parent="Settings/GameSpeedButton"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 145.0
+offset_left = 362.0
 offset_top = -21.0
-offset_right = 270.0
+offset_right = 487.0
 offset_bottom = 42.0
 grow_vertical = 2
 theme = ExtResource("27_t5stv")
@@ -420,7 +328,7 @@ toggle_mode = true
 button_pressed = true
 text = "NORMAL"
 
-[node name="Fast" type="Button" parent="Settings/GameSpeed"]
+[node name="Fast" type="Button" parent="Settings/GameSpeedButton"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 4
@@ -438,7 +346,7 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_wiluo")
 toggle_mode = true
 text = "FAST"
 
-[node name="Label" type="Label" parent="Settings/GameSpeed"]
+[node name="Label" type="Label" parent="Settings/GameSpeedButton"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -448,28 +356,211 @@ offset_right = 145.0
 offset_bottom = 12.5
 grow_vertical = 2
 theme = ExtResource("6_oxyuu")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 32
 text = "GAME SPEED"
 
-[node name="CloseSettings" type="TextureButton" parent="Settings"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings"]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -105.0
-offset_top = -315.0
-offset_right = 87.0
-offset_bottom = -251.0
+offset_left = 696.0
+offset_top = 334.0
+offset_right = -699.0
+offset_bottom = -204.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
+theme_override_constants/separation = 95
+alignment = 1
+
+[node name="VolumeSlider" type="HSlider" parent="Settings/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("19_n5ynw")
+script = ExtResource("19_v7bo3")
+
+[node name="VolumeDown" type="TextureButton" parent="Settings/VBoxContainer/VolumeSlider" node_paths=PackedStringArray("volume_slider")]
+visible = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -61.0
+offset_top = -27.5
+offset_right = 3.0
+offset_bottom = 36.5
+grow_vertical = 2
+texture_normal = ExtResource("20_hmsv2")
+texture_pressed = ExtResource("21_5b307")
+texture_hover = ExtResource("10_gc1ro")
+script = ExtResource("21_e8xca")
+volume_slider = NodePath("..")
+
+[node name="DownTexture" type="TextureRect" parent="Settings/VBoxContainer/VolumeSlider/VolumeDown"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("22_401x4")
+
+[node name="VolumeUp" type="TextureButton" parent="Settings/VBoxContainer/VolumeSlider" node_paths=PackedStringArray("volume_slider")]
+visible = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 525.0
+offset_top = -31.0
+offset_right = 589.0
+offset_bottom = 33.0
+grow_vertical = 2
+texture_normal = ExtResource("20_hmsv2")
+texture_pressed = ExtResource("21_5b307")
+texture_hover = ExtResource("10_gc1ro")
+script = ExtResource("24_oxv4c")
+volume_slider = NodePath("..")
+
+[node name="UpTexture" type="TextureRect" parent="Settings/VBoxContainer/VolumeSlider/VolumeUp"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("23_r0jml")
+
+[node name="VolumeTitle" type="Label" parent="Settings/VBoxContainer/VolumeSlider"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -103.5
+offset_top = -59.0
+offset_right = 108.5
+grow_horizontal = 2
+theme = ExtResource("6_oxyuu")
+theme_override_font_sizes/font_size = 42
+text = "MUSIC"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SoundEffectsSlider" type="HSlider" parent="Settings/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("19_n5ynw")
+script = ExtResource("30_3qm6r")
+
+[node name="Title" type="Label" parent="Settings/VBoxContainer/SoundEffectsSlider"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -182.5
+offset_top = -61.0
+offset_right = 187.5
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_oxyuu")
+theme_override_font_sizes/font_size = 42
+text = "SOUND EFFECTS"
+
+[node name="ShowDamage" type="Control" parent="Settings/VBoxContainer"]
+layout_mode = 2
+
+[node name="ShowDamageButton" type="TextureButton" parent="Settings/VBoxContainer/ShowDamage"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 419.0
+offset_top = -6.0
+offset_right = 483.0
+offset_bottom = 58.0
+toggle_mode = true
+texture_normal = ExtResource("30_hatto")
+texture_pressed = ExtResource("31_4do73")
+texture_disabled = ExtResource("30_hatto")
+script = ExtResource("32_2n73v")
+
+[node name="Title" type="Label" parent="Settings/VBoxContainer/ShowDamage"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme = ExtResource("6_oxyuu")
+theme_override_font_sizes/font_size = 32
+text = "SHOW DAMAGE"
+
+[node name="GameSpeed" type="Control" parent="Settings/VBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Settings/VBoxContainer/GameSpeed"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme = ExtResource("6_oxyuu")
+theme_override_font_sizes/font_size = 32
+text = "GAME SPEED"
+
+[node name="SpeedButton" type="TextureButton" parent="Settings/VBoxContainer/GameSpeed"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -4.0
+offset_bottom = 64.0
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("4_rp3xf")
+texture_pressed = ExtResource("5_skb7w")
+texture_hover = ExtResource("6_k2scg")
+script = ExtResource("32_hd5qo")
+
+[node name="ButtonText" type="Label" parent="Settings/VBoxContainer/GameSpeed/SpeedButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.5
+offset_top = -28.0
+offset_right = 70.5
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("27_t5stv")
+theme_override_font_sizes/font_size = 22
+text = "NORMAL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CloseSettings" type="TextureButton" parent="Settings/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
 texture_normal = ExtResource("29_cvdt4")
 texture_pressed = ExtResource("30_5ds8h")
 texture_hover = ExtResource("6_k2scg")
 script = ExtResource("31_xsgd5")
 
-[node name="Cross" type="TextureRect" parent="Settings/CloseSettings"]
+[node name="Cross" type="TextureRect" parent="Settings/VBoxContainer/CloseSettings"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -497,14 +588,18 @@ bus = &"Music"
 [connection signal="button_up" from="QuitButton" to="QuitButton" method="_on_button_up"]
 [connection signal="button_down" from="SettingsButton" to="SettingsButton" method="_on_button_down"]
 [connection signal="button_up" from="SettingsButton" to="SettingsButton" method="_on_button_up"]
-[connection signal="drag_ended" from="Settings/VolumeSlider" to="Settings/VolumeSlider" method="_on_drag_ended"]
-[connection signal="button_down" from="Settings/VolumeSlider/VolumeDown" to="Settings/VolumeSlider/VolumeDown" method="_on_button_down"]
-[connection signal="button_up" from="Settings/VolumeSlider/VolumeDown" to="Settings/VolumeSlider/VolumeDown" method="_on_button_up"]
-[connection signal="button_down" from="Settings/VolumeSlider/VolumeUp" to="Settings/VolumeSlider/VolumeUp" method="_on_button_down"]
-[connection signal="button_up" from="Settings/VolumeSlider/VolumeUp" to="Settings/VolumeSlider/VolumeUp" method="_on_button_up"]
-[connection signal="toggled" from="Settings/ShowDamage" to="Settings/ShowDamage" method="_on_toggled"]
-[connection signal="toggled" from="Settings/GameSpeed/Normal" to="Settings/GameSpeed" method="_on_normal_toggled"]
-[connection signal="toggled" from="Settings/GameSpeed/Fast" to="Settings/GameSpeed" method="_on_fast_toggled"]
-[connection signal="button_down" from="Settings/CloseSettings" to="Settings/CloseSettings" method="_on_button_down"]
-[connection signal="button_up" from="Settings/CloseSettings" to="Settings/CloseSettings" method="_on_button_up"]
-[connection signal="close_settings" from="Settings/CloseSettings" to="Settings" method="_on_close_settings_close_settings"]
+[connection signal="toggled" from="Settings/ShowDamageCheckbox" to="Settings/ShowDamageCheckbox" method="_on_toggled"]
+[connection signal="toggled" from="Settings/GameSpeedButton/Normal" to="Settings/GameSpeedButton" method="_on_normal_toggled"]
+[connection signal="toggled" from="Settings/GameSpeedButton/Fast" to="Settings/GameSpeedButton" method="_on_fast_toggled"]
+[connection signal="value_changed" from="Settings/VBoxContainer/VolumeSlider" to="Settings/VBoxContainer/VolumeSlider" method="_on_value_changed"]
+[connection signal="button_down" from="Settings/VBoxContainer/VolumeSlider/VolumeDown" to="Settings/VBoxContainer/VolumeSlider/VolumeDown" method="_on_button_down"]
+[connection signal="button_up" from="Settings/VBoxContainer/VolumeSlider/VolumeDown" to="Settings/VBoxContainer/VolumeSlider/VolumeDown" method="_on_button_up"]
+[connection signal="button_down" from="Settings/VBoxContainer/VolumeSlider/VolumeUp" to="Settings/VBoxContainer/VolumeSlider/VolumeUp" method="_on_button_down"]
+[connection signal="button_up" from="Settings/VBoxContainer/VolumeSlider/VolumeUp" to="Settings/VBoxContainer/VolumeSlider/VolumeUp" method="_on_button_up"]
+[connection signal="value_changed" from="Settings/VBoxContainer/SoundEffectsSlider" to="Settings/VBoxContainer/SoundEffectsSlider" method="_on_value_changed"]
+[connection signal="button_up" from="Settings/VBoxContainer/ShowDamage/ShowDamageButton" to="Settings/VBoxContainer/ShowDamage/ShowDamageButton" method="_on_button_up"]
+[connection signal="button_down" from="Settings/VBoxContainer/GameSpeed/SpeedButton" to="Settings/VBoxContainer/GameSpeed/SpeedButton" method="_on_button_down"]
+[connection signal="button_up" from="Settings/VBoxContainer/GameSpeed/SpeedButton" to="Settings/VBoxContainer/GameSpeed/SpeedButton" method="_on_button_up"]
+[connection signal="button_down" from="Settings/VBoxContainer/CloseSettings" to="Settings/VBoxContainer/CloseSettings" method="_on_button_down"]
+[connection signal="button_up" from="Settings/VBoxContainer/CloseSettings" to="Settings/VBoxContainer/CloseSettings" method="_on_button_up"]
+[connection signal="close_settings" from="Settings/VBoxContainer/CloseSettings" to="Settings" method="_on_close_settings_close_settings"]
