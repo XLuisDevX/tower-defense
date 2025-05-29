@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=3 uid="uid://caq8y7cpc33sl"]
+[gd_scene load_steps=91 format=3 uid="uid://caq8y7cpc33sl"]
 
 [ext_resource type="Texture2D" uid="uid://bavwfrwmw0nig" path="res://assets/terrain/Water/Water.png" id="1_nd600"]
 [ext_resource type="TileSet" uid="uid://ccgp0af0kggnq" path="res://assets/tilemaps/ground_flat.tres" id="1_ssud6"]
@@ -49,6 +49,7 @@
 [ext_resource type="PackedScene" uid="uid://cyd6464iuw20k" path="res://scenes/tower_placeholder.tscn" id="38_8orsn"]
 [ext_resource type="AudioStream" uid="uid://cfnmi8odvmf37" path="res://assets/sounds/BossMusic.mp3" id="38_kwapm"]
 [ext_resource type="Script" path="res://scenes/VolumeSlider.gd" id="38_s1o6x"]
+[ext_resource type="Script" path="res://scenes/GameSpeed.gd" id="41_rb1gq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_amw3o"]
 texture = ExtResource("1_nd600")
@@ -2023,6 +2024,7 @@ texture_pressed = ExtResource("36_qns1f")
 
 [node name="GameSpeed" type="Control" parent="Settings_menu/ButtonsContainer"]
 layout_mode = 2
+script = ExtResource("41_rb1gq")
 
 [node name="Speed" type="TextureButton" parent="Settings_menu/ButtonsContainer/GameSpeed"]
 layout_mode = 1
@@ -2231,6 +2233,7 @@ wait_time = 5.0
 [connection signal="button_up" from="GameOverMenu/MainMenuBtn" to="GameOverMenu" method="_on_main_menu_btn_button_up"]
 [connection signal="drag_ended" from="Settings_menu/ButtonsContainer/VolumeSlider" to="Settings_menu" method="_on_h_slider_drag_ended"]
 [connection signal="value_changed" from="Settings_menu/ButtonsContainer/VolumeSlider" to="Settings_menu/ButtonsContainer/VolumeSlider" method="_on_value_changed"]
+[connection signal="button_up" from="Settings_menu/ButtonsContainer/GameSpeed/Speed" to="Settings_menu/ButtonsContainer/GameSpeed" method="_on_speed_button_up"]
 [connection signal="button_up" from="Settings_menu/ButtonsContainer/MainMenu" to="Settings_menu" method="_on_texture_button_3_button_up"]
 [connection signal="button_up" from="Settings_menu/ButtonsContainer/Resume" to="Settings_menu" method="_on_resume_button_up"]
 [connection signal="button_down" from="UI_Settings/TextureButton" to="UI_Settings" method="_on_texture_button_button_down"]

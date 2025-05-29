@@ -5,6 +5,7 @@ var _score: int
 var _wave_index: int
 var _is_first_tower: bool = true
 var _game_speed: int = 1
+var _status: String = "NORMAL"
 
 
 signal gold_updated
@@ -47,3 +48,9 @@ func set_game_speed(speed: int) -> void:
 	
 func get_game_speed() -> int:
 	return _game_speed
+
+func set_game_status(status: String) -> void:
+	_status = status
+	
+func get_game_status() -> String:
+	return _status

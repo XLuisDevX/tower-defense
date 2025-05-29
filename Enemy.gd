@@ -68,7 +68,9 @@ func _get_aimed() -> bool:
 func _init(hp, sc, sp) -> void:
 	health = _calculate_health(hp)
 	score = sc
-	speed = sp
+	speed = sp * GlobalScene.get_game_speed()
+	
+	GlobalScene.connect("game_speed_updated", Callable(self, "update_enemy_speed"))
 
 # Calculates enemy's life based on current wave
 func _calculate_health(hp):
@@ -91,7 +93,7 @@ func _check_offset(delta) -> void:
 	var path_follow = get_parent() as PathFollow2D
 	if path_follow:
 		path_follow.progress += speed * delta
-		if path_follow.progress >= 1.0:
+		if path_follow.progress_ratio >= 1.0:
 			path_follow.h_offset = 0
 	#path_follow.h_offset = 0
 	# TODO: Detect collision with player by collision shape
@@ -164,3 +166,7 @@ func exit_path_follow() -> void:
 
 func return_to_path_follow(delta):
 	global_position = global_position.move_toward(path_follow_instance.position, 75 * delta)
+
+func update_enemy_speed():
+	var game_speed = GlobalScene.get_game_speed()
+	speed = speed / 2 if game_speed == 1 else speed * 2
