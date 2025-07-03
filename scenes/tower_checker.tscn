@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1m6apyiomrgk"]
+
+[ext_resource type="Texture2D" uid="uid://q6sx3nvjc4de" path="res://assets/buildings/Tower_Blue.png" id="1_d88bw"]
+[ext_resource type="Script" path="res://scenes/tower_checker.gd" id="1_r7pwi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2tq51"]
+size = Vector2(116, 101)
+
+[node name="TowerChecker" type="Area2D" node_paths=PackedStringArray("collision_shape")]
+texture_filter = 1
+position = Vector2(485, 193)
+script = ExtResource("1_r7pwi")
+collision_shape = NodePath("CollisionShape2D")
+
+[node name="Tower" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.588235)
+texture = ExtResource("1_d88bw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 50)
+shape = SubResource("RectangleShape2D_2tq51")
+debug_color = Color(0, 0.6, 0.701961, 0.556863)
+
+[node name="CollisionVisualizer" type="Node2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
+[connection signal="body_shape_exited" from="." to="." method="_on_body_shape_exited"]
