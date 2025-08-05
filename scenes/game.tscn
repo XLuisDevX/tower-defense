@@ -1649,7 +1649,7 @@ theme = ExtResource("11_7kc71")
 
 [node name="GameOverMenu" type="Control" parent="."]
 visible = false
-z_index = 1
+z_index = 100
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1855,6 +1855,8 @@ nine_patch_stretch = true
 texture_under = ExtResource("8_yvn2o")
 texture_over = ExtResource("9_mp6xj")
 texture_progress = ExtResource("10_rmphp")
+
+[node name="TowerContainer" type="Node" parent="."]
 
 [node name="TowerPlaceholder2" parent="." instance=ExtResource("38_8orsn")]
 visible = false
@@ -2273,13 +2275,14 @@ offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="NormalTowerButton" type="TextureButton" parent="UI_Tower_Buttons/Tower_Buttons_Container"]
+[node name="NormalTowerButton" type="TextureButton" parent="UI_Tower_Buttons/Tower_Buttons_Container" node_paths=PackedStringArray("tower_container")]
 layout_mode = 2
 texture_normal = ExtResource("52_wclre")
 texture_pressed = ExtResource("53_fpy8b")
 texture_hover = ExtResource("54_5as5g")
 texture_disabled = ExtResource("55_x7is0")
 script = ExtResource("53_wrir1")
+tower_container = NodePath("../../../TowerContainer")
 
 [connection signal="update_gold" from="GameManager" to="UI_Gold_Control/UI_gold" method="_on_game_manager_update_gold"]
 [connection signal="finished" from="WaveManager/LevelCompleted" to="WaveManager" method="_on_level_completed_finished"]
