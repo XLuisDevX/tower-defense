@@ -76,7 +76,7 @@ func _init(hp, sc, sp) -> void:
 func _calculate_health(hp):
 	var health = hp + (GlobalScene.get_wave_index() * _LINEAL_LIFE_INCREMENT)
 	health *= pow(_PERCENTAGE_INCREMENT,GlobalScene.get_wave_index())
-	print('ENEMY LIFE: ', int(min(health, MAX_HEALT)))
+	#print('ENEMY LIFE: ', int(min(health, MAX_HEALT)))
 	return int(min(health, MAX_HEALT))
 	
 func _update_unset_properties(prevPos: Vector2, _sprite: AnimatedSprite2D) -> void:

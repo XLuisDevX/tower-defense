@@ -6,6 +6,7 @@ var _wave_index: int
 var _is_first_tower: bool = true
 var _game_speed: int = 1
 var _status: String = "NORMAL"
+var _NUM_OF_TOWERS: int = 5
 
 
 signal gold_updated
@@ -54,3 +55,6 @@ func set_game_status(status: String) -> void:
 	
 func get_game_status() -> String:
 	return _status
+
+func get_total_num_of_towers() -> int:
+	return _NUM_OF_TOWERS

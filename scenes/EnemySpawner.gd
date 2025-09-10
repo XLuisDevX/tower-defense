@@ -60,8 +60,8 @@ func spawn_enemy():
 	
 	enemy._anim_enemy("walk")
 	enemy.add_to_group("enemy")
-	print('Enemy is in "enemy" group: ', enemy.is_in_group("enemy"))
-	print('Enemy is in "GROUP_TEST" group: ', enemy.is_in_group("GROUP_TEST"))
+	#print('Enemy is in "enemy" group: ', enemy.is_in_group("enemy"))
+	#print('Enemy is in "GROUP_TEST" group: ', enemy.is_in_group("GROUP_TEST"))
 	var enemy_follow = PathFollow2D.new()
 	#enemy_follow.add_to_group("enemy")
 	enemy_follow.rotates = false
