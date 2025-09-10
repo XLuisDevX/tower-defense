@@ -2542,11 +2542,6 @@ volume_db = 1.0
 autoplay = true
 bus = &"Music"
 
-[node name="StartGameTimer" type="Timer" parent="."]
-wait_time = 4.0
-one_shot = true
-autostart = true
-
 [connection signal="settings_pressed" from="." to="Settings" method="_on_main_menu_settings_pressed"]
 [connection signal="button_down" from="PlayButton" to="PlayButton" method="_on_button_down"]
 [connection signal="button_up" from="PlayButton" to="PlayButton" method="_on_button_up"]
@@ -2569,4 +2564,3 @@ autostart = true
 [connection signal="button_down" from="Settings/VBoxContainer/CloseSettings" to="Settings/VBoxContainer/CloseSettings" method="_on_button_down"]
 [connection signal="button_up" from="Settings/VBoxContainer/CloseSettings" to="Settings/VBoxContainer/CloseSettings" method="_on_button_up"]
 [connection signal="close_settings" from="Settings/VBoxContainer/CloseSettings" to="Settings" method="_on_close_settings_close_settings"]
-[connection signal="timeout" from="StartGameTimer" to="." method="_on_start_game_timer_timeout"]

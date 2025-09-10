@@ -9,16 +9,25 @@ signal settings_pressed
 func _ready():
 	$Settings.visible = false
 	$PlayButton.connect("play_pressed", Callable(self, "animate_pawns"))
-	
-	$StartGameTimer.wait_time = 4
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if _alert_pawns:
 		var pawns_array = get_tree().get_nodes_in_group("pawn_path")
 		_set_pawns_to_hide(pawns_array, delta)
+		#$StartGameTimer.start(10)
+func timer_Timeout():
+	_start_game()
 		
 func animate_pawns():
+	var timer: Timer = Timer.new()
+	add_child(timer)
+	timer.autostart = false
+	timer.one_shot = true
+	timer.wait_time = 4
+	timer.start()
+	timer.timeout.connect(timer_Timeout)
+	
 	_alert_pawns = true
 	
 func _set_pawns_to_hide(pawns_array, delta):
@@ -47,7 +56,3 @@ func _set_pawns_to_hide(pawns_array, delta):
 			
 func _start_game():
 	SceneSwitcher.switch_scene("res://scenes/game.tscn")
-
-
-func _on_start_game_timer_timeout():
-	_start_game()

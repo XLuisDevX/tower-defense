@@ -5,6 +5,8 @@ const gameConst = preload("res://gameConsts.gd")
 const MENU_BTN_DOWN = gameConst.MENU_BTN_TEXT.BUTTON_PRESSED
 const MENU_BTN_UP = gameConst.MENU_BTN_TEXT.BUTTON_UP
 
+signal play_pressed
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
