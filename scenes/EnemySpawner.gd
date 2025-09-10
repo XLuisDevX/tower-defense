@@ -10,8 +10,13 @@ var rng = RandomNumberGenerator.new()
 #@export var path_follow: PathFollow2D
 @export var path2D: Path2D
 @export var spawn_timer: Timer
-
+#                       0             1            2
 var enemy_types = [torch_goblin, tnt_goblin, barrel_goblin]
+var enemy_dic = {
+	"0": 10,
+	"1": 0,
+	"2": 0
+}
 var enemies_to_spawn = 0
 var bosses_to_spawn = 0
 var spawn_interval = 1.0
@@ -34,6 +39,7 @@ func _on_spawn_timer_timeout():
 		spawn_enemy()
 		enemies_to_spawn -= 1
 	else:
+		_update_enemy_weights(enemy_dic)
 		spawn_timer.stop()
 
 func spawn_enemy():
@@ -90,10 +96,30 @@ func _select_enemy():
 		bosses_to_spawn -= 1
 		return torch_goblin_boss
 	else:
-		var rnd = randf()
-		if rnd < 0.25: return enemy_types[0]
-		elif rnd >= 0.25 and rnd < 0.75: return enemy_types[1]
-		else: return enemy_types[2]
+		#TODO: System of weights that the more easily enemies appears more on low rounds
+		var enemy_index = int(_choose_enemy_by_weight(enemy_dic))
+		return enemy_types[enemy_index]
+
+func _choose_enemy_by_weight(enemies: Dictionary):
+	var total_weight = 0.0
+	for weight in enemies.values():
+		total_weight += weight
+	
+	var rnd_value = randf() * total_weight
+	var acc_weight = 0.0
+	
+	for enemy in enemies.keys():
+		acc_weight += enemies[enemy]
+		if rnd_value <= acc_weight:
+			return enemy
+	return ""
+	
+func _update_enemy_weights(enemies: Dictionary):
+	for enemy in enemies.keys():
+		if enemies[enemy] < 10.0:
+			enemies[enemy] += 0.025
+			
+	
 
 func _process(delta):
 	if enemies_spawned_counter != get_tree().get_nodes_in_group("enemy").size():

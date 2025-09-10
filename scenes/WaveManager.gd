@@ -32,8 +32,13 @@ func _ready():
 	UI_countdown.text = str(time_left)
 	UI_countdown.modulate = start_color
 	wave_timer.wait_time = 1
-	enemySpawner.connect("enemy_dies", Callable(self, "on_enemy_defeated"))
-	wave_timer.connect("timeout", Callable(self, "start_next_wave"))
+	
+	if enemySpawner:
+		enemySpawner.connect("enemy_dies", Callable(self, "on_enemy_defeated"))
+		wave_timer.connect("timeout", Callable(self, "start_next_wave"))
+	
+	if !enemy_spawner:
+		enemy_spawner = $"../EnemySpawner"
 	
 	if UI_countdown:
 		print("Nodo asignado desde el editor:", UI_countdown.name)
@@ -69,6 +74,7 @@ func start_next_wave():
 		GlobalScene.set_wave_index(current_wave)
 		print("Enemies to spawn: ", current_wave_data["enemy_count"])
 		#enemy_spawner.start_wave(current_wave_data["enemy_count"], current_wave_data["spawn_interval"])
+		print_debug(enemy_spawner.has_method("start_wave"))
 		enemy_spawner.start_wave(current_wave_data)
 		enemies_defeated = 0
 		emit_signal("wave_started", current_wave)
