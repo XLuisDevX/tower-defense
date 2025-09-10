@@ -17,24 +17,32 @@ var _throw_arrow = false
 var _play_throw_anim = true
 var archer_anim = "idle"
 var _tower_damage = 20
+var _current_speed = 1
 var upgrade_attack_speed_prize = 5
 var upgrade_damage_prize = 5
 var scoreLabel: Label
 
 var UPGRADE_MAX_LEVEL = 5
+var padding: Vector2 = Vector2(10,5)
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	scoreLabel = get_parent().get_node("UI_Gold_Control/UI_Gold_Panel/ScoreLabel")
+	scoreLabel = get_parent().get_parent().get_node("UI_Gold_Control/UI_Gold_Panel/ScoreLabel")
 	if not scoreLabel:
-		print("Can not find scoreLabel node!")
+		print_debug("Can not find scoreLabel node!")
 		
-	$Improvements/AttackSpeed/Prize.text = str(upgrade_attack_speed_prize)
-	$Improvements/Damage/Prize.text = str(upgrade_damage_prize)
+	#$Improvements/AttackSpeed/Prize.text = str(upgrade_attack_speed_prize)
+	#$Improvements/Damage/Prize.text = str(upgrade_damage_prize)
+	_update_tower_interface($Improvements/AttackSpeed/Prize, upgrade_attack_speed_prize)
+	_update_tower_interface($Improvements/Damage/Prize, upgrade_damage_prize)
+	
+	
+	GlobalScene.connect("game_speed_updated", Callable(self, "_update_tower_speed"))
 	
 	$Archer.speed_scale = 1 * GlobalScene.get_game_speed()
 	_anim_archer(archer_anim, false)
+
 	#_play_build_sound()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -186,6 +194,7 @@ func _update_attack_speed():
 		_update_tower_interface($Improvements/AttackSpeed/Prize, upgrade_attack_speed_prize)
 		if $Archer.speed_scale + 0.2 <= 2:
 			$Archer.speed_scale += 0.2
+			_current_speed = $Archer.speed_scale
 
 func _update_damage():
 	if _can_upgrade(upgrade_damage_prize, _damage_level):
@@ -202,6 +211,9 @@ func _update_player_balance(upgrade_prize: int) -> void:
 	var current_balance = int(scoreLabel.text) - upgrade_prize
 	GlobalScene.set_gold(current_balance)
 	scoreLabel.text = str(GlobalScene.get_gold())
+
+func _update_tower_speed() -> void:
+	$Archer.speed_scale = _current_speed if GlobalScene.get_game_speed() == 1 else 2
 
 func _on_body_entered(body):
 	if body is RigidBody2D or body is CharacterBody2D or body is StaticBody2D and body.is_in_group("enemy"):
