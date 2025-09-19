@@ -105,8 +105,6 @@ func _on_area_2d_area_exited(area):
 func on_attack_timeout():
 	if _is_tower:
 		_anim_enemy("attack")
-	else:
-		_anim_enemy("walk")
 
 
 func emit_attack_signal():
