@@ -8,8 +8,8 @@ func _ready():
 	var speed = 300
 	var angle = deg_to_rad(-50)
 	
-	velocity.x = cos(angle) * speed
-	velocity.y = sin(angle) * speed
+	#velocity.x = cos(angle) * speed
+	#velocity.y = sin(angle) * speed
 	
 	alive = true
 
@@ -18,7 +18,12 @@ func _process(delta):
 		rotate(deg_to_rad(5))
 		velocity.y += gravity * delta
 		global_position += velocity * delta
+
+func set_velocity(vel: Vector2) -> void:
+	velocity = vel
 	
+func set_alive(alive: bool) -> void:
+	alive = alive
 
 func move_to_player(delta):
 	global_position.x += global_position.x * delta * 0.02
@@ -36,3 +41,11 @@ func _on_body_entered(body):
 func _on_animated_sprite_2d_animation_finished():
 	if $AnimatedSprite2D.animation == "explode":
 		queue_free()
+
+
+func _on_area_entered(area):
+	if area.is_in_group("tower"):
+		alive = false
+		# Emit signal to damage tower
+		get_parent().emit_attack_signal()
+		$AnimatedSprite2D.play("explode")

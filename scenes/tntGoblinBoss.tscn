@@ -141,7 +141,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_38iu4")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
 "speed": 6.0
 }, {
@@ -224,33 +224,37 @@ animations = [{
 "speed": 6.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yjpod"]
-size = Vector2(47, 48)
+[sub_resource type="CircleShape2D" id="CircleShape2D_lbfgb"]
+radius = 110.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3tshq"]
-size = Vector2(46.8571, 48.5714)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5yan"]
+size = Vector2(52.5, 55)
 
-[node name="TNTGoblinBoss" type="CharacterBody2D"]
+[node name="TNTGoblinBoss" type="CharacterBody2D" groups=["BOSS"]]
 texture_filter = 1
 scale = Vector2(1.75, 1.75)
 script = ExtResource("1_3iolu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_t7h3e")
-animation = &"walk"
-frame_progress = 0.976433
+animation = &"attack"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_yjpod")
+[node name="VisionArea" type="Area2D" parent="."]
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_3tshq")
+[node name="Vision" type="CollisionShape2D" parent="VisionArea"]
+shape = SubResource("CircleShape2D_lbfgb")
 
 [node name="Marker" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_2ijv3")
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[node name="HitboxArea" type="Area2D" parent="." groups=["enemyHitbox"]]
+
+[node name="Hitbox" type="CollisionShape2D" parent="HitboxArea"]
+shape = SubResource("RectangleShape2D_m5yan")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
+[connection signal="area_entered" from="VisionArea" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="VisionArea" to="." method="_on_area_2d_area_exited"]

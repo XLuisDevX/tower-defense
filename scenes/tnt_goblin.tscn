@@ -166,8 +166,7 @@ script = ExtResource("1_k6wo0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_th6di")
-animation = &"attack"
-frame_progress = 0.842405
+animation = &"idle"
 
 [node name="VisionArea" type="Area2D" parent="."]
 position = Vector2(203, 0)

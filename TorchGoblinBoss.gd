@@ -43,7 +43,8 @@ func _physics_process(delta):
 
 func _on_boss_sprite_animation_looped():
 	if $AnimatedSprite2D.animation == "attack":
-		attack.emit()
+		#attack.emit()
+		SignalBus.attack_tower.emit(20)
 
 func set_aimed(aimed: bool):
 	$Marker.visible = aimed

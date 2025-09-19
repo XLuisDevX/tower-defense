@@ -39,6 +39,7 @@ func _ready():
 	
 	
 	GlobalScene.connect("game_speed_updated", Callable(self, "_update_tower_speed"))
+	SignalBus.attack_tower.connect(Callable(self, "_tower_get_hurts"))
 	
 	$Archer.speed_scale = 1 * GlobalScene.get_game_speed()
 	_anim_archer(archer_anim, false)
@@ -133,6 +134,9 @@ func _shoot(target_position, anim, flip_h):
 		projectile.velocity = direction * _arrow_speed
 		add_child(projectile)
 		_anim_archer("idle", _has_to_flip_h(_prev_orientation))
+
+func _tower_get_hurts(damage):
+	print_debug("TOWER RECEIVE DAMAGE: ", damage)
 
 # Gets enemy's orientation
 func _get_orientation(enemy, archer) -> String:
