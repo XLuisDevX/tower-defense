@@ -72,9 +72,9 @@ func start_next_wave():
 		current_wave_data = _generate_wave(current_wave)
 		current_wave += 1
 		GlobalScene.set_wave_index(current_wave)
-		print("Enemies to spawn: ", current_wave_data["enemy_count"])
+		#print("Enemies to spawn: ", current_wave_data["enemy_count"])
 		#enemy_spawner.start_wave(current_wave_data["enemy_count"], current_wave_data["spawn_interval"])
-		print_debug(enemy_spawner.has_method("start_wave"))
+		#print_debug(enemy_spawner.has_method("start_wave"))
 		enemy_spawner.start_wave(current_wave_data)
 		enemies_defeated = 0
 		emit_signal("wave_started", current_wave)

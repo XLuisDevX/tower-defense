@@ -41,7 +41,7 @@ func check_if_put_tower(event, tower) -> bool:
 	return event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT and tower_holded and tower.can_build()
 
 func _get_num_of_towers_in_game() -> int:
-	print('NUM TOWERS IN GAME: ', tower_container.get_child_count())
+	#print('NUM TOWERS IN GAME: ', tower_container.get_child_count())
 	return tower_container.get_child_count()
 
 func _on_button_up():
@@ -65,9 +65,9 @@ func _check_button_status():
 			disabled = true
 
 func _have_enough_gold() -> bool:
-	print('CURRENT GOLD: ', GlobalScene.get_gold())
-	print('BUILD PRIZE: ', current_build_prize)
-	print(false if GlobalScene.get_gold() < current_build_prize else true)
+	#print('CURRENT GOLD: ', GlobalScene.get_gold())
+	#print('BUILD PRIZE: ', current_build_prize)
+	#print(false if GlobalScene.get_gold() < current_build_prize else true)
 	return false if GlobalScene.get_gold() < current_build_prize else true
 	
 func _can_build_more_towers() -> bool:
