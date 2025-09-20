@@ -3,13 +3,14 @@ extends Enemy
 var _HEALTH = 40
 var _SCORE = 10
 var _SPEED = 100
-
+var _GOLD_AWARD = 30
 
 func _init():
 	call_deferred("_post_init")
 	super(_HEALTH, _SCORE, _SPEED)
 	
 func _post_init():
+	_set_gold_award(_GOLD_AWARD)
 	_update_unset_properties(get_parent().global_position, $AnimatedSprite2D)
 
 func set_aimed(aimed: bool):

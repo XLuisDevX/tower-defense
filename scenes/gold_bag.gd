@@ -1,5 +1,6 @@
 extends StaticBody2D
 
+var _gold_value
 
 signal collect_gold
 
@@ -19,8 +20,9 @@ func _on_input_event(viewport, event, shape_idx):
 		visible = false
 		#$CollectSound.play()
 		#queue_free()
-		GlobalScene.set_gold(GlobalScene.get_gold()+10)
+		GlobalScene.set_gold(GlobalScene.get_gold() + _gold_value)
 		#call_deferred("queue_free")
+
 
 
 func _on_collect_sound_finished():

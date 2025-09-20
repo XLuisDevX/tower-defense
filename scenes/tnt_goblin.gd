@@ -7,12 +7,14 @@ var _HEALTH = 32 # Life points will increment during rounds to enemies more diff
 var _SCORE = 10
 var _SPEED = 100
 var _DAMAGE = 20
+var _GOLD_AWARD = 20
 
 func _init():
 	call_deferred("_post_init")
 	super(_HEALTH, _DAMAGE, _SPEED) # (health, damage, speed)
 	
 func _post_init():
+	_set_gold_award(_GOLD_AWARD)
 	_update_unset_properties(get_parent().global_position, $AnimatedSprite2D)
 	_attack_timer = _create_timer(2, true)
 

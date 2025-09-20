@@ -16,6 +16,7 @@ var speed
 var previousPos
 var sprite
 var current_progress = 0.0
+var _gold_award = 0
 var path_follow_instance = null
 var _LINEAL_LIFE_INCREMENT = 5
 var _PERCENTAGE_INCREMENT = 1.05
@@ -62,6 +63,12 @@ func set_aimed(aimed: bool) -> void:
 
 func _get_aimed() -> bool:
 	return aimed
+	
+func _set_gold_award(value) -> void:
+	_gold_award = value
+
+func _get_gold_award() -> int:
+	return _gold_award
 
 #endregion SETTERS AND GETTERS
 
@@ -145,6 +152,7 @@ func _drop_gold() -> void:
 	#get_parent().add_child(gold_bag)
 	#get_tree().root.add_child(gold_bag) # Add gold_scene instance into main node
 	gold_bag.position = global_position # Update instance position after been added to main node
+	gold_bag.set_gold_value(_get_gold_award())
 
 func _update_score():
 	GlobalScene.set_score(GlobalScene.get_score() + score * GlobalScene.get_wave_index())

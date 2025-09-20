@@ -5,7 +5,7 @@ var _HEALTH = 32 # Life points will increment during rounds to enemies more diff
 var _SCORE = 10
 var _SPEED = 100
 var _DAMAGE = 10
-
+var _GOLD_AWARD = 10
 var previous_position
 
 func _init():
@@ -13,6 +13,7 @@ func _init():
 	super(_HEALTH, _SCORE, _SPEED)
 	
 func _post_init():
+	_set_gold_award(_GOLD_AWARD)
 	_update_unset_properties(get_parent().global_position, $AnimatedSprite2D)
 #func _check_direction():
 	##var current_pos = get_parent().global_position
