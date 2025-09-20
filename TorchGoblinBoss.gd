@@ -4,15 +4,29 @@ var is_tower = false
 var has_target = false
 var tower_reached = false
 
+var _BOSS_HEALTH = 200
+var _BOSS_SCORE = 100
+var _BOSS_SPEED = 75
+var _BOSS_DAMAGE = 50
+var _BOSS_GOLD_AWARD = 50
+
+var _damage_increment_factor = 0.5
+var _health_increment_factor = 0.5
+var _speed_increment_factor = 0.25
+
 var path_is_updated = false
 
 var tower_target_position = null
 
 func _init():
 	call_deferred("_post_init")
-	super(200, 100, 75)
+	if GlobalScene.get_wave_index() % 5 == 0 and GlobalScene.get_wave_index() != 5:
+		_update_boss_attributes()
+		
+	super(_BOSS_HEALTH, _BOSS_SCORE, _BOSS_SPEED)
 
 func _post_init():
+	_set_gold_award(_BOSS_GOLD_AWARD)
 	_update_unset_properties(get_parent().global_position, $AnimatedSprite2D)
 	
 func _physics_process(delta):
@@ -41,21 +55,13 @@ func _physics_process(delta):
 	call_deferred("_check_direction")
 	#_check_direction()
 
-func _on_boss_sprite_animation_looped():
-	if $AnimatedSprite2D.animation == "attack":
-		#attack.emit()
-		SignalBus.attack_tower.emit(20)
-
 func set_aimed(aimed: bool):
 	$Marker.visible = aimed
 
-func _on_area_2d_area_entered(area):
-	if area.is_in_group("tower") and !has_target:
-		has_target = true
-		#$IgniteTimer.start()
-		exit_path_follow()
-		tower_target_position = area.position
-
+func _update_boss_attributes():
+	_BOSS_DAMAGE = round( _BOSS_DAMAGE + _BOSS_DAMAGE * _damage_increment_factor)
+	_BOSS_HEALTH = round(_BOSS_HEALTH +  _BOSS_HEALTH * _health_increment_factor)
+	_BOSS_SPEED = round(_BOSS_SPEED + _BOSS_SPEED + _speed_increment_factor)
 # Move goblin to the current tower position
 func follow_up_tower(delta):
 	if !tower_reached:
@@ -63,6 +69,7 @@ func follow_up_tower(delta):
 	else:
 		$AnimatedSprite2D.play("attack")
 
+#region SIGNALS
 func _on_ignite_timer_timeout():
 	is_tower = true
 	$AnimatedSprite2D.play("ignite")
@@ -71,7 +78,6 @@ func _on_animated_sprite_2d_animation_finished():
 	if $AnimatedSprite2D.animation == "ignite":
 		$AnimatedSprite2D.play("walk")
 		is_tower = false
-
 
 func _on_hitbox_area_body_entered(body):
 	if body.is_in_group("player"):
@@ -83,7 +89,20 @@ func _on_hitbox_area_body_entered(body):
 	elif body.is_in_group("tower"):
 		print(body.name)
 
-
 func _on_hitbox_area_area_entered(area):
 	if area.is_in_group("tower"):
 		tower_reached = true
+
+func _on_area_2d_area_entered(area):
+	if area.is_in_group("tower") and !has_target:
+		has_target = true
+		#$IgniteTimer.start()
+		exit_path_follow()
+		tower_target_position = area.position
+
+func _on_boss_sprite_animation_looped():
+	if $AnimatedSprite2D.animation == "attack":
+		#attack.emit()
+		SignalBus.attack_tower.emit(_BOSS_DAMAGE)
+
+#endregion

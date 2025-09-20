@@ -5,11 +5,22 @@ var _attack_timer
 var _is_tower: bool = false
 var _tower: Node2D
 
+var _BOSS_HEALTH = 100
+var _BOSS_SCORE = 200
+var _BOSS_SPEED = 100
+var _BOSS_DAMAGE = 100
+var _BOSS_GOLD_AWARD = 50
+
+var _damage_increment_factor = 0.5
+var _health_increment_factor = 0.5
+var _speed_increment_factor = 0.25
+
 func _init():
 	call_deferred("post_init")
-	super(200, 100, 100)
+	super(_BOSS_HEALTH, _BOSS_SCORE, _BOSS_SPEED)
 
 func post_init():
+	_set_gold_award(_BOSS_GOLD_AWARD)
 	_update_unset_properties(get_parent().global_position, $AnimatedSprite2D)
 	_attack_timer = _create_timer(2, true)
 
