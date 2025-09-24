@@ -5,6 +5,9 @@ var idle_attack_speed = preload("res://assets/ui/Icons/Regular_11.png")
 var pressed_attack_speed = preload("res://assets/ui/Icons/Pressed_11.png")
 var idle_increase_attack = preload("res://assets/ui/Icons/Regular_12.png")
 var pressed_increase_attack = preload("res://assets/ui/Icons/Pressed_12.png")
+var tower_sprite = preload("res://assets/buildings/Tower_Blue.png")
+var tower_destroyed_sprite = preload("res://assets/buildings/Tower_Destroyed.png")
+var build_fx = preload("res://assets/sounds/BuildButtonSound.mp3")
 
 var _objects_inside = []
 var _prev_orientation = ""
@@ -22,6 +25,9 @@ var upgrade_attack_speed_prize = 5
 var upgrade_damage_prize = 5
 var scoreLabel: Label
 
+var _TOWER_HEALTH = 100
+var _alive = true
+
 var UPGRADE_MAX_LEVEL = 5
 var padding: Vector2 = Vector2(10,5)
 
@@ -32,6 +38,10 @@ func _ready():
 	if not scoreLabel:
 		print_debug("Can not find scoreLabel node!")
 		
+	var build_sound = AudioStreamPlayer.new()
+	build_sound.stream = build_fx
+	add_child(build_sound)
+	build_sound.play()
 	#$Improvements/AttackSpeed/Prize.text = str(upgrade_attack_speed_prize)
 	#$Improvements/Damage/Prize.text = str(upgrade_damage_prize)
 	_update_tower_interface($Improvements/AttackSpeed/Prize, upgrade_attack_speed_prize)
@@ -53,12 +63,13 @@ func _process(delta):
 			#var enemy = obj.get_parent()
 			#var path_follow = obj.get_parent()
 			#target_and_shoot(enemy, delta)
-	if _objects_inside.size() > 0:
-		if is_instance_valid(_objects_inside[0]) and _objects_inside[0].is_inside_tree():
-			_objects_inside[0].set_aimed(true)
-			var enemy = _objects_inside[0]
-			var path_follow = enemy.get_parent()
-			target_and_shoot(enemy, delta)
+	if _alive:
+		if _objects_inside.size() > 0:
+			if is_instance_valid(_objects_inside[0]) and _objects_inside[0].is_inside_tree():
+				_objects_inside[0].set_aimed(true)
+				var enemy = _objects_inside[0]
+				var path_follow = enemy.get_parent()
+				target_and_shoot(enemy, delta)
 	
 # Receives an object with the enemy position, then modify the archer sprite and shoot the enemy
 func target_and_shoot(enemy, delta):
@@ -113,8 +124,8 @@ func _get_future_position(archerPos, enemy, delta):
 	#
 	var oghoffset = enemy.h_offset
 	var ogvoffset = enemy.v_offset
-	enemy.h_offset = future_h_offset 
-	enemy.v_offset = future_v_offset 
+	enemy.h_offset = future_h_offset
+	enemy.v_offset = future_v_offset
 	var future_position = enemy.position
 	enemy.h_offset = oghoffset
 	enemy.v_offset = ogvoffset
@@ -137,6 +148,19 @@ func _shoot(target_position, anim, flip_h):
 
 func _tower_get_hurts(damage):
 	print_debug("TOWER RECEIVE DAMAGE: ", damage)
+	_TOWER_HEALTH -= damage
+	if _TOWER_HEALTH <= 0:
+		$Sprite2D.texture = tower_destroyed_sprite
+		$Archer.visible = false
+		$Improvements.visible = false
+		$TowerHitbox.disabled = true
+		_alive = false
+		var dead_timer = Timer.new()
+		dead_timer.wait_time = 3
+		dead_timer.one_shot = true
+		add_child(dead_timer)
+		dead_timer.start()
+		dead_timer.timeout.connect(Callable(self, "_on_dead_timer_timeout"))
 
 # Gets enemy's orientation
 func _get_orientation(enemy, archer) -> String:
@@ -275,6 +299,23 @@ func _on_area_exited(area):
 				_objects_inside.erase(enemy)
 			flipped = flip_h
 	_anim_archer("idle", flip_h)
+
+func _on_dead_timer_timeout() -> void:
+	var dead_tween = create_tween()
+	# Add type of transition
+	dead_tween.set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+	
+	# Blinks 3 times before it desapears
+	for i in range(3):
+		dead_tween.tween_property(self, "modulate:a", 0.0, 0.1)
+		dead_tween.tween_property(self, "modulate:a", 1.0, 0.1)
+		
+	# Do a fade out
+	dead_tween.tween_property(self, "modulate:a", 0.0, 0.5)
+	
+	# When tween finished remove tower from scene
+	dead_tween.finished.connect(func(): queue_free())
+		
 
 func _on_tower_vision_area_entered(area):
 	var node = area.get_parent()

@@ -121,7 +121,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tnjgp")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
 "speed": 6.0
 }, {
@@ -236,4 +236,5 @@ shape = SubResource("RectangleShape2D_0dn8c")
 [connection signal="area_entered" from="VisionArea" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="IgniteTimer" to="." method="_on_ignite_timer_timeout"]
 [connection signal="area_entered" from="HitboxArea" to="." method="_on_hitbox_area_area_entered"]
+[connection signal="area_exited" from="HitboxArea" to="." method="_on_hitbox_area_area_exited"]
 [connection signal="body_entered" from="HitboxArea" to="." method="_on_hitbox_area_body_entered"]

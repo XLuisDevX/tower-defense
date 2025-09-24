@@ -74,10 +74,26 @@ func _on_ignite_timer_timeout():
 	is_tower = true
 	$AnimatedSprite2D.play("ignite")
 
+func on_attack_timer_timeout():
+	_anim_enemy("attack")
+
 func _on_animated_sprite_2d_animation_finished():
 	if $AnimatedSprite2D.animation == "ignite":
 		$AnimatedSprite2D.play("walk")
 		is_tower = false
+	elif $AnimatedSprite2D.animation == "attack":
+		SignalBus.attack_tower.emit(_BOSS_DAMAGE)
+		$AnimatedSprite2D.play("idle")
+		if is_tower:
+			var timer = Timer.new()
+			timer.one_shot = true
+			timer.wait_time = 2
+			add_child(timer)
+			timer.start()
+			timer.timeout.connect(Callable(self, "on_attack_timer_timeout"))
+		else:
+			set_aimed(false)
+			$AnimatedSprite2D.play("walk")
 
 func _on_hitbox_area_body_entered(body):
 	if body.is_in_group("player"):
@@ -93,6 +109,12 @@ func _on_hitbox_area_area_entered(area):
 	if area.is_in_group("tower"):
 		tower_reached = true
 
+func _on_hitbox_area_area_exited(area):
+	if area.is_in_group("tower"):
+		is_tower = false
+		tower_target_position = null
+	#print_debug(area.is_in_group("tower"))
+
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("tower") and !has_target:
 		has_target = true
@@ -106,3 +128,9 @@ func _on_boss_sprite_animation_looped():
 		SignalBus.attack_tower.emit(_BOSS_DAMAGE)
 
 #endregion
+
+
+
+
+
+
