@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://dn7m053kn3s4l"]
+[gd_scene load_steps=67 format=3 uid="uid://dn7m053kn3s4l"]
 
 [ext_resource type="Script" path="res://scenes/tower.gd" id="1_j78pa"]
 [ext_resource type="Texture2D" uid="uid://q6sx3nvjc4de" path="res://assets/buildings/Tower_Blue.png" id="1_qklfw"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://ciaobntunuoaq" path="res://assets/ui/Icons/Regular_12.png" id="8_g7nch"]
 [ext_resource type="Texture2D" uid="uid://cd7x8wlgspps6" path="res://assets/ui/Icons/coin.png" id="8_qr6dm"]
 [ext_resource type="AudioStream" uid="uid://cle4rfr8g1n8g" path="res://assets/sounds/BuildButtonSound.mp3" id="10_mvbq3"]
+[ext_resource type="AudioStream" uid="uid://bsp7y5p71alfq" path="res://assets/sounds/BuildDemolition.mp3" id="11_y3w3k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_olkbh"]
 atlas = ExtResource("2_1ix2p")
@@ -438,6 +439,9 @@ autoplay = "idle"
 wait_time = 2.0
 
 [node name="Improvements" type="Control" parent="."]
+z_index = 1000
+z_as_relative = false
+y_sort_enabled = true
 layout_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
@@ -568,6 +572,11 @@ shape = SubResource("RectangleShape2D_y1s0y")
 
 [node name="BuildSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_mvbq3")
+bus = &"SFX"
+
+[node name="DemolitionSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_y3w3k")
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

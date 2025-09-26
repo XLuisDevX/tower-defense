@@ -150,6 +150,7 @@ func _tower_get_hurts(damage):
 	print_debug("TOWER RECEIVE DAMAGE: ", damage)
 	_TOWER_HEALTH -= damage
 	if _TOWER_HEALTH <= 0:
+		SoundManager.play_sound($DemolitionSound)
 		$Sprite2D.texture = tower_destroyed_sprite
 		$Archer.visible = false
 		$Improvements.visible = false
